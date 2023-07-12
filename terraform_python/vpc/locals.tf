@@ -39,4 +39,8 @@ locals {
   vpc_router_name                = "nat-router"
   vpc_nat_applicable_subnet_name = local.vpc_subnets[1].subnet_name
 
+  # vpc state bucket
+  vpc_state_bucket_name     = "vpc-state"
+  vpc_state_bucket_location = "us-east1"
+
 }
