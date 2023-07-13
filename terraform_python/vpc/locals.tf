@@ -43,4 +43,10 @@ locals {
   vpc_state_bucket_name     = "vpc-state"
   vpc_state_bucket_location = "us-east1"
 
+  # default labels/tags
+  # default_tags = {
+  #   Project   = "Hyly"
+  #   Owner     = "Terraform"
+  #   ManagedBy = "Junaid Ali"
+  # }
 }
