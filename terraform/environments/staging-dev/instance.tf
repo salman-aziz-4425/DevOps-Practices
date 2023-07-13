@@ -2,7 +2,7 @@
 #   account_id   = "service_account_id"
 #   display_name = "Service Account"
 # }
-
+/*
 resource "google_compute_instance" "staging_dev" {
   name         = local.name
   machine_type = local.machine_type
@@ -18,13 +18,10 @@ resource "google_compute_instance" "staging_dev" {
         managed_by  = "junaid-ali"
         environment = local.environment
       }
+
+      size = local.disk_size
     }
   }
-
-  // Local SSD disk
-  #   scratch_disk {
-  #     interface = "SCSI"
-  #   }
 
   network_interface {
     network    = data.google_compute_network.hyly-network.name
@@ -36,10 +33,8 @@ resource "google_compute_instance" "staging_dev" {
   }
 
   metadata = {
-    "ssh-keys" = local.allowed_ssh_pub_keys
+    ssh-keys = local.allowed_ssh_pub_keys
   }
-
-  #   metadata_startup_script = "echo hi > /test.txt"
 
   #   service_account {
   #     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
@@ -47,6 +42,7 @@ resource "google_compute_instance" "staging_dev" {
   #     scopes = ["cloud-platform"]
   #   }
 }
+*/
 
 resource "google_compute_firewall" "ssh" {
   name      = "ssh-firewall-rule"

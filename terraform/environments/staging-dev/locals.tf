@@ -14,6 +14,7 @@ locals {
   name         = "staging-dev-python"
   machine_type = "n2-standard-2"
   zone         = "us-east1-b"
+  disk_size    = 20
 
   allowed_ips_for_ssh = [
     "122.129.66.210/32", # Junaid's IP
