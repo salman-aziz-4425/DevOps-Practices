@@ -17,6 +17,4 @@ provider "google" {
   credentials = file("~/.creds/terraform-credentials.json")
   project     = local.project
   region      = local.region
-
-  #   default_labels = local.default_labels
 }

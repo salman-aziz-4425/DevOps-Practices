@@ -1,15 +1,15 @@
-# resource "google_service_account" "default" {
-#   account_id   = "service_account_id"
-#   display_name = "Service Account"
-# }
-/*
+resource "google_service_account" "staging_dev_sa" {
+  account_id   = "staging-dev-sa"
+  display_name = "Staging-dev Service Account"
+  project = local.project
+}
 resource "google_compute_instance" "staging_dev" {
   name         = local.name
   machine_type = local.machine_type
   zone         = local.zone
 
-  tags = ["ssh"]
-
+  tags                      = ["ssh"]
+  allow_stopping_for_update = local.allow_stopping_for_update
   boot_disk {
     initialize_params {
       image = "debian-cloud/debian-11"
@@ -36,13 +36,13 @@ resource "google_compute_instance" "staging_dev" {
     ssh-keys = local.allowed_ssh_pub_keys
   }
 
-  #   service_account {
-  #     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-  #     email  = google_service_account.default.email
-  #     scopes = ["cloud-platform"]
-  #   }
+  service_account {
+    # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
+    email  = google_service_account.staging_dev_sa.email
+    scopes = ["cloud-platform"]
+  }
+  depends_on = [ google_service_account.staging_dev_sa ]
 }
-*/
 
 resource "google_compute_firewall" "ssh" {
   name      = "ssh-firewall-rule"

@@ -3,7 +3,7 @@ locals {
   region  = "us-east1"
 
   # vpc network locals
-  vpc_network_name         = "main"
+  vpc_network_name         = "hyly-ml"
   vpc_network_routing_mode = "REGIONAL"
 
   # provide two subnets public and private
@@ -42,11 +42,4 @@ locals {
   # vpc state bucket
   vpc_state_bucket_name     = "vpc-state"
   vpc_state_bucket_location = "us-east1"
-
-  # default labels/tags
-  # default_tags = {
-  #   Project   = "Hyly"
-  #   Owner     = "Terraform"
-  #   ManagedBy = "Junaid Ali"
-  # }
 }

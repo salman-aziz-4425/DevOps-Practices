@@ -20,8 +20,6 @@ provider "google" {
   credentials = file("~/.creds/terraform-credentials.json")
   project     = local.project
   region      = local.region
-
-  #   default_tags = local.default_tags
 }
 
 provider "google-beta" {
@@ -29,6 +27,4 @@ provider "google-beta" {
   credentials = file("~/.creds/terraform-credentials.json")
   project     = local.project
   region      = local.region
-
-  #   default_tags = local.default_tags
 }

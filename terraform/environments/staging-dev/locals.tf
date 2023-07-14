@@ -4,32 +4,25 @@ locals {
   environment = "staging-dev"
 
   # network
-  vpc_network_name = "main"
+  vpc_network_name = "hyly-ml"
 
   # staging-dev environment state bucket
   staging_dev_state_bucket_name = "staging-dev-state"
   staging_dev_bucket_location   = "us-east1"
 
   # compute engine
-  name         = "staging-dev-python"
-  machine_type = "n2-standard-2"
-  zone         = "us-east1-b"
-  disk_size    = 20
+  name                      = "staging-dev-ml"
+  machine_type              = "n2-standard-2"
+  zone                      = "us-east1-b"
+  disk_size                 = 80
+  allow_stopping_for_update = true
 
   allowed_ips_for_ssh = [
     "122.129.66.210/32", # Junaid's IP
     "58.27.193.244/32"   # Junaid's IP
   ]
   allowed_ssh_pub_keys = <<EOT
-                ubuntu:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDtA6fbkNdCO2CqxnRp7SEOnTiUVeFfeToQ9m9PjVCo/Q7sSiwRTZ19DP+wOLtrZLDEAc36oKdHkuPKAAeGEEZbGPVs6TW2Bb0XUWR+/PKq+nAfrF+bF2S8Vh2Y4iy4N8Lk1YoL8RhiJKZCuvUj894wOiktGyftvj1mcxUzy32uHzDIJH6nxqbxjxm77ipsgpxlsqqKWKB4asnX2KyKlN1GQPEGtCtuix/xNSjhO1J3+zQkdfiUw4ozmsvqJeQFAomqsTUuHElPcJqpXVF+QRfal/DWqjBBenXUimpnD8Ovb407uV1CmmgNhN4eyYfbM3AZvJ68S8Y9jLjHolaSE9iL+gYbDhAHEM6YnQYF1/TfUIPbUFXY3mX3kt54A8m/bbZXn6j2cBzcMeGcQf9NpKrKtBWac6Ga5u5dP/f242LUsGv+NftcaMFFYwRh0gmz9uXPOEpVTVWtfECgQWjZaAtmh4l5fu56n32MKEa+mANv5/N+uFLEX5aYo75m3OGn7Kk= dev@Devs-MacBook-Pro.local
+                ubuntu:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDVpBmAHtXTF5o3QPImmJgHYL0gKqi/qZH0em/Fj9cAzva4lC/bvm4CHJxSfHqtZHF6pcrCm3WBK5EOZw3jc6ZR3grfwwm0OTjRWHVSVFCv3XHgfVXNSsVsfi4fYhOv+RIsXYvH9middJYJmrf2riHghlujQHwPuA2Y7y0KqD+nv4M9rTvk2g1nieg7Yx61iFKm5ygSBqOlJd6W7TtdocBZ0H65U/J2XyZkYJpLXvX/pjRd9HfbnheTKtyL0uHNNUSyNGaH/s43JdkUX6O4aw1T86LuOgegljHBjp0/j7WihEtAZvENT2Ar0nW/Csak8Diin6pexBrvQJIsAo7NyP4T ja-keypair
+                ubuntu:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCa8HfqHd3BhoHtXSasgbQ9/HnpEByNknicekS4LTfvZA5GKgjZm8XA0v+tyy1k5LBHQ7umVG0Dm8zuVGDJH5nC/N1zXi419csaIAvdDaEBmZQ0y4PxnW4c1Rw8oxwg43drvffGGjtGTFv5JfiaZVT1WUnVUqCnsTfbfUqsJ9eo9OM8+kQhtOIMr2A5IgFG5YmmlL5e6bL2TeHJPC4P/dE5M4KbkRQASqA4mAEojno562JR5EUa0QC1Gc3Rvrv5aREaVFZokP7r5nkRUU7fyrQ/FYwCFUr0622qKS/EIKszqhlNVnWBvA/KuivRscPZPBJY2kfzif438kOBnzVDyHuH tn-keypair
   EOT
-
-  # default labels/tags
-  #   default_labels = {
-  #     Project   = "Hyly"
-  #     Owner     = "Terraform"
-  #     ManagedBy = "Junaid Ali"
-  #     Environment = local.environment
-  #   }
-
 }
