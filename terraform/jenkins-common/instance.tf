@@ -1,14 +1,17 @@
 resource "google_service_account" "jenkins_sa" {
   account_id   = "jenkins-sa"
   display_name = "Jenkins Service Account"
-  project = local.project
+  project      = local.project
+}
+resource "google_compute_address" "static" {
+  name = "ipv4-address"
 }
 resource "google_compute_instance" "jenkins" {
   name         = local.name
   machine_type = local.machine_type
   zone         = local.zone
 
-  tags                      = ["ssh","publicaccess"]
+  tags                      = ["ssh", "publicaccess"]
   allow_stopping_for_update = local.allow_stopping_for_update
   boot_disk {
     initialize_params {
@@ -27,7 +30,7 @@ resource "google_compute_instance" "jenkins" {
     subnetwork = data.google_compute_network.hyly-network.subnetworks_self_links[0] # public subnet
 
     access_config {
-      // Ephemeral/Static public IP
+      nat_ip = google_compute_address.static.address
     }
   }
 
@@ -40,7 +43,7 @@ resource "google_compute_instance" "jenkins" {
     email  = google_service_account.jenkins_sa.email
     scopes = ["cloud-platform"]
   }
-  depends_on = [ google_service_account.jenkins_sa ]
+  depends_on = [google_service_account.jenkins_sa]
 }
 
 resource "google_compute_firewall" "public_access" {
@@ -54,6 +57,6 @@ resource "google_compute_firewall" "public_access" {
 
   allow {
     protocol = "tcp"
-    ports    = ["8080"]
+    ports    = ["8080", "80", "443"]
   }
 }
