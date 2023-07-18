@@ -22,9 +22,6 @@ resource "google_compute_instance" "jenkins" {
       size = local.disk_size
     }
   }
-
-  metadata_startup_script = "${file("install-jenkins.sh")}"
-
   network_interface {
     network    = data.google_compute_network.hyly-network.name
     subnetwork = data.google_compute_network.hyly-network.subnetworks_self_links[0] # public subnet

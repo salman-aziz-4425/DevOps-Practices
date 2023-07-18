@@ -11,7 +11,7 @@ locals {
   jenkins_bucket_location   = "us-east1"
 
   # compute engine
-  name                      = "jenkins"
+  name                      = "jenkins-ml"
   machine_type              = "n2-standard-2"
   zone                      = "us-east1-b"
   disk_size                 = 120
