@@ -9,7 +9,7 @@ services:
       ports:
           - "3306:3306"
       volumes:
-          - ./volumes/mysql_data:/var/lib/mysql
+          - ./volumes/mysql_data_staging:/var/lib/mysql
       command: --max-allowed-packet=128M
     
     # MongoDB Database
@@ -19,9 +19,9 @@ services:
       ports:
         - "27017:27017"
       volumes:
-        - ./volumes/mongo_data:/data/db
+        - ./volumes/mongo_data_staging:/data/db
       depends_on:
-          - mysql_db
+        - mysql_db_staging
       
     chatcdp_staging: 
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/chat-cdp/chatcdp:latest
@@ -29,7 +29,10 @@ services:
         - "5000:5000"
       command: "flask run --host=0.0.0.0 --port=5000"
       volumes: 
-          - ./volumes/chatCDP_data:/app
+        - ./volumes/chatCDP_data_staging:/app
+      depends_on:
+        - mysql_db_staging
+        - mongo_db_staging
 
     # All services  
     # pai_datascience_services_staging: 
@@ -39,16 +42,16 @@ services:
     #     ports: 
     #         - "80:80"
     #     depends_on:
-    #         - mysql_db
-    #         - mongo_db
+    #         - mysql_db_staging
+    #         - mongo_db_staging
 
 volumes:
-  mysql_data:
+  mysql_data_staging:
     external: true
-  mongo_data:
+  mongo_data_staging:
     external: true
     
 networks:
   default:
-    name: microservices
+    name: microservices_staging
     external: true
