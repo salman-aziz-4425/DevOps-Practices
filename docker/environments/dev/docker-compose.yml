@@ -9,7 +9,7 @@ services:
       ports:
           - "3306:3306"
       volumes:
-          - ./volumes/mysql_data_dev:/var/lib/mysql
+          - mysql_data_dev:/var/lib/mysql
       command: --max-allowed-packet=128M
     
     # MongoDB Database
@@ -19,7 +19,7 @@ services:
       ports:
         - "27017:27017"
       volumes:
-        - ./volumes/mongo_data_dev:/data/db
+        - mongo_data_dev:/data/db
       depends_on:
         - mysql_db_dev
       
@@ -27,9 +27,6 @@ services:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/chat-cdp/chatcdp:latest
       ports:
         - "5000:5000"
-      command: "flask run --host=0.0.0.0 --port=5000"
-      volumes: 
-        - ./volumes/chatCDP_data_dev:/app
       depends_on:
         - mysql_db_dev
         - mongo_db_dev
@@ -47,9 +44,7 @@ services:
 
 volumes:
   mysql_data_dev:
-    external: true
   mongo_data_dev:
-    external: true
     
 networks:
   default:

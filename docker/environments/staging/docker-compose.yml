@@ -7,9 +7,9 @@ services:
       environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: true
       ports:
-          - "3306:3306"
+          - "3307:3306"
       volumes:
-          - ./volumes/mysql_data_staging:/var/lib/mysql
+          - mysql_data_staging:/var/lib/mysql
       command: --max-allowed-packet=128M
     
     # MongoDB Database
@@ -17,19 +17,16 @@ services:
       image: mongo:5.0
       restart: always
       ports:
-        - "27017:27017"
+        - "27018:27017"
       volumes:
-        - ./volumes/mongo_data_staging:/data/db
+        - mongo_data_staging:/data/db
       depends_on:
         - mysql_db_staging
       
     chatcdp_staging: 
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/chat-cdp/chatcdp:latest
       ports:
-        - "5000:5000"
-      command: "flask run --host=0.0.0.0 --port=5000"
-      volumes: 
-        - ./volumes/chatCDP_data_staging:/app
+        - "5001:5000"
       depends_on:
         - mysql_db_staging
         - mongo_db_staging
@@ -47,9 +44,7 @@ services:
 
 volumes:
   mysql_data_staging:
-    external: true
   mongo_data_staging:
-    external: true
     
 networks:
   default:
