@@ -3,6 +3,16 @@ resource "google_service_account" "jenkins_sa" {
   display_name = "Jenkins Service Account"
   project      = local.project
 }
+resource "google_project_iam_binding" "jenkins_sa_token_creator" {
+  project = local.project
+  role    = "roles/iam.serviceAccountTokenCreator"
+  members = ["serviceAccount:${google_service_account.jenkins_sa.email}"]
+}
+resource "google_project_iam_binding" "jenkins_sa_artifact_registry" {
+  project = local.project
+  role    = "roles/artifactregistry.writer"
+  members = ["serviceAccount:${google_service_account.jenkins_sa.email}"]
+}
 resource "google_compute_address" "static" {
   name = "ipv4-address"
 }
@@ -11,7 +21,11 @@ resource "google_compute_instance" "jenkins" {
   machine_type = local.machine_type
   zone         = local.zone
 
-  tags                      = ["ssh", "publicaccess"]
+  tags = [
+    "ssh-public", 
+    "jenkins-access", 
+    "public-access-http-https"
+  ]
   allow_stopping_for_update = local.allow_stopping_for_update
   boot_disk {
     initialize_params {
@@ -44,19 +58,4 @@ resource "google_compute_instance" "jenkins" {
     scopes = ["cloud-platform"]
   }
   depends_on = [google_service_account.jenkins_sa]
-}
-
-resource "google_compute_firewall" "public_access" {
-  name      = "public-access-rule"
-  network   = data.google_compute_network.hyly-network.name
-  priority  = 1000
-  direction = "INGRESS"
-
-  source_ranges = ["0.0.0.0/0"]
-  target_tags   = ["publicaccess"]
-
-  allow {
-    protocol = "tcp"
-    ports    = ["8080", "80", "443"]
-  }
 }
