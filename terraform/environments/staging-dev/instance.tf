@@ -6,6 +6,16 @@ resource "google_service_account" "staging_dev_sa" {
 resource "google_compute_address" "staging_dev_static" {
   name = "staging-dev-ipv4-address"
 }
+resource "google_project_iam_binding" "staging_dev_sa_token_creator" {
+  project = local.project
+  role    = "roles/iam.serviceAccountTokenCreator"
+  members = ["serviceAccount:${google_service_account.staging_dev_sa.email}"]
+}
+resource "google_project_iam_binding" "staging_dev_sa_artifact_registry" {
+  project = local.project
+  role    = "roles/artifactregistry.reader"
+  members = ["serviceAccount:${google_service_account.staging_dev_sa.email}"]
+}
 resource "google_compute_instance" "staging_dev" {
   name         = local.name
   machine_type = local.machine_type
