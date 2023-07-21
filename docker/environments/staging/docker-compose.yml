@@ -24,7 +24,7 @@ services:
         - mysql_db_staging
       
     chatcdp_staging: 
-      image: us-east1-docker.pkg.dev/gds-prototype-20190629/chat-cdp/chatcdp:latest
+      image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/chatcdp:latest
       ports:
         - "5001:5000"
       depends_on:

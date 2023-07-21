@@ -6,6 +6,10 @@ locals {
   # network
   vpc_network_name = "hyly-ml"
 
+  # docker repository names
+  dev_repo     = "ml-dev"
+  staging_repo = "ml-staging"
+
   # staging-dev environment state bucket
   staging_dev_state_bucket_name = "staging-dev-state"
   staging_dev_bucket_location   = "us-east1"
