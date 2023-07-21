@@ -12,12 +12,13 @@ resource "google_artifact_registry_repository" "staging_repo" {
   format        = "DOCKER"
 }
 
-resource "null_resource" "run_gcloud_command" {
+resource "null_resource" "gcloud_command" {
   # This null_resource is just used to trigger the local-exec provisioner.
 
   # If you're using Terraform 0.13+, use the "triggers" argument instead:
   # triggers = { always_run = timestamp() }
 
+  # gcloud command must configured on your machine where you running terraform commands 
   provisioner "local-exec" {
     command     = <<EOT
       sudo gcloud artifacts repositories set-cleanup-policies ml-dev \

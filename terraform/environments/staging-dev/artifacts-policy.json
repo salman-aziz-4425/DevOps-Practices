@@ -4,7 +4,7 @@
       "action": {"type": "Delete"},
       "condition": {
         "tagState": "tagged",
-        "olderThan": "30d"
+        "olderThan": "10d"
       }
     },
     {
@@ -19,7 +19,7 @@
       "name": "keep-minimum-versions",
       "action": {"type": "Keep"},
       "mostRecentVersions": {
-        "keepCount": 2
+        "keepCount": 10
       }
     }
   ]
