@@ -1,0 +1,52 @@
+version: '3.9'
+services:
+    # MySQL Database
+    mysql_db_dev: 
+      image: mysql:8.0
+      restart: always
+      environment:
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
+      ports:
+          - "3306:3306"
+      volumes:
+          - mysql_data_dev:/var/lib/mysql
+      command: --max-allowed-packet=128M
+    
+    # MongoDB Database
+    mongo_db_dev:
+      image: mongo:5.0
+      restart: always
+      ports:
+        - "27017:27017"
+      volumes:
+        - mongo_data_dev:/data/db
+      depends_on:
+        - mysql_db_dev
+      
+    chatcdp_dev: 
+      image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/chatcdp:latest
+      ports:
+        - "5000:5000"
+      depends_on:
+        - mysql_db_dev
+        - mongo_db_dev
+
+    # All services  
+    # pai_datascience_services_dev: 
+    #     build: .
+    #     volumes: 
+    #         - ./:/app
+    #     ports: 
+    #         - "80:80"
+    #     depends_on:
+    #         - mysql_db_dev
+    #         - mongo_db_dev
+
+volumes:
+  mysql_data_dev:
+  mongo_data_dev:
+    
+networks:
+  default:
+    name: microservices_dev
+    external: true

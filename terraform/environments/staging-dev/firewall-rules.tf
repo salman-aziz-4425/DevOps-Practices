@@ -24,6 +24,6 @@ resource "google_compute_firewall" "flask_app" {
 
   allow {
     protocol = "tcp"
-    ports    = ["5000"]
+    ports    = ["5000", "5001"]
   }
 }
