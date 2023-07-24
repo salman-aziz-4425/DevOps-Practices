@@ -31,16 +31,13 @@ services:
         - mysql_db_staging
         - mongo_db_staging
 
-    # All services  
-    # pai_datascience_services_staging: 
-    #     build: .
-    #     volumes: 
-    #         - ./:/app
-    #     ports: 
-    #         - "80:80"
-    #     depends_on:
-    #         - mysql_db_staging
-    #         - mongo_db_staging
+  # pai_datascience_services_staging: 
+  #   image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/pai-datascience-services:latest
+  #   ports: 
+  #     - "81:80"
+  #   depends_on:
+  #     - mysql_db_staging
+  #     - mongo_db_staging
 
 volumes:
   mysql_data_staging:

@@ -30,17 +30,14 @@ services:
       depends_on:
         - mysql_db_dev
         - mongo_db_dev
-
-    # All services  
-    # pai_datascience_services_dev: 
-    #     build: .
-    #     volumes: 
-    #         - ./:/app
-    #     ports: 
-    #         - "80:80"
-    #     depends_on:
-    #         - mysql_db_dev
-    #         - mongo_db_dev
+ 
+    pai_datascience_services_dev: 
+      image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/pai-datascience-services:latest
+      ports: 
+        - "80:80"
+      depends_on:
+        - mysql_db_dev
+        - mongo_db_dev
 
 volumes:
   mysql_data_dev:
