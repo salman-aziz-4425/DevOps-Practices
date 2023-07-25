@@ -43,9 +43,7 @@ services:
 
 volumes:
   mysql_data_dev:
-    external: true
   mongo_data_dev:
-    external: true
     
 networks:
   default:
