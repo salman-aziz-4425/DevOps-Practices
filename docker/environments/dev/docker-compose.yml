@@ -4,7 +4,6 @@ services:
     mysql_db_dev: 
       image: mysql:8.0
       restart: always
-      user: ":docker"
       environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: true
       ports:
@@ -17,7 +16,6 @@ services:
     mongo_db_dev:
       image: mongo:5.0
       restart: always
-      user: ":docker"
       ports:
         - "27017:27017"
       volumes:
@@ -28,7 +26,6 @@ services:
     chatcdp_dev: 
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/chatcdp:latest
       restart: always
-      user: ":docker"
       ports:
         - "5000:5000"
       depends_on:
@@ -38,7 +35,6 @@ services:
     pai_datascience_services_dev: 
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/pai-datascience-services:latest
       restart: always
-      user: ":docker"
       ports: 
         - "80:80"
       depends_on:
