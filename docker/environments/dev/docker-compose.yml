@@ -28,9 +28,9 @@ services:
       restart: always
       ports:
         - "5000:5000"
-      depends_on:
-        - mysql_db_dev
-        - mongo_db_dev
+      # depends_on:
+      #   - mysql_db_dev
+      #   - mongo_db_dev
  
 #     pai_datascience_services_dev: 
 #       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/pai-datascience-services:latest
