@@ -9,7 +9,7 @@ services:
       ports:
           - "3307:3306"
       volumes:
-          - ~/.volumes/mysql_data_staging:/var/lib/mysql
+          - /home/ubuntu/volumes/mysql_data_staging:/var/lib/mysql
       command: --max-allowed-packet=128M
     
     # MongoDB Database
@@ -19,7 +19,7 @@ services:
       ports:
         - "27018:27017"
       volumes:
-        - ~/.volumes/mongo_data_staging:/data/db
+        - /home/ubuntu/.volumes/mongo_data_staging:/data/db
       depends_on:
         - mysql_db_staging
       
