@@ -9,4 +9,4 @@ sudo chmod -R 755 ~/.volumes
 sudo chown -R ubuntu:docker ~/.volumes
 
 # Start Docker Compose services
-docker-compose up -d
+docker compose up -d
