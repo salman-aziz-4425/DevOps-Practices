@@ -1,50 +1,50 @@
-version: '3.9'
+version: '3.4'
 services:
     # MySQL Database
     mysql_db_staging: 
       image: mysql:8.0
       restart: always
       environment:
-          MYSQL_ALLOW_EMPTY_PASSWORD: true
+        MYSQL_ALLOW_EMPTY_PASSWORD: true
       ports:
-          - "3307:3306"
+        - "3316:3306"
       volumes:
-          - mysql_data_staging:/var/lib/mysql
-      command: --max-allowed-packet=128M
+        - /db_volumes/mysql_data_staging:/var/lib/mysql
     
     # MongoDB Database
     mongo_db_staging:
       image: mongo:5.0
       restart: always
       ports:
-        - "27018:27017"
+        - "27027:27017"
       volumes:
-        - mongo_data_staging:/data/db
+        - /db_volumes/mongo_data_staging:/data/db
       depends_on:
         - mysql_db_staging
       
     chatcdp_staging: 
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/chatcdp:latest
+      restart: always
       ports:
         - "5001:5000"
       depends_on:
         - mysql_db_staging
         - mongo_db_staging
 
-    # All services  
     # pai_datascience_services_staging: 
-    #     build: .
-    #     volumes: 
-    #         - ./:/app
-    #     ports: 
-    #         - "80:80"
-    #     depends_on:
-    #         - mysql_db_staging
-    #         - mongo_db_staging
+    #   image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/pai-datascience-services:latest
+    #   restart: always
+    #   ports: 
+    #     - "81:80"
+    #   depends_on:
+    #     - mysql_db_staging
+    #     - mongo_db_staging
 
 volumes:
   mysql_data_staging:
+    external: true
   mongo_data_staging:
+    external: true
     
 networks:
   default:
