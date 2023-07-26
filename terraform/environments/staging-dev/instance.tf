@@ -24,7 +24,8 @@ resource "google_compute_instance" "staging_dev" {
   tags = [
     "ssh-public",
     "flask-app",
-    "public-access-http-https"
+    "public-access-http-https",
+    "jupyter-notebook"
   ]
   allow_stopping_for_update = local.allow_stopping_for_update
   boot_disk {
