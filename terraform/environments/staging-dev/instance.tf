@@ -11,6 +11,11 @@ resource "google_project_iam_binding" "staging_dev_sa_token_creator" {
   role    = "roles/iam.serviceAccountTokenCreator"
   members = ["serviceAccount:${google_service_account.staging_dev_sa.email}"]
 }
+resource "google_project_iam_binding" "staging_dev_sa_storage" {
+  project = local.project
+  role    = "roles/storage.objectAdmin"
+  members = ["serviceAccount:${google_service_account.staging_dev_sa.email}"]
+}
 resource "google_project_iam_binding" "staging_dev_sa_artifact_registry" {
   project = local.project
   role    = "roles/artifactregistry.reader"
