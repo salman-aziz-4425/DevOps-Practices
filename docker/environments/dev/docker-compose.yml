@@ -23,6 +23,19 @@ services:
       depends_on:
         - mysql_db_dev
 
+    # Redis Database
+    redis_db_dev:
+      image: redis:latest
+      restart: always
+      ports:
+        - "6379:6379"
+      volumes:
+        - /db_volumes/redis_data_dev:/data
+      command: redis-server --bind 0.0.0.0
+      depends_on:
+        - mysql_db_dev
+        - mongo_db_dev
+
     # chatCDP https://github.com/munishgandhi/chatCDP  
     chatcdp_dev: 
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/chatcdp:latest
@@ -61,6 +74,8 @@ volumes:
   mysql_data_dev:
     external: true
   mongo_data_dev:
+    external: true
+  redis_data_dev:
     external: true
     
 networks:
