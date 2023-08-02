@@ -16,6 +16,11 @@ resource "google_project_iam_binding" "staging_dev_sa_storage" {
   role    = "roles/storage.objectAdmin"
   members = ["serviceAccount:${google_service_account.staging_dev_sa.email}"]
 }
+resource "google_project_iam_binding" "staging_dev_sa_bigquery" {
+  project = local.project
+  role    = "roles/bigquery.dataOwner"
+  members = ["serviceAccount:${google_service_account.staging_dev_sa.email}"]
+}
 resource "google_project_iam_binding" "staging_dev_sa_artifact_registry" {
   project = local.project
   role    = "roles/artifactregistry.reader"
