@@ -11,8 +11,8 @@ services:
         - nginx.conf:/etc/nginx/conf.d/default.conf
         - /home/ubuntu/crt_volumes:/etc/nginx/crt
       networks:
-      - microservices_dev
-      - microservices_staging
+        - microservices_dev
+        - microservices_staging
 
 networks:
   microservices_dev:
