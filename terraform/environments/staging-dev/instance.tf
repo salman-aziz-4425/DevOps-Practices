@@ -21,6 +21,31 @@ resource "google_project_iam_binding" "staging_dev_sa_bigquery" {
   role    = "roles/bigquery.dataOwner"
   members = ["serviceAccount:${google_service_account.staging_dev_sa.email}"]
 }
+resource "google_project_iam_binding" "staging_dev_sa_bigquery_admin" {
+  project = local.project
+  role    = "roles/bigquery.admin"
+  members = ["serviceAccount:${google_service_account.staging_dev_sa.email}"]
+}
+resource "google_project_iam_binding" "staging_dev_sa_storage_admin" {
+  project = local.project
+  role    = "roles/storage.admin"
+  members = ["serviceAccount:${google_service_account.staging_dev_sa.email}"]
+}
+resource "google_project_iam_binding" "staging_dev_sa_dataflow_admin" {
+  project = local.project
+  role    = "roles/dataflow.admin"
+  members = ["serviceAccount:${google_service_account.staging_dev_sa.email}"]
+}
+resource "google_project_iam_binding" "staging_dev_sa_dataflow_worker" {
+  project = local.project
+  role    = "roles/dataflow.worker"
+  members = ["serviceAccount:${google_service_account.staging_dev_sa.email}"]
+}
+resource "google_project_iam_binding" "staging_dev_sa_workflow_admin" {
+  project = local.project
+  role    = "roles/workflows.admin"
+  members = ["serviceAccount:${google_service_account.staging_dev_sa.email}"]
+}
 resource "google_project_iam_binding" "staging_dev_sa_artifact_registry" {
   project = local.project
   role    = "roles/artifactregistry.reader"
