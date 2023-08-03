@@ -16,9 +16,7 @@ services:
 
 networks:
   microservices_dev:
-    external: true
   microservices_staging:
-    external: true
     
 volumes:
   crt_volumes:
