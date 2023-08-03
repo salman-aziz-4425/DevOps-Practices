@@ -21,7 +21,21 @@ services:
         - /db_volumes/mongo_data_staging:/data/db
       depends_on:
         - mysql_db_staging
-      
+
+    # Redis Database
+    redis_db_staging:
+      image: redis:latest
+      restart: always
+      ports:
+        - "6389:6379"
+      volumes:
+        - /db_volumes/redis_data_staging:/data
+      command: redis-server --bind 0.0.0.0
+      depends_on:
+        - mysql_db_staging
+        - mongo_db_staging
+    
+    # chatCDP https://github.com/munishgandhi/chatCDP 
     chatcdp_staging: 
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/chatcdp:latest
       restart: always
@@ -31,6 +45,17 @@ services:
         - mysql_db_staging
         - mongo_db_staging
 
+    # chatCDP services https://github.com/munishgandhi/JAI.GPT.LeaseGPT.MailGPT/tree/main/ChatCDP
+    chatcdp_services_staging: 
+      image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/chatcdp-services:latest
+      restart: always
+      ports:
+        - "5011:5000"
+      depends_on:
+        - mysql_db_staging
+        - mongo_db_staging
+
+    # https://github.com/munishgandhi/etl-hub/tree/datascience_stg
     # pai_datascience_services_staging: 
     #   image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/pai-datascience-services:latest
     #   restart: always
@@ -44,6 +69,8 @@ volumes:
   mysql_data_staging:
     external: true
   mongo_data_staging:
+    external: true
+  redis_data_staging:
     external: true
     
 networks:
