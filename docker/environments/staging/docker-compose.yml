@@ -60,7 +60,7 @@ services:
     #   image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/pai-datascience-services:latest
     #   restart: always
     #   ports: 
-    #     - "81:80"
+    #     - "82:80"
     #   depends_on:
     #     - mysql_db_staging
     #     - mongo_db_staging
