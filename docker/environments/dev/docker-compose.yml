@@ -68,6 +68,12 @@ services:
       depends_on:
         - mysql_db_dev
         - mongo_db_dev
+    
+    etl_hub_dev:
+      image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/etl-hub:latest
+      restart: always
+      ports:
+        - "3000:3000"
 
 volumes:
   mysql_data_dev:
