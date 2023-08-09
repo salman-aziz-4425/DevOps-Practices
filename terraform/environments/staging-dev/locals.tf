@@ -36,7 +36,7 @@ locals {
 
   EOT
 
-  iam_bindings = {
+  iam_members = {
     "staging_dev_sa_token_creator"     = "roles/iam.serviceAccountTokenCreator"
     "staging_dev_sa_storage"           = "roles/storage.objectAdmin"
     "staging_dev_sa_bigquery"          = "roles/bigquery.dataOwner"

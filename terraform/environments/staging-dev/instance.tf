@@ -6,11 +6,11 @@ resource "google_service_account" "staging_dev_sa" {
 resource "google_compute_address" "staging_dev_static" {
   name = "staging-dev-ipv4-address"
 }
-resource "google_project_iam_binding" "staging_dev_sa_role_bindings" {
-  for_each = local.iam_bindings
+resource "google_project_iam_member" "staging_dev_sa_role_members" {
+  for_each = local.iam_members
   project  = local.project
   role     = each.value
-  members  = ["serviceAccount:${google_service_account.staging_dev_sa.email}"]
+  member  = "serviceAccount:${google_service_account.staging_dev_sa.email}"
 }
 resource "google_compute_instance" "staging_dev" {
   name         = local.name
