@@ -35,4 +35,17 @@ locals {
                 ubuntu:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDmigoxmG2/uejs2eidbQ0HRE5yvgtZzExo5AkeVee6nZN/vx0HbG2dZAfb+csBYuUae1sPnMMwQd9+c7mpCBclRFNn++cb6elWTwVDgQmRIQzV/OHl22x8k7C0+MVCLbTPW2nl+pLxrl7Us4J0rl3sNkYVjwoh+eGv+LytU/igPenRmL6ankJ/0SfHaRmUi6n1ZImKejyFTl9pjw7v5JL9k8l3XuQ3dyinstzx2jWHxzYzf8oxhI52FGuDt0ATg+8HhqEzae/7J1sjxYaMTM+jsuEtWlMYdlFWDJddLnCrpxefrTxuMu2AG3UFRJRuZfLb6v6kGh72qJIkXqZVbdS04FdxOlH73PkYdxTO0IN/wzmtqWbCwN3fuNyrdEuKEJqjm1fzsDXRRx2BRMLruO8GlO7pHvdp+CFNjMN+z7Z7skzqRqPcDo/aAiWBpCKD4MpckLsxNWr0itLdWkRGnpvYP+uxGiyyA4kPU59G/J88jif4fWqsguWX7ubdTLwDZqRh60gC2hVXMv6rp25uhD6J3+K8QivIIyZ6utVvtj8S3PVlMpwaArO+H1Yrj4pvd+AgtxKL2dXqd0mJDLR95Bknb0iMsUcV8dWPcUCGA0A4bOqCBF/ZiWN+gWIEQFdSsZIIcAohS0pdWoJdJ2oWcnnfoGGspLe/w8zZngzwt3kqvQ== guljabee@guls-mbp
 
   EOT
+
+  iam_bindings = {
+    "staging_dev_sa_token_creator"     = "roles/iam.serviceAccountTokenCreator"
+    "staging_dev_sa_storage"           = "roles/storage.objectAdmin"
+    "staging_dev_sa_bigquery"          = "roles/bigquery.dataOwner"
+    "staging_dev_sa_bigquery_admin"    = "roles/bigquery.admin"
+    "staging_dev_sa_storage_admin"     = "roles/storage.admin"
+    "staging_dev_sa_dataflow_admin"    = "roles/dataflow.admin"
+    "staging_dev_sa_dataflow_worker"   = "roles/dataflow.worker"
+    "staging_dev_sa_workflow_admin"    = "roles/workflows.admin"
+    "staging_dev_sa_artifact_registry" = "roles/artifactregistry.reader"
+    "staging_dev_sa_stackdriver"       = "roles/logging.logWriter"
+  }
 }
