@@ -6,50 +6,11 @@ resource "google_service_account" "staging_dev_sa" {
 resource "google_compute_address" "staging_dev_static" {
   name = "staging-dev-ipv4-address"
 }
-resource "google_project_iam_binding" "staging_dev_sa_token_creator" {
-  project = local.project
-  role    = "roles/iam.serviceAccountTokenCreator"
-  members = ["serviceAccount:${google_service_account.staging_dev_sa.email}"]
-}
-resource "google_project_iam_binding" "staging_dev_sa_storage" {
-  project = local.project
-  role    = "roles/storage.objectAdmin"
-  members = ["serviceAccount:${google_service_account.staging_dev_sa.email}"]
-}
-resource "google_project_iam_binding" "staging_dev_sa_bigquery" {
-  project = local.project
-  role    = "roles/bigquery.dataOwner"
-  members = ["serviceAccount:${google_service_account.staging_dev_sa.email}"]
-}
-resource "google_project_iam_binding" "staging_dev_sa_bigquery_admin" {
-  project = local.project
-  role    = "roles/bigquery.admin"
-  members = ["serviceAccount:${google_service_account.staging_dev_sa.email}"]
-}
-resource "google_project_iam_binding" "staging_dev_sa_storage_admin" {
-  project = local.project
-  role    = "roles/storage.admin"
-  members = ["serviceAccount:${google_service_account.staging_dev_sa.email}"]
-}
-resource "google_project_iam_binding" "staging_dev_sa_dataflow_admin" {
-  project = local.project
-  role    = "roles/dataflow.admin"
-  members = ["serviceAccount:${google_service_account.staging_dev_sa.email}"]
-}
-resource "google_project_iam_binding" "staging_dev_sa_dataflow_worker" {
-  project = local.project
-  role    = "roles/dataflow.worker"
-  members = ["serviceAccount:${google_service_account.staging_dev_sa.email}"]
-}
-resource "google_project_iam_binding" "staging_dev_sa_workflow_admin" {
-  project = local.project
-  role    = "roles/workflows.admin"
-  members = ["serviceAccount:${google_service_account.staging_dev_sa.email}"]
-}
-resource "google_project_iam_binding" "staging_dev_sa_artifact_registry" {
-  project = local.project
-  role    = "roles/artifactregistry.reader"
-  members = ["serviceAccount:${google_service_account.staging_dev_sa.email}"]
+resource "google_project_iam_binding" "staging_dev_sa_role_bindings" {
+  for_each = local.iam_bindings
+  project  = local.project
+  role     = each.value
+  members  = ["serviceAccount:${google_service_account.staging_dev_sa.email}"]
 }
 resource "google_compute_instance" "staging_dev" {
   name         = local.name
