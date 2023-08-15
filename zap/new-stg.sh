@@ -39,12 +39,12 @@ CHANNEL_ID="C05M1A77XUN"
 TOKEN="xoxb-3491998352-5724054001493-4RSWJcBu1WGrhYl62DWMMcnT"
 
 CURRENT_DATE_TIME=$(date +"%Y-%m-%d %H:%M:%S")
-MESSAGE="Scan Report at $CURRENT_DATE_TIME!"
+MESSAGE="Scan Report of new staging at $CURRENT_DATE_TIME!"
 
 curl -v https://slack.com/api/files.upload -F token="${TOKEN}" -F channels="${CHANNEL}" -F title="${MESSAGE}" -F filename="${FILE_NAME}" -F file=@"${FILE_PATH}"
 
-# Remove report from server 
-rm -rf hyly-new-stage-full-scan.pdf
+# Remove reports from server 
+rm -rf hyly-new-stage-full-scan.pdf hyly-new-stage-full-scan.html
 
 
 
