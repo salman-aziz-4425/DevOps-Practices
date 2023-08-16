@@ -45,6 +45,7 @@ services:
       depends_on:
         - mysql_db_dev
         - mongo_db_dev
+        - redis_db_dev
     
     # chatCDP services https://github.com/munishgandhi/JAI.GPT.LeaseGPT.MailGPT/tree/main/ChatCDP
     chatcdp_services_dev: 
@@ -65,6 +66,15 @@ services:
         - "8888:8888"
         - "8889:8889"
         - "8890:8890"
+      depends_on:
+        - mysql_db_dev
+        - mongo_db_dev
+
+    hayleygpt_dev: 
+      image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/hayleygpt:latest
+      restart: always
+      ports: 
+        - "5005:5000"
       depends_on:
         - mysql_db_dev
         - mongo_db_dev

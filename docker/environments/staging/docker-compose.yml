@@ -55,6 +55,15 @@ services:
         - mysql_db_staging
         - mongo_db_staging
 
+    hayleygpt_staging: 
+      image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/hayleygpt:latest
+      restart: always
+      ports: 
+        - "5006:5000"
+      depends_on:
+        - mysql_db_staging
+        - mongo_db_staging
+
     
     etl_hub_staging:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/etl-hub:latest
