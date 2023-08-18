@@ -97,6 +97,8 @@ services:
     hayleygpt_dev: 
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/hayleygpt:latest
       restart: on-failure:3
+      env_file:
+        - /home/ubuntu/code/.env.hayleygpt
       deploy:
         resources:
           limits:
