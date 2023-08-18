@@ -108,24 +108,24 @@ services:
         - mongo_db_staging
 
     
-    etl_hub_staging:
-      image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/etl-hub:latest
-      deploy:
-        restart_policy:
-          condition: on-failure
-          delay: 5s
-          max_attempts: 3
-          window: 120s
+    # etl_hub_staging:
+    #   image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/etl-hub:latest
+    #   deploy:
+    #     restart_policy:
+    #       condition: on-failure
+    #       delay: 5s
+    #       max_attempts: 3
+    #       window: 120s
 
-        resources:
-          limits:
-            cpus: '0.25'
-            memory: 350M
-          reservations:
-            cpus: '0.1'
-            memory: 100M
-      ports:
-        - "3001:3000"
+    #     resources:
+    #       limits:
+    #         cpus: '0.25'
+    #         memory: 350M
+    #       reservations:
+    #         cpus: '0.1'
+    #         memory: 100M
+    #   ports:
+    #     - "3001:3000"
 
     # https://github.com/munishgandhi/etl-hub/tree/datascience_stg
     # pai_datascience_services_staging: 
