@@ -38,6 +38,8 @@ services:
     # chatCDP https://github.com/munishgandhi/chatCDP 
     chatcdp_staging: 
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/chatcdp:latest
+      env_file:
+        - /home/ubuntu/code/.env.chatcdp_stg
       deploy:
         restart_policy:
           condition: on-failure
@@ -114,7 +116,7 @@ services:
           delay: 5s
           max_attempts: 3
           window: 120s
-          
+
         resources:
           limits:
             cpus: '0.25'
