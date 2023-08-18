@@ -100,7 +100,7 @@ services:
           reservations:
             cpus: '0.1'
             memory: 100M
-        volumes:
+      volumes:
         - /pai-datascience_volumes/:/app/services/
 
       ports: 
