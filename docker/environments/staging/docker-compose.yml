@@ -38,7 +38,15 @@ services:
     # chatCDP https://github.com/munishgandhi/chatCDP 
     chatcdp_staging: 
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/chatcdp:latest
-      restart: always
+      restart: on-failure:3
+      deploy:
+        resources:
+          limits:
+            cpus: '0.25'
+            memory: 350M
+          reservations:
+            cpus: '0.1'
+            memory: 100M
       ports:
         - "5001:5000"
       depends_on:
@@ -48,7 +56,15 @@ services:
     # chatCDP services https://github.com/munishgandhi/JAI.GPT.LeaseGPT.MailGPT/tree/main/ChatCDP
     chatcdp_services_staging: 
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/chatcdp-services:latest
-      restart: always
+      restart: on-failure:3
+      deploy:
+        resources:
+          limits:
+            cpus: '0.25'
+            memory: 350M
+          reservations:
+            cpus: '0.1'
+            memory: 100M
       ports:
         - "5011:5000"
       depends_on:
@@ -57,7 +73,15 @@ services:
 
     hayleygpt_staging: 
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/hayleygpt:latest
-      restart: always
+      restart: on-failure:3
+      deploy:
+        resources:
+          limits:
+            cpus: '0.25'
+            memory: 350M
+          reservations:
+            cpus: '0.1'
+            memory: 100M
       ports: 
         - "5006:5000"
       depends_on:
@@ -67,7 +91,15 @@ services:
     
     etl_hub_staging:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/etl-hub:latest
-      restart: always
+      restart: on-failure:3
+      deploy:
+        resources:
+          limits:
+            cpus: '0.25'
+            memory: 350M
+          reservations:
+            cpus: '0.1'
+            memory: 100M
       ports:
         - "3001:3000"
 

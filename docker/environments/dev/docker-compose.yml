@@ -39,7 +39,15 @@ services:
     # chatCDP https://github.com/munishgandhi/chatCDP  
     chatcdp_dev: 
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/chatcdp:latest
-      restart: always
+      restart: on-failure:3
+      deploy:
+        resources:
+          limits:
+            cpus: '0.25'
+            memory: 350M
+          reservations:
+            cpus: '0.1'
+            memory: 100M
       ports:
         - "5000:5000"
       depends_on:
@@ -50,7 +58,15 @@ services:
     # chatCDP services https://github.com/munishgandhi/JAI.GPT.LeaseGPT.MailGPT/tree/main/ChatCDP
     chatcdp_services_dev: 
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/chatcdp-services:latest
-      restart: always
+      restart: on-failure:3
+      deploy:
+        resources:
+          limits:
+            cpus: '0.25'
+            memory: 350M
+          reservations:
+            cpus: '0.1'
+            memory: 100M
       ports:
         - "5010:5000"
       depends_on:
@@ -60,7 +76,15 @@ services:
     # https://github.com/munishgandhi/etl-hub/tree/datascience_dev
     pai_datascience_services_dev: 
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/pai-datascience-services:latest
-      restart: always
+      restart: on-failure:3
+      deploy:
+        resources:
+          limits:
+            cpus: '0.25'
+            memory: 350M
+          reservations:
+            cpus: '0.1'
+            memory: 100M
       ports: 
         - "81:80"
         - "8888:8888"
@@ -72,7 +96,15 @@ services:
 
     hayleygpt_dev: 
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/hayleygpt:latest
-      restart: always
+      restart: on-failure:3
+      deploy:
+        resources:
+          limits:
+            cpus: '0.25'
+            memory: 350M
+          reservations:
+            cpus: '0.1'
+            memory: 100M
       ports: 
         - "5005:5000"
       depends_on:
@@ -81,7 +113,15 @@ services:
     
     etl_hub_dev:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/etl-hub:latest
-      restart: always
+      restart: on-failure:3
+      deploy:
+        resources:
+          limits:
+            cpus: '0.25'
+            memory: 350M
+          reservations:
+            cpus: '0.1'
+            memory: 100M
       ports:
         - "3000:3000"
 
