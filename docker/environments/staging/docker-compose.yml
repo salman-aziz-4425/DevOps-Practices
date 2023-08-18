@@ -38,8 +38,13 @@ services:
     # chatCDP https://github.com/munishgandhi/chatCDP 
     chatcdp_staging: 
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/chatcdp:latest
-      restart: on-failure:3
       deploy:
+        restart_policy:
+          condition: on-failure
+          delay: 5s
+          max_attempts: 3
+          window: 120s
+
         resources:
           limits:
             cpus: '0.25'
@@ -56,8 +61,13 @@ services:
     # chatCDP services https://github.com/munishgandhi/JAI.GPT.LeaseGPT.MailGPT/tree/main/ChatCDP
     chatcdp_services_staging: 
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/chatcdp-services:latest
-      restart: on-failure:3
       deploy:
+        restart_policy:
+          condition: on-failure
+          delay: 5s
+          max_attempts: 3
+          window: 120s
+
         resources:
           limits:
             cpus: '0.25'
@@ -73,10 +83,15 @@ services:
 
     hayleygpt_staging: 
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/hayleygpt:latest
-      restart: on-failure:3
       env_file:
         - /home/ubuntu/code/.env.hayleygpt_stg
       deploy:
+        restart_policy:
+          condition: on-failure
+          delay: 5s
+          max_attempts: 3
+          window: 120s
+
         resources:
           limits:
             cpus: '0.25'
@@ -93,8 +108,13 @@ services:
     
     etl_hub_staging:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/etl-hub:latest
-      restart: on-failure:3
       deploy:
+        restart_policy:
+          condition: on-failure
+          delay: 5s
+          max_attempts: 3
+          window: 120s
+          
         resources:
           limits:
             cpus: '0.25'

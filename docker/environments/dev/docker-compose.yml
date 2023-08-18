@@ -39,8 +39,13 @@ services:
     # chatCDP https://github.com/munishgandhi/chatCDP  
     chatcdp_dev: 
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/chatcdp:latest
-      restart: on-failure:3
       deploy:
+        restart_policy:
+          condition: on-failure
+          delay: 5s
+          max_attempts: 3
+          window: 120s
+
         resources:
           limits:
             cpus: '0.25'
@@ -58,8 +63,13 @@ services:
     # chatCDP services https://github.com/munishgandhi/JAI.GPT.LeaseGPT.MailGPT/tree/main/ChatCDP
     chatcdp_services_dev: 
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/chatcdp-services:latest
-      restart: on-failure:3
       deploy:
+        restart_policy:
+          condition: on-failure
+          delay: 5s
+          max_attempts: 3
+          window: 120s
+
         resources:
           limits:
             cpus: '0.25'
@@ -76,8 +86,13 @@ services:
     # https://github.com/munishgandhi/etl-hub/tree/datascience_dev
     pai_datascience_services_dev: 
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/pai-datascience-services:latest
-      restart: on-failure:3
       deploy:
+        restart_policy:
+          condition: on-failure
+          delay: 5s
+          max_attempts: 3
+          window: 120s
+
         resources:
           limits:
             cpus: '0.25'
@@ -96,10 +111,15 @@ services:
 
     hayleygpt_dev: 
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/hayleygpt:latest
-      restart: on-failure:3
       env_file:
         - /home/ubuntu/code/.env.hayleygpt_dev
       deploy:
+        restart_policy:
+          condition: on-failure
+          delay: 5s
+          max_attempts: 3
+          window: 120s
+
         resources:
           limits:
             cpus: '0.25'
@@ -115,8 +135,13 @@ services:
     
     etl_hub_dev:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/etl-hub:latest
-      restart: on-failure:3
       deploy:
+        restart_policy:
+          condition: on-failure
+          delay: 5s
+          max_attempts: 3
+          window: 120s
+          
         resources:
           limits:
             cpus: '0.25'
