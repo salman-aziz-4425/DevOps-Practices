@@ -102,7 +102,7 @@ services:
             cpus: '0.1'
             memory: 100M
       volumes:
-        - /pai_datascience_volumes/services:/app/services
+        - /pai_datascience_volumes/services:/services
 
       ports: 
         - "81:80"
