@@ -1,7 +1,7 @@
 version: '3.4'
 services:
     # MySQL Database
-    mysql_db_dev: 
+    mysql_db_dev:
       image: mysql:8.0
       restart: always
       environment:
@@ -10,7 +10,7 @@ services:
         - "3306:3306"
       volumes:
         - /db_volumes/mysql_data_dev:/var/lib/mysql
-    
+
     # MongoDB Database
     mongo_db_dev:
       image: mongo:5.0
@@ -35,8 +35,8 @@ services:
         - mysql_db_dev
         - mongo_db_dev
 
-    # chatCDP https://github.com/munishgandhi/chatCDP  
-    chatcdp_dev: 
+    # chatCDP https://github.com/munishgandhi/chatCDP
+    chatcdp_dev:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/chatcdp:latest
       env_file:
         - /home/ubuntu/code/.env.chatcdp_dev
@@ -60,9 +60,9 @@ services:
         - mysql_db_dev
         - mongo_db_dev
         - redis_db_dev
-    
+
     # chatCDP services https://github.com/munishgandhi/JAI.GPT.LeaseGPT.MailGPT/tree/main/ChatCDP
-    chatcdp_services_dev: 
+    chatcdp_services_dev:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/chatcdp-services:latest
       deploy:
         restart_policy:
@@ -83,9 +83,9 @@ services:
       depends_on:
         - mysql_db_dev
         - mongo_db_dev
-    
+
     # https://github.com/munishgandhi/etl-hub/tree/datascience_dev
-    pai_datascience_services_dev: 
+    pai_datascience_services_dev:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/pai-datascience-services:latest
       deploy:
         restart_policy:
@@ -102,9 +102,9 @@ services:
             cpus: '0.1'
             memory: 100M
       volumes:
-        - /pai_datascience_volumes/services:/services
+        - pai_datascience_services:/services
 
-      ports: 
+      ports:
         - "81:80"
         - "8888:8888"
         - "8889:8889"
@@ -113,7 +113,7 @@ services:
         - mysql_db_dev
         - mongo_db_dev
 
-    hayleygpt_dev: 
+    hayleygpt_dev:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/hayleygpt:latest
       env_file:
         - /home/ubuntu/code/.env.hayleygpt_dev
@@ -131,12 +131,12 @@ services:
           reservations:
             cpus: '0.1'
             memory: 100M
-      ports: 
+      ports:
         - "5005:5000"
       depends_on:
         - mysql_db_dev
         - mongo_db_dev
-    
+
     # etl_hub_dev:
     #   image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/etl-hub:latest
     #   deploy:
@@ -157,16 +157,15 @@ services:
     #     - "3000:3000"
 
 volumes:
+  pai_datascience_services:
   mysql_data_dev:
     external: true
   mongo_data_dev:
     external: true
   redis_data_dev:
     external: true
-  pai-datascience_volumes:
-    external: true
-  
-    
+
+
 networks:
   default:
     name: microservices_dev
