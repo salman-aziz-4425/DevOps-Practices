@@ -1,7 +1,7 @@
 version: '3.4'
 services:
     # MySQL Database
-    mysql_db_dev: 
+    mysql_db_dev:
       image: mysql:8.0
       restart: always
       environment:
@@ -10,8 +10,7 @@ services:
         - "3306:3306"
       volumes:
         - /db_volumes/mysql_data_dev:/var/lib/mysql
-      command: --max-allowed-packet=128M
-    
+
     # MongoDB Database
     mongo_db_dev:
       image: mongo:5.0
@@ -36,31 +35,60 @@ services:
         - mysql_db_dev
         - mongo_db_dev
 
-    # chatCDP https://github.com/munishgandhi/chatCDP  
-    chatcdp_dev: 
+    # chatCDP https://github.com/munishgandhi/chatCDP
+    chatcdp_dev:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/chatcdp:latest
-      restart: always
+      env_file:
+        - /home/ubuntu/code/.env.chatcdp_dev
+      deploy:
+        restart_policy:
+          condition: on-failure
+          delay: 5s
+          max_attempts: 3
+        resources:
+          limits:
+            cpus: '0.30'
+            memory: 1g
       ports:
         - "5000:5000"
       depends_on:
         - mysql_db_dev
         - mongo_db_dev
-    
+        - redis_db_dev
+
     # chatCDP services https://github.com/munishgandhi/JAI.GPT.LeaseGPT.MailGPT/tree/main/ChatCDP
-    chatcdp_services_dev: 
+    chatcdp_services_dev:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/chatcdp-services:latest
-      restart: always
+      deploy:
+        restart_policy:
+          condition: on-failure
+          delay: 5s
+          max_attempts: 3
+        resources:
+          limits:
+            cpus: '0.30'
+            memory: 1g
       ports:
         - "5010:5000"
       depends_on:
         - mysql_db_dev
         - mongo_db_dev
-    
+
     # https://github.com/munishgandhi/etl-hub/tree/datascience_dev
-    pai_datascience_services_dev: 
+    pai_datascience_services_dev:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/pai-datascience-services:latest
-      restart: always
-      ports: 
+      deploy:
+        restart_policy:
+          condition: on-failure
+          delay: 5s
+          max_attempts: 3
+        resources:
+          limits:
+            cpus: '0.30'
+            memory: 1g
+      volumes:
+        - pai_datascience_services:/services
+      ports:
         - "81:80"
         - "8888:8888"
         - "8889:8889"
@@ -68,21 +96,52 @@ services:
       depends_on:
         - mysql_db_dev
         - mongo_db_dev
-    
-    etl_hub_dev:
-      image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/etl-hub:latest
-      restart: always
+
+    hayleygpt_dev:
+      image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/hayleygpt:latest
+      env_file:
+        - /home/ubuntu/code/.env.hayleygpt_dev
+      deploy:
+        restart_policy:
+          condition: on-failure
+          delay: 5s
+          max_attempts: 3
+        resources:
+          limits:
+            cpus: '0.30'
+            memory: 1g
       ports:
-        - "3000:3000"
+        - "5005:5000"
+      depends_on:
+        - mysql_db_dev
+        - mongo_db_dev
+
+    # etl_hub_dev:
+    #   image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/etl-hub:latest
+    #   deploy:
+    #     restart_policy:
+    #       condition: on-failure
+    #       delay: 5s
+    #       max_attempts: 3
+    #       window: 120s
+
+    #     resources:
+    #       limits:
+    #         cpus: '0.25'
+    #         memory: 350M
+    #   ports:
+    #     - "3000:3000"
 
 volumes:
+  pai_datascience_services:
   mysql_data_dev:
     external: true
   mongo_data_dev:
     external: true
   redis_data_dev:
     external: true
-    
+
+
 networks:
   default:
     name: microservices_dev
