@@ -41,19 +41,14 @@ services:
       env_file:
         - /home/ubuntu/code/.env.chatcdp_dev
       deploy:
-        # restart_policy:
-        #   condition: on-failure
-        #   delay: 5s
-        #   max_attempts: 3
-        #   window: 120s
-
+        restart_policy:
+          condition: on-failure
+          delay: 5s
+          max_attempts: 3
         resources:
           limits:
-            cpus: '0.50'
-            memory: 1.12g
-          # reservations:
-          #   cpus: '0.1'
-          #   memory: 100M
+            cpus: '0.30'
+            memory: 1g
       ports:
         - "5000:5000"
       depends_on:
@@ -69,15 +64,10 @@ services:
           condition: on-failure
           delay: 5s
           max_attempts: 3
-          window: 120s
-
         resources:
           limits:
-            cpus: '0.25'
-            memory: 350M
-          reservations:
-            cpus: '0.1'
-            memory: 100M
+            cpus: '0.30'
+            memory: 1g
       ports:
         - "5010:5000"
       depends_on:
@@ -92,18 +82,12 @@ services:
           condition: on-failure
           delay: 5s
           max_attempts: 3
-          window: 120s
-
         resources:
           limits:
-            cpus: '0.25'
-            memory: 350M
-          reservations:
-            cpus: '0.1'
-            memory: 100M
+            cpus: '0.30'
+            memory: 1g
       volumes:
         - pai_datascience_services:/services
-
       ports:
         - "81:80"
         - "8888:8888"
@@ -122,15 +106,10 @@ services:
           condition: on-failure
           delay: 5s
           max_attempts: 3
-          window: 120s
-
         resources:
           limits:
-            cpus: '0.25'
-            memory: 350M
-          reservations:
-            cpus: '0.1'
-            memory: 100M
+            cpus: '0.30'
+            memory: 1g
       ports:
         - "5005:5000"
       depends_on:
@@ -150,9 +129,6 @@ services:
     #       limits:
     #         cpus: '0.25'
     #         memory: 350M
-    #       reservations:
-    #         cpus: '0.1'
-    #         memory: 100M
     #   ports:
     #     - "3000:3000"
 
