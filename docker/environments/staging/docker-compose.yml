@@ -127,15 +127,28 @@ services:
     #   ports:
     #     - "3001:3000"
 
-    # https://github.com/munishgandhi/etl-hub/tree/datascience_stg
-    # pai_datascience_services_staging: 
-    #   image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/pai-datascience-services:latest
-    #   restart: always
-    #   ports: 
-    #     - "82:80"
-    #   depends_on:
-    #     - mysql_db_staging
-    #     - mongo_db_staging
+    #https://github.com/munishgandhi/etl-hub/tree/datascience_stg
+    pai_datascience_services_staging: 
+      image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/pai-datascience-services:latest
+      deploy:
+        restart_policy:
+          condition: on-failure
+          delay: 5s
+          max_attempts: 3
+          window: 120s
+
+        resources:
+          limits:
+            cpus: '0.25'
+            memory: 350M
+          reservations:
+            cpus: '0.1'
+            memory: 100M
+      ports: 
+        - "82:80"
+      depends_on:
+        - mysql_db_staging
+        - mongo_db_staging
 
    
 volumes:
