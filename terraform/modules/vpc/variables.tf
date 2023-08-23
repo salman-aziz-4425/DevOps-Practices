@@ -20,7 +20,7 @@ variable "network_routing_mode" {
 
 variable "subnets" {
   description = "Public and private subnets of vpc network."
-  type        = list(object({
+  type = list(object({
     subnet_name           = string
     subnet_ip             = string
     subnet_region         = string
@@ -31,7 +31,7 @@ variable "subnets" {
 
 variable "routes" {
   description = "Routes of vpc network."
-  type        = list(object({
+  type = list(object({
     name              = string
     description       = string
     destination_range = string
@@ -53,4 +53,12 @@ variable "router_name" {
 variable "nat_applicable_subnet_name" {
   description = "Subnet name on which you want to attach nat router."
   type        = string
+}
+
+variable "secondary_ranges" {
+  description = "Secondary ranges that will be used in some of the subnets."
+  type = map(list(object({
+    range_name    = string,
+    ip_cidr_range = string
+  })))
 }

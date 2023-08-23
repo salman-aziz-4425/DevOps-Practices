@@ -10,7 +10,9 @@ module "vpc" {
   delete_default_internet_gateway_routes = var.delete_default_internet_gateway_routes
 
   subnets = var.subnets
-  routes = var.routes
+  routes  = var.routes
+
+  secondary_ranges = var.secondary_ranges
 }
 
 # https://github.com/terraform-google-modules/terraform-google-cloud-router
