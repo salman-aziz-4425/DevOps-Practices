@@ -23,7 +23,7 @@ resource "mongodbatlas_database_user" "user" {
   auth_database_name = "admin"
 
   username = local.db_user
-  password = data.google_secret_manager_secret_version.hyly_ml_sql_password.secret_data
+  password = data.google_secret_manager_secret_version.hyly_ml_mongo_password.secret_data
 
   roles {
     role_name     = "readWrite"

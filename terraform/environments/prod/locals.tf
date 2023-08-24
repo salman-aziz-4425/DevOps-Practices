@@ -25,41 +25,42 @@ locals {
   # redis
   redis_name           = "ml-prod"
   redis_memory_size_gb = 2
-  redis_configs        = {}
+  redis_configs        = {} # TODO: Add Hyly config
   redis_location_id    = "us-east1-b"
   redis_version        = "REDIS_6_X"
   redis_tier           = "BASIC"
   redis_region         = "us-east1"
 
   # GKE
-  gke_name                       = "hyly-ml-prod"
-  gke_region                     = "us-east1"
-  gke_zones                      = ["us-east1-b", "us-east1-c", "us-east1-d"]
-  gke_cluster_dns_scope          = "VPC_SCOPE"
-  gke_cluster_dns_provider       = "CLOUD_DNS"
-  gke_subnetwork                 = "public-subnet-02"
-  gke_ip_range_services          = "ip-range-services"
-  gke_ip_range_pods              = "ip-range-pods"
-  gke_logging_service            = "logging.googleapis.com/kubernetes"
-  gke_monitoring_service         = "monitoring.googleapis.com/kubernetes"
-  gke_regional                   = false
-  gke_create_service_account     = true
-  gke_grant_registry_access      = true
-  gke_enable_cost_allocation     = true
-  gke_http_load_balancing        = false
-  gke_network_policy             = false
-  gke_horizontal_pod_autoscaling = false
-  gke_filestore_csi_driver       = false
-  gke_remove_default_node_pool   = true
+  gke_name                                 = "hyly-ml-prod"
+  gke_region                               = "us-east1"
+  gke_zones                                = ["us-east1-b", "us-east1-c", "us-east1-d"]
+  gke_cluster_dns_scope                    = "DNS_SCOPE_UNSPECIFIED"
+  gke_cluster_dns_provider                 = "PROVIDER_UNSPECIFIED"
+  gke_subnetwork                           = "public-subnet-02"
+  gke_ip_range_services                    = "ip-range-services"
+  gke_ip_range_pods                        = "ip-range-pods"
+  gke_logging_service                      = "logging.googleapis.com/kubernetes"
+  gke_monitoring_service                   = "monitoring.googleapis.com/kubernetes"
+  gke_regional                             = false
+  gke_create_service_account               = true
+  gke_grant_registry_access                = true
+  gke_enable_cost_allocation               = true
+  gke_http_load_balancing                  = false
+  gke_network_policy                       = false
+  gke_horizontal_pod_autoscaling           = false
+  gke_filestore_csi_driver                 = false
+  gke_remove_default_node_pool             = true
+  gke_monitoring_enable_managed_prometheus = false
 
   # GKE default node pool
   gke_default_node_pool = [
     {
       name            = "hyly-default"
       machine_type    = "e2-standard-2"
-      node_locations  = "us-east1-b,us-east1-c,us-east1-d"
+      node_locations  = "us-east1-c,us-east1-d"
       min_count       = 1
-      max_count       = 3
+      max_count       = 2
       local_ssd_count = 0
       spot            = false
       disk_size_gb    = 40
@@ -72,6 +73,8 @@ locals {
       /* service_account           = "project-service-account@<PROJECT ID>.iam.gserviceaccount.com" */
       preemptible        = false
       initial_node_count = 1
+      node_count         = 1
+      autoscaling        = false
     },
   ]
   gke_node_pools_oauth_scopes = {

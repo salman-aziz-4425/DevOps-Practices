@@ -4,6 +4,9 @@ data "google_compute_network" "hyly-network" {
 data "google_secret_manager_secret_version" "hyly_ml_sql_password" {
   secret = "hyly-ml-sql-password"
 }
+data "google_secret_manager_secret_version" "hyly_ml_mongo_password" {
+  secret = "hyly-ml-mongo-password"
+}
 data "google_secret_manager_secret_version" "atlas_public_key" {
   secret = "atlas-public-key"
 }
