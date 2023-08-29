@@ -112,6 +112,6 @@ locals {
   atlas_uri = replace(
     mongodbatlas_cluster.hyly_ml_cluster.srv_address,
     "://",
-    "://${local.db_user}:${mongodbatlas_database_user.user.password}@"
+    "://${local.mongo_db_user_1}:${mongodbatlas_database_user.xyz_user.password}@"
   )
 }

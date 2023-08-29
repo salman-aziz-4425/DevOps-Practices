@@ -30,7 +30,7 @@
 } */
 
 # GKE cluster
-resource "google_container_cluster" "primary" {
+resource "google_container_cluster" "hyly_ml_cluster" {
   name     = local.gke_name
   location = local.gke_region
 
@@ -44,4 +44,22 @@ resource "google_container_cluster" "primary" {
     cluster_secondary_range_name  = local.gke_ip_range_pods
     services_secondary_range_name = local.gke_ip_range_services
   }
+
+  node_config {
+
+    oauth_scopes = [
+      "https://www.googleapis.com/auth/service.management.readonly",
+      "https://www.googleapis.com/auth/logging.write",
+      "https://www.googleapis.com/auth/monitoring",
+      "https://www.googleapis.com/auth/devstorage.read_only",
+      "https://www.googleapis.com/auth/trace.append",
+      "https://www.googleapis.com/auth/cloud-platform",
+    ]
+  }
+  addons_config {
+    cloudrun_config { disabled = true }
+    http_load_balancing { disabled = false }
+    horizontal_pod_autoscaling { disabled = false }
+  }
+  vertical_pod_autoscaling { enabled = false }
 }
