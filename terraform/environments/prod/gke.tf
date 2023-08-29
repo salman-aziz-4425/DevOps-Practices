@@ -1,4 +1,4 @@
-module "gke" {
+/* module "gke" {
   source     = "terraform-google-modules/kubernetes-engine/google"
   project_id = local.project
   name       = local.gke_name
@@ -27,4 +27,21 @@ module "gke" {
   monitoring_service         = local.gke_monitoring_service
 
   monitoring_enable_managed_prometheus = local.gke_monitoring_enable_managed_prometheus
+} */
+
+# GKE cluster
+resource "google_container_cluster" "primary" {
+  name     = local.gke_name
+  location = local.gke_region
+
+  network    = local.vpc_network_name
+  subnetwork = local.gke_subnetwork
+
+  # Enabling Autopilot for this cluster
+  enable_autopilot = true
+
+  ip_allocation_policy {
+    cluster_secondary_range_name  = local.gke_ip_range_pods
+    services_secondary_range_name = local.gke_ip_range_services
+  }
 }

@@ -7,6 +7,7 @@ resource "google_sql_database_instance" "hylyml_sql_db_instance" {
     edition               = local.sql_edition
     connector_enforcement = local.sql_connector_enforcement
     disk_size             = local.sql_disk_size
+    availability_type     = local.sql_availability_type
     ip_configuration {
       ipv4_enabled = local.sql_ipv4_enabled
 
@@ -20,6 +21,19 @@ resource "google_sql_database_instance" "hylyml_sql_db_instance" {
         value = "0.0.0.0/32"
       }
     }
+    maintenance_window {
+      day          = local.sql_maintenance_day
+      hour         = local.sql_maintenance_hour
+      update_track = local.sql_update_track
+    }
+    backup_configuration {
+      enabled            = local.sql_backup_enabled
+      binary_log_enabled = local.sql_binary_log_enabled
+      start_time         = local.sql_backup_start_time
+      backup_retention_settings {
+        retained_backups = local.sql_retained_backups
+      }
+    }
   }
 }
 
@@ -30,10 +44,26 @@ resource "google_sql_database" "hylyml_sql_db" {
 }
 
 resource "google_sql_user" "root_user" {
-  name       = "root"
+  name       = local.sql_root_user
   instance   = google_sql_database_instance.hylyml_sql_db_instance.name
   host       = "%"
-  password   = data.google_secret_manager_secret_version.hyly_ml_sql_password.secret_data
+  password   = data.google_secret_manager_secret_version.hyly_ml_mysql_root_user_password.secret_data
+  project    = local.project
+  depends_on = [google_sql_database_instance.hylyml_sql_db_instance]
+}
+resource "google_sql_user" "rails_user" {
+  name       = local.sql_rails_user
+  instance   = google_sql_database_instance.hylyml_sql_db_instance.name
+  host       = "%"
+  password   = data.google_secret_manager_secret_version.hyly_ml_mysql_rails_user_password.secret_data
+  project    = local.project
+  depends_on = [google_sql_database_instance.hylyml_sql_db_instance]
+}
+resource "google_sql_user" "xyz_user" {
+  name       = local.sql_xyz_user
+  instance   = google_sql_database_instance.hylyml_sql_db_instance.name
+  host       = "%"
+  password   = data.google_secret_manager_secret_version.hyly_ml_mysql_xyz_user_password.secret_data
   project    = local.project
   depends_on = [google_sql_database_instance.hylyml_sql_db_instance]
 }

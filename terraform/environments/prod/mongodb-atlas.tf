@@ -17,16 +17,40 @@ resource "mongodbatlas_cluster" "hyly_ml_cluster" {
   provider_region_name        = local.atlas_cluster_region
   provider_instance_size_name = local.atlas_cluster_tier
 }
-
-resource "mongodbatlas_database_user" "user" {
+resource "mongodbatlas_database_user" "root_user" {
   project_id         = mongodbatlas_project.hyly_ml.id
   auth_database_name = "admin"
 
-  username = local.db_user
-  password = data.google_secret_manager_secret_version.hyly_ml_mongo_password.secret_data
-
+  username = local.mongo_db_user_root
+  password = data.google_secret_manager_secret_version.hyly_ml_mongo_root_user_password.secret_data
   roles {
     role_name     = "readWrite"
-    database_name = local.db_name
+    database_name = "admin"
+  }
+  roles {
+    role_name     = "atlasAdmin"
+    database_name = "admin"
+  }
+}
+resource "mongodbatlas_database_user" "xyz_user" {
+  project_id         = mongodbatlas_project.hyly_ml.id
+  auth_database_name = "admin"
+
+  username = local.mongo_db_user_1
+  password = data.google_secret_manager_secret_version.hyly_ml_mongo_xyz_user_password.secret_data
+  roles {
+    role_name     = "readWrite"
+    database_name = local.mongo_db_name_prod
+  }
+}
+resource "mongodbatlas_database_user" "rails_user" {
+  project_id         = mongodbatlas_project.hyly_ml.id
+  auth_database_name = "admin"
+
+  username = local.mongo_db_user_2
+  password = data.google_secret_manager_secret_version.hyly_ml_mongo_rails_user_password.secret_data
+  roles {
+    role_name     = "readWrite"
+    database_name = local.mongo_db_name_prod
   }
 }

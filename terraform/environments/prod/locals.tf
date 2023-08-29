@@ -7,32 +7,44 @@ locals {
   vpc_network_name = "hyly-ml"
 
   # ml-prod environment state bucket
-  staging_dev_state_bucket_name = "ml-prod-state"
+  staging_dev_state_bucket_name = "ml-${local.environment}-state"
   staging_dev_bucket_location   = "us-east1"
 
   # cloud sql
-  sql_instance_name                                 = "ml-prod"
-  sql_database_version                              = "MYSQL_8_0"
-  sql_region                                        = "us-east1"
-  sql_tier                                          = "db-g1-small"
-  sql_edition                                       = "ENTERPRISE"
-  sql_connector_enforcement                         = "NOT_REQUIRED"
-  sql_disk_size                                     = 10
-  sql_ipv4_enabled                                  = true
+  sql_instance_name         = "ml-${local.environment}"
+  sql_database_version      = "MYSQL_8_0"
+  sql_region                = "us-east1"
+  sql_tier                  = "db-g1-small"
+  sql_edition               = "ENTERPRISE"
+  sql_connector_enforcement = "NOT_REQUIRED"
+  sql_availability_type     = "ZONAL"
+  sql_maintenance_day       = 7
+  sql_maintenance_hour      = 1
+  sql_update_track          = "stable"
+  sql_backup_enabled        = true
+  sql_binary_log_enabled    = true
+  sql_backup_start_time     = "01:00"
+  sql_retained_backups      = 7
+  sql_disk_size             = 10
+  sql_ipv4_enabled          = true
+  sql_root_user             = "hyly_root"
+  sql_rails_user            = "hyly_rails"
+  sql_xyz_user              = "hyly_xyz"
+  sql_database_name         = "myhyly_production"
+
   sql_enable_private_path_for_google_cloud_services = true
-  sql_database_name                                 = "test-database" # TODO: change this later
 
   # redis
-  redis_name           = "ml-prod"
+  redis_name           = "ml-${local.environment}"
   redis_memory_size_gb = 2
-  redis_configs        = {} # TODO: Add Hyly config
+  redis_configs        = {}
   redis_location_id    = "us-east1-b"
   redis_version        = "REDIS_6_X"
   redis_tier           = "BASIC"
   redis_region         = "us-east1"
 
   # GKE
-  gke_name                                 = "hyly-ml-prod"
+  gke_name                                 = "hyly-ml-${local.environment}"
   gke_region                               = "us-east1"
   gke_zones                                = ["us-east1-b", "us-east1-c", "us-east1-d"]
   gke_cluster_dns_scope                    = "DNS_SCOPE_UNSPECIFIED"
@@ -87,14 +99,16 @@ locals {
 
   # mongodb atlas
   atlas_org_id         = "64e478e6c738112717212e2d"
-  atlas_project_name   = "Hyly-ai-prod"
+  atlas_project_name   = "Hyly-ml-${local.environment}"
   atlas_cluster_region = "EASTERN_US"
   atlas_cluster_tier   = "M10"
-  atlas_cluster_name   = "hyly-ml-prod"
+  atlas_cluster_name   = "hyly-ml-${local.environment}"
   atlas_provider_name  = "GCP"
   atlas_cluster_type   = "REPLICASET"
-  db_user              = "mongo"
-  db_name              = "hylyai"
+  mongo_db_user_1      = "hyly_xyz"
+  mongo_db_user_2      = "hyly_rails"
+  mongo_db_user_root   = "hyly_root"
+  mongo_db_name_prod   = "hyly_ui_mailgpt"
   atlas_uri = replace(
     mongodbatlas_cluster.hyly_ml_cluster.srv_address,
     "://",
