@@ -61,5 +61,5 @@ resource "google_container_cluster" "hyly_ml_cluster" {
     http_load_balancing { disabled = false }
     horizontal_pod_autoscaling { disabled = false }
   }
-  vertical_pod_autoscaling { enabled = false }
+  vertical_pod_autoscaling { enabled = true }
 }
