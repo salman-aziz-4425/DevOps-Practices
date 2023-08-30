@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: chatcdp_services
+  name: chatcdp-services
   namespace: hyly-prod
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
-    app: chatcdp_services
+    app: chatcdp-services
   ports:
     - protocol: TCP
       port: 5002

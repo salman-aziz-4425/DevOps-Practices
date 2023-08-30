@@ -4,7 +4,7 @@ metadata:
   name: chatcdp
   namespace: hyly-prod
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: chatcdp
   ports:

@@ -4,7 +4,7 @@ metadata:
   name: hayleygpt
   namespace: hyly-prod
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: hayleygpt
   ports:

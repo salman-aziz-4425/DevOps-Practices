@@ -13,10 +13,10 @@ spec:
     http:
       paths:
       - pathType: Prefix
-        path: "/chatcdp_services"
+        path: "/chatcdp-services"
         backend:
           service:
-            name: chatcdp_services
+            name: chatcdp-services
             port:
               number: 5002
 

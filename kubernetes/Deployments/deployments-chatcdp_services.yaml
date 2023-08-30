@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: chatcdp_services
+  name: chatcdp-services
   namespace: hyly-prod
   labels:
-    app: chatcdp_services
+    app: chatcdp-services
 spec:
   replicas: 1
   minReadySeconds: 10
@@ -18,21 +18,21 @@ spec:
 
   selector:
     matchLabels:
-      app: chatcdp_services
+      app: chatcdp-services
 
   template:
     metadata:
-      name: chatcdp_services
+      name: chatcdp-services
       labels:
-        app: chatcdp_services
+        app: chatcdp-services
     spec:
       restartPolicy: Always
 
       # imagePullSecrets:
-      #   - name: 
+      #   - name:
 
       containers:
-        - name: chatcdp_services
+        - name: chatcdp-services
           image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/chatcdp-services:latest
           imagePullPolicy: Always
 
@@ -42,10 +42,10 @@ spec:
           resources:
             requests:
               memory: "500Mi"
-              cpu: "100m"
+              cpu: "250m"
             limits:
               memory: "1024Mi"
-              cpu: "200m"
+              cpu: "250m"
 
           livenessProbe:
             httpGet:
