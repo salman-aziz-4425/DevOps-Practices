@@ -4,7 +4,6 @@ metadata:
   name: configmap-hayleygpt
   namespace: hyly-prod
 data:
-  CONNECTION_URL: mongodb://mongodbuser:hyly@34.197.146.168:27017/
   DB_NAME: hyly_ai_mailgpt
   DB_NAME_QA: hyly_ai_mailgpt_qa
   PINECONE_ENV: us-east4-gcp
