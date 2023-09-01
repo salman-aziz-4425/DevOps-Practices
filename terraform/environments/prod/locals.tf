@@ -3,14 +3,14 @@ locals {
   region      = "us-east1"
   environment = "prod"
 
-  # network
+  # Network
   vpc_network_name = "hyly-ml"
 
-  # ml-prod environment state bucket
+  # Ml-prod environment state bucket
   staging_dev_state_bucket_name = "ml-${local.environment}-state"
   staging_dev_bucket_location   = "us-east1"
 
-  # cloud sql
+  # Cloud sql
   sql_instance_name         = "ml-${local.environment}"
   sql_database_version      = "MYSQL_8_0"
   sql_region                = "us-east1"
@@ -34,7 +34,7 @@ locals {
 
   sql_enable_private_path_for_google_cloud_services = true
 
-  # redis
+  # Redis
   redis_name           = "ml-${local.environment}"
   redis_memory_size_gb = 2
   redis_configs        = {}
@@ -47,7 +47,9 @@ locals {
   gke_name                                 = "hyly-ml-${local.environment}"
   gke_region                               = "us-east1"
   gke_zones                                = ["us-east1-b", "us-east1-c", "us-east1-d"]
-  gke_cluster_dns_scope                    = "DNS_SCOPE_UNSPECIFIED"
+  gke_cluster_dns = "CLOUD_DNS"
+  gke_cluster_dns_domain = "cluster.local"
+  gke_cluster_dns_scope                    = "CLUSTER_SCOPE"
   gke_cluster_dns_provider                 = "PROVIDER_UNSPECIFIED"
   gke_subnetwork                           = "public-subnet-02"
   gke_ip_range_services                    = "ip-range-services"
@@ -114,4 +116,7 @@ locals {
     "://",
     "://${local.mongo_db_user_1}:${mongodbatlas_database_user.xyz_user.password}@"
   )
+
+  # Actifact repository
+  repo_name = "ml-prod"
 }
