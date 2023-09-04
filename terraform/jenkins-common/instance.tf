@@ -1,18 +1,3 @@
-resource "google_service_account" "jenkins_sa" {
-  account_id   = "jenkins-sa"
-  display_name = "Jenkins Service Account"
-  project      = local.project
-}
-resource "google_project_iam_binding" "jenkins_sa_token_creator" {
-  project = local.project
-  role    = "roles/iam.serviceAccountTokenCreator"
-  members = ["serviceAccount:${google_service_account.jenkins_sa.email}"]
-}
-resource "google_project_iam_binding" "jenkins_sa_artifact_registry" {
-  project = local.project
-  role    = "roles/artifactregistry.writer"
-  members = ["serviceAccount:${google_service_account.jenkins_sa.email}"]
-}
 resource "google_compute_address" "static" {
   name = "ipv4-address"
 }
@@ -22,8 +7,8 @@ resource "google_compute_instance" "jenkins" {
   zone         = local.zone
 
   tags = [
-    "ssh-public", 
-    "jenkins-access", 
+    "ssh-public",
+    "jenkins-access",
     "public-access-http-https"
   ]
   allow_stopping_for_update = local.allow_stopping_for_update
