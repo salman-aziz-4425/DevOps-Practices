@@ -1,0 +1,17 @@
+apiVersion: networking.gke.io/v1
+kind: HealthCheckPolicy
+metadata:
+  name: hayleygpt-healthcheck
+  namespace: hyly-prod
+spec:
+  default:
+    config:
+      type: HTTP
+      httpHealthCheck:
+        portSpecification: USE_FIXED_PORT
+        port: 5000
+        requestPath: "/heartbeat"
+  targetRef:
+    group: ""
+    kind: Service
+    name: hayleygpt

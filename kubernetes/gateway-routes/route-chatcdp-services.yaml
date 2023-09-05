@@ -1,0 +1,26 @@
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
+metadata:
+  name: route-chatcdp-services
+  namespace: hyly-prod
+spec:
+  parentRefs:
+  - kind: Gateway
+    name: hyly-gateway
+    sectionName: https
+  hostnames:
+  - "ml.hy.ly"
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /chatcdp_services
+    filters:
+    - type: URLRewrite
+      urlRewrite:
+        path:
+          type: ReplacePrefixMatch
+          replacePrefixMatch: /
+    backendRefs:
+    - name: chatcdp-services
+      port: 5000
