@@ -8,3 +8,4 @@ terraform.plan
 .DS_Store
 *tfstate*
 secret*.yaml
+*creds*
