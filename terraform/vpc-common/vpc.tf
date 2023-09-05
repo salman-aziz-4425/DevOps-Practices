@@ -10,6 +10,7 @@ module "vpc" {
   delete_default_internet_gateway_routes = local.vpc_delete_default_internet_gateway_routes
   router_name                            = local.vpc_router_name
   nat_applicable_subnet_name             = local.vpc_nat_applicable_subnet_name
+  secondary_ranges                       = local.vpc_secondary_ranges
   providers = {
     google      = google
     google-beta = google-beta.google-beta

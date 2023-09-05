@@ -21,8 +21,28 @@ locals {
       subnet_region         = "us-east1"
       subnet_private_access = "true"
       subnet_flow_logs      = "false"
+    },
+    {
+      subnet_name           = "public-subnet-02"
+      subnet_ip             = "10.10.0.0/16"
+      subnet_region         = "us-east1"
+      subnet_private_access = "false"
+      subnet_flow_logs      = "false"
     }
   ]
+
+  vpc_secondary_ranges = {
+    "public-subnet-02" = [
+      {
+        range_name    = "ip-range-pods"
+        ip_cidr_range = "10.20.0.0/16"
+      },
+      {
+        range_name    = "ip-range-services"
+        ip_cidr_range = "10.30.0.0/16"
+      },
+    ]
+  }
 
   # egress
   vpc_delete_default_internet_gateway_routes = true

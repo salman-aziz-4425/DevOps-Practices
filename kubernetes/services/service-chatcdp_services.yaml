@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: chatcdp-services
+  namespace: hyly-prod
+spec:
+  type: NodePort
+  selector:
+    app: chatcdp-services
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000

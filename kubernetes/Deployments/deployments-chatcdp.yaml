@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chatcdp
+  namespace: hyly-prod
+  labels:
+    app: chatcdp
+spec:
+  replicas: 1
+  minReadySeconds: 10
+  progressDeadlineSeconds: 60
+  revisionHistoryLimit: 5
+
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+
+  selector:
+    matchLabels:
+      app: chatcdp
+
+  template:
+    metadata:
+      name: chatcdp
+      labels:
+        app: chatcdp
+    spec:
+      restartPolicy: Always
+
+      # imagePullSecrets:
+      #   - name:
+
+      containers:
+        - name: chatcdp
+          image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/chatcdp:latest
+          imagePullPolicy: Always
+
+          envFrom:
+          - configMapRef:
+              name: configmap-chatcdp
+          - secretRef:
+              name: secret-chatcdp
+
+          ports:
+            - containerPort: 5000
+
+          resources:
+            requests:
+              memory: "500Mi"
+              cpu: "250m"
+            limits:
+              memory: "1024Mi"
+              cpu: "250m"
+
+          # livenessProbe:
+          #   httpGet:
+          #     path: /heartbeat
+          #     port: 5000
+          #   initialDelaySeconds: 3
+          #   periodSeconds: 3
+
+          # readinessProbe:
+          #   httpGet:
+          #     path: /heartbeat
+          #     port: 5000
+          #   initialDelaySeconds: 5
+          #   periodSeconds: 5
+
+          # startupProbe:
+          #   httpGet:
+          #     path: /heartbeat
+          #     port: 5000
+          #   failureThreshold: 30
+          #   periodSeconds: 10

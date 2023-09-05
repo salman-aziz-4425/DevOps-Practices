@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pai_datascience_services
+  namespace: hyly-prod
+  labels:
+    app: pai_datascience_services
+spec:
+  replicas: 1
+  minReadySeconds: 10
+  progressDeadlineSeconds: 60
+  revisionHistoryLimit: 5
+
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+
+  selector:
+    matchLabels:
+      app: pai_datascience_services
+
+  template:
+    metadata:
+      name: pai_datascience_services
+      labels:
+        app: pai_datascience_services
+    spec:
+      restartPolicy: Always
+
+      # imagePullSecrets:
+      #   - name: myhyly-ecr-secret
+
+      containers:
+        - name: pai_datascience_services
+          image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/pai-datascience-services:latest
+          imagePullPolicy: Always
+
+          ports:
+            - containerPort: 80
+
+          resources:
+            requests:
+              memory: "500Mi"
+              cpu: "250m"
+            limits:
+              memory: "1024Mi"
+              cpu: "250m"

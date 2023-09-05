@@ -7,3 +7,5 @@ terraform.plan
 *graph*
 .DS_Store
 *tfstate*
+secret*.yaml
+*creds*
