@@ -33,7 +33,7 @@ spec:
 
       containers:
         - name: pai_datascience_services
-          image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/pai-datascience-services:latest
+          image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-prod/pai-datascience-services:latest
           imagePullPolicy: Always
 
           ports:
