@@ -50,4 +50,344 @@ locals {
     "staging_dev_sa_artifact_registry" = "roles/artifactregistry.reader"
     "staging_dev_sa_stackdriver"       = "roles/logging.logWriter"
   }
+
+  # Load balancer
+  lb_name                  = "ml-non-prod"
+  lb_ssl                   = true
+  lb_use_ssl_certificates  = true
+  lb_ssl_certificates      = ["projects/gds-prototype-20190629/global/sslCertificates/hyly-dot-us"]
+  lb_create_url_map        = false
+  lb_load_balancing_scheme = "EXTERNAL_MANAGED"
+  lb_backends = {
+    chatcdp-dev = {
+      description             = null
+      port                    = 5000
+      protocol                = "HTTP"
+      port_name               = "chatcdp-dev"
+      timeout_sec             = 30
+      enable_cdn              = false
+      custom_request_headers  = null
+      custom_response_headers = null
+      security_policy         = null
+      compression_mode        = null
+
+      connection_draining_timeout_sec = null
+      session_affinity                = null
+      affinity_cookie_ttl_sec         = null
+
+      health_check = {
+        check_interval_sec  = null
+        timeout_sec         = null
+        healthy_threshold   = null
+        unhealthy_threshold = null
+        request_path        = "/heartbeat"
+        port                = 5000
+        host                = null
+        logging             = null
+      }
+
+      log_config = {
+        enable      = false
+        sample_rate = 1.0
+      }
+
+      groups = [
+        {
+          # Each node pool instance group should be added to the backend.
+          group                        = google_compute_instance_group.staging_dev.self_link
+          balancing_mode               = null
+          capacity_scaler              = null
+          description                  = null
+          max_connections              = null
+          max_connections_per_instance = null
+          max_connections_per_endpoint = null
+          max_rate                     = null
+          max_rate_per_instance        = null
+          max_rate_per_endpoint        = null
+          max_utilization              = null
+        },
+      ]
+
+      iap_config = {
+        enable               = false
+        oauth2_client_id     = null
+        oauth2_client_secret = null
+      }
+    },
+    chatcdp-services-dev = {
+      description             = null
+      port                    = 5010
+      protocol                = "HTTP"
+      port_name               = "chatcdp-services-dev"
+      timeout_sec             = 30
+      enable_cdn              = false
+      custom_request_headers  = null
+      custom_response_headers = null
+      security_policy         = null
+      compression_mode        = null
+
+      connection_draining_timeout_sec = null
+      session_affinity                = null
+      affinity_cookie_ttl_sec         = null
+
+      health_check = {
+        check_interval_sec  = null
+        timeout_sec         = null
+        healthy_threshold   = null
+        unhealthy_threshold = null
+        request_path        = "/heartbeat"
+        port                = 5010
+        host                = null
+        logging             = null
+      }
+
+      log_config = {
+        enable      = false
+        sample_rate = 1.0
+      }
+
+      groups = [
+        {
+          # Each node pool instance group should be added to the backend.
+          group                        = google_compute_instance_group.staging_dev.self_link
+          balancing_mode               = null
+          capacity_scaler              = null
+          description                  = null
+          max_connections              = null
+          max_connections_per_instance = null
+          max_connections_per_endpoint = null
+          max_rate                     = null
+          max_rate_per_instance        = null
+          max_rate_per_endpoint        = null
+          max_utilization              = null
+        },
+      ]
+
+      iap_config = {
+        enable               = false
+        oauth2_client_id     = null
+        oauth2_client_secret = null
+      }
+    },
+    hayleygpt-dev = {
+      description             = null
+      port                    = 5005
+      protocol                = "HTTP"
+      port_name               = "hayleygpt-dev"
+      timeout_sec             = 30
+      enable_cdn              = false
+      custom_request_headers  = null
+      custom_response_headers = null
+      security_policy         = null
+      compression_mode        = null
+
+      connection_draining_timeout_sec = null
+      session_affinity                = null
+      affinity_cookie_ttl_sec         = null
+
+      health_check = {
+        check_interval_sec  = null
+        timeout_sec         = null
+        healthy_threshold   = null
+        unhealthy_threshold = null
+        request_path        = "/heartbeat"
+        port                = 5005
+        host                = null
+        logging             = null
+      }
+
+      log_config = {
+        enable      = false
+        sample_rate = 1.0
+      }
+
+      groups = [
+        {
+          # Each node pool instance group should be added to the backend.
+          group                        = google_compute_instance_group.staging_dev.self_link
+          balancing_mode               = null
+          capacity_scaler              = null
+          description                  = null
+          max_connections              = null
+          max_connections_per_instance = null
+          max_connections_per_endpoint = null
+          max_rate                     = null
+          max_rate_per_instance        = null
+          max_rate_per_endpoint        = null
+          max_utilization              = null
+        },
+      ]
+
+      iap_config = {
+        enable               = false
+        oauth2_client_id     = null
+        oauth2_client_secret = null
+      }
+    },
+    chatcdp-stg = {
+      description             = null
+      port                    = 5001
+      protocol                = "HTTP"
+      port_name               = "chatcdp-stg"
+      timeout_sec             = 30
+      enable_cdn              = false
+      custom_request_headers  = null
+      custom_response_headers = null
+      security_policy         = null
+      compression_mode        = null
+
+      connection_draining_timeout_sec = null
+      session_affinity                = null
+      affinity_cookie_ttl_sec         = null
+
+      health_check = {
+        check_interval_sec  = null
+        timeout_sec         = null
+        healthy_threshold   = null
+        unhealthy_threshold = null
+        request_path        = "/heartbeat"
+        port                = 5001
+        host                = null
+        logging             = null
+      }
+
+      log_config = {
+        enable      = false
+        sample_rate = 1.0
+      }
+
+      groups = [
+        {
+          # Each node pool instance group should be added to the backend.
+          group                        = google_compute_instance_group.staging_dev.self_link
+          balancing_mode               = null
+          capacity_scaler              = null
+          description                  = null
+          max_connections              = null
+          max_connections_per_instance = null
+          max_connections_per_endpoint = null
+          max_rate                     = null
+          max_rate_per_instance        = null
+          max_rate_per_endpoint        = null
+          max_utilization              = null
+        },
+      ]
+
+      iap_config = {
+        enable               = false
+        oauth2_client_id     = null
+        oauth2_client_secret = null
+      }
+    },
+    chatcdp-services-stg = {
+      description             = null
+      port                    = 5011
+      protocol                = "HTTP"
+      port_name               = "chatcdp-services-stg"
+      timeout_sec             = 30
+      enable_cdn              = false
+      custom_request_headers  = null
+      custom_response_headers = null
+      security_policy         = null
+      compression_mode        = null
+
+      connection_draining_timeout_sec = null
+      session_affinity                = null
+      affinity_cookie_ttl_sec         = null
+
+      health_check = {
+        check_interval_sec  = null
+        timeout_sec         = null
+        healthy_threshold   = null
+        unhealthy_threshold = null
+        request_path        = "/heartbeat"
+        port                = 5011
+        host                = null
+        logging             = null
+      }
+
+      log_config = {
+        enable      = false
+        sample_rate = 1.0
+      }
+
+      groups = [
+        {
+          # Each node pool instance group should be added to the backend.
+          group                        = google_compute_instance_group.staging_dev.self_link
+          balancing_mode               = null
+          capacity_scaler              = null
+          description                  = null
+          max_connections              = null
+          max_connections_per_instance = null
+          max_connections_per_endpoint = null
+          max_rate                     = null
+          max_rate_per_instance        = null
+          max_rate_per_endpoint        = null
+          max_utilization              = null
+        },
+      ]
+
+      iap_config = {
+        enable               = false
+        oauth2_client_id     = null
+        oauth2_client_secret = null
+      }
+    },
+    hayleygpt-stg = {
+      description             = null
+      port                    = 5006
+      protocol                = "HTTP"
+      port_name               = "hayleygpt-stg"
+      timeout_sec             = 30
+      enable_cdn              = false
+      custom_request_headers  = null
+      custom_response_headers = null
+      security_policy         = null
+      compression_mode        = null
+
+      connection_draining_timeout_sec = null
+      session_affinity                = null
+      affinity_cookie_ttl_sec         = null
+
+      health_check = {
+        check_interval_sec  = null
+        timeout_sec         = null
+        healthy_threshold   = null
+        unhealthy_threshold = null
+        request_path        = "/heartbeat"
+        port                = 5006
+        host                = null
+        logging             = null
+      }
+
+      log_config = {
+        enable      = false
+        sample_rate = 1.0
+      }
+
+      groups = [
+        {
+          # Each node pool instance group should be added to the backend.
+          group                        = google_compute_instance_group.staging_dev.self_link
+          balancing_mode               = null
+          capacity_scaler              = null
+          description                  = null
+          max_connections              = null
+          max_connections_per_instance = null
+          max_connections_per_endpoint = null
+          max_rate                     = null
+          max_rate_per_instance        = null
+          max_rate_per_endpoint        = null
+          max_utilization              = null
+        },
+      ]
+
+      iap_config = {
+        enable               = false
+        oauth2_client_id     = null
+        oauth2_client_secret = null
+      }
+    }
+  }
 }
