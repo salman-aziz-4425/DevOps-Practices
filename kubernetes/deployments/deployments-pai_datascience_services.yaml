@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pai_datascience_services
+  name: pai-datascience-services
   namespace: hyly-prod
   labels:
-    app: pai_datascience_services
+    app: pai-datascience-services
 spec:
   replicas: 1
   minReadySeconds: 10
@@ -18,13 +18,13 @@ spec:
 
   selector:
     matchLabels:
-      app: pai_datascience_services
+      app: pai-datascience-services
 
   template:
     metadata:
-      name: pai_datascience_services
+      name: pai-datascience-services
       labels:
-        app: pai_datascience_services
+        app: pai-datascience-services
     spec:
       restartPolicy: Always
 
@@ -32,7 +32,7 @@ spec:
       #   - name: myhyly-ecr-secret
 
       containers:
-        - name: pai_datascience_services
+        - name: pai-datascience-services
           image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-prod/pai-datascience-services:latest
           imagePullPolicy: Always
 
