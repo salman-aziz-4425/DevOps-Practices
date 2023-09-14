@@ -32,5 +32,5 @@ resource "google_project_iam_binding" "staging_dev_sa_storage_admin" {
     "user:ishtiyaq@hy.ly",
     "user:sanya.hyly@gmail.com",
   ]
-  depends_on = [ google_project_iam_binding.staging_dev_sa_bigquery_admin ]
+  depends_on = [google_project_iam_binding.staging_dev_sa_bigquery_admin]
 }
