@@ -35,6 +35,9 @@ spec:
         - name: chatcdp-services
           image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-prod/chatcdp-services:latest
           imagePullPolicy: Always
+          envFrom:
+          - secretRef:
+              name: secret-chatcdp-services
 
           ports:
             - containerPort: 5000
