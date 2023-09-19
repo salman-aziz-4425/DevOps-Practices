@@ -58,6 +58,8 @@ services:
     # chatCDP services https://github.com/munishgandhi/JAI.GPT.LeaseGPT.MailGPT/tree/main/ChatCDP
     chatcdp_services_staging: 
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/chatcdp-services:latest
+      env_file:
+        - /home/ubuntu/code/.env.chatcdp_services_stg
       deploy:
         restart_policy:
           condition: on-failure

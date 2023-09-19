@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: etl_hub
+  name: pai-datascience-services
   namespace: hyly-prod
   labels:
-    app: etl_hub
+    app: pai-datascience-services
 spec:
   replicas: 1
   minReadySeconds: 10
@@ -18,26 +18,26 @@ spec:
 
   selector:
     matchLabels:
-      app: etl_hub
+      app: pai-datascience-services
 
   template:
     metadata:
-      name: etl_hub
+      name: pai-datascience-services
       labels:
-        app: etl_hub
+        app: pai-datascience-services
     spec:
       restartPolicy: Always
 
       # imagePullSecrets:
-      #   - name:
+      #   - name: myhyly-ecr-secret
 
       containers:
-        - name: etl_hub
-          image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-prod/etl-hub:latest
+        - name: pai-datascience-services
+          image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-prod/pai-datascience-services:latest
           imagePullPolicy: Always
 
           ports:
-            - containerPort: 3000
+            - containerPort: 80
 
           resources:
             requests:
