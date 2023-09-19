@@ -66,7 +66,7 @@ locals {
       port                    = 5000
       protocol                = "HTTP"
       port_name               = "chatcdp-dev"
-      timeout_sec             = 30
+      timeout_sec             = 120
       enable_cdn              = false
       custom_request_headers  = null
       custom_response_headers = null
@@ -78,8 +78,8 @@ locals {
       affinity_cookie_ttl_sec         = null
 
       health_check = {
-        check_interval_sec  = null
-        timeout_sec         = null
+        check_interval_sec  = 300
+        timeout_sec         = 60
         healthy_threshold   = null
         unhealthy_threshold = null
         request_path        = "/heartbeat"
@@ -121,7 +121,7 @@ locals {
       port                    = 5010
       protocol                = "HTTP"
       port_name               = "chatcdp-services-dev"
-      timeout_sec             = 30
+      timeout_sec             = 120
       enable_cdn              = false
       custom_request_headers  = null
       custom_response_headers = null
@@ -133,8 +133,8 @@ locals {
       affinity_cookie_ttl_sec         = null
 
       health_check = {
-        check_interval_sec  = null
-        timeout_sec         = null
+        check_interval_sec  = 300
+        timeout_sec         = 60
         healthy_threshold   = null
         unhealthy_threshold = null
         request_path        = "/heartbeat"
@@ -176,7 +176,7 @@ locals {
       port                    = 5005
       protocol                = "HTTP"
       port_name               = "hayleygpt-dev"
-      timeout_sec             = 30
+      timeout_sec             = 120
       enable_cdn              = false
       custom_request_headers  = null
       custom_response_headers = null
@@ -188,8 +188,8 @@ locals {
       affinity_cookie_ttl_sec         = null
 
       health_check = {
-        check_interval_sec  = null
-        timeout_sec         = null
+        check_interval_sec  = 300
+        timeout_sec         = 60
         healthy_threshold   = null
         unhealthy_threshold = null
         request_path        = "/heartbeat"
@@ -231,7 +231,7 @@ locals {
       port                    = 5001
       protocol                = "HTTP"
       port_name               = "chatcdp-stg"
-      timeout_sec             = 30
+      timeout_sec             = 120
       enable_cdn              = false
       custom_request_headers  = null
       custom_response_headers = null
@@ -243,8 +243,8 @@ locals {
       affinity_cookie_ttl_sec         = null
 
       health_check = {
-        check_interval_sec  = null
-        timeout_sec         = null
+        check_interval_sec  = 300
+        timeout_sec         = 60
         healthy_threshold   = null
         unhealthy_threshold = null
         request_path        = "/heartbeat"
@@ -286,7 +286,7 @@ locals {
       port                    = 5011
       protocol                = "HTTP"
       port_name               = "chatcdp-services-stg"
-      timeout_sec             = 30
+      timeout_sec             = 120
       enable_cdn              = false
       custom_request_headers  = null
       custom_response_headers = null
@@ -298,8 +298,8 @@ locals {
       affinity_cookie_ttl_sec         = null
 
       health_check = {
-        check_interval_sec  = null
-        timeout_sec         = null
+        check_interval_sec  = 300
+        timeout_sec         = 60
         healthy_threshold   = null
         unhealthy_threshold = null
         request_path        = "/heartbeat"
@@ -341,7 +341,7 @@ locals {
       port                    = 5006
       protocol                = "HTTP"
       port_name               = "hayleygpt-stg"
-      timeout_sec             = 30
+      timeout_sec             = 120
       enable_cdn              = false
       custom_request_headers  = null
       custom_response_headers = null
@@ -353,8 +353,8 @@ locals {
       affinity_cookie_ttl_sec         = null
 
       health_check = {
-        check_interval_sec  = null
-        timeout_sec         = null
+        check_interval_sec  = 300
+        timeout_sec         = 60
         healthy_threshold   = null
         unhealthy_threshold = null
         request_path        = "/heartbeat"
