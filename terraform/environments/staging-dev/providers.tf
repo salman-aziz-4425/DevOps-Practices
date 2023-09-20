@@ -10,10 +10,19 @@ terraform {
       source  = "hashicorp/google"
       version = "~> 4.23"
     }
+    google-beta = {
+      source  = "hashicorp/google-beta"
+      version = "4.81.0"
+    }
   }
 }
 
 provider "google" {
+  credentials = file("~/.creds/terraform-credentials.json")
+  project     = local.project
+  region      = local.region
+}
+provider "google-beta" {
   credentials = file("~/.creds/terraform-credentials.json")
   project     = local.project
   region      = local.region
