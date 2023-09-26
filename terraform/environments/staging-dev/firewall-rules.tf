@@ -24,7 +24,25 @@ resource "google_compute_firewall" "flask_app" {
 
   allow {
     protocol = "tcp"
-    ports    = ["5000", "5001", "5010", "5011"]
+    ports    = ["5000", "5001", "5010", "5011", "5005", "5006"]
+  }
+}
+
+resource "google_compute_firewall" "mongo" {
+  name      = "mongo-dev-staging-ml"
+  network   = data.google_compute_network.hyly-network.name
+  priority  = 1000
+  direction = "INGRESS"
+
+  source_ranges = local.mongo_allowed_ips_dev_staging_instance
+  target_tags   = ["mongo-dev-staging-ml"]
+
+  allow {
+    protocol = "tcp"
+    ports    = [
+                "27017", # dev mongo  
+                "27027"  # staging mongo
+               ]
   }
 }
 

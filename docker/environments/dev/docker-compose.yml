@@ -1,15 +1,15 @@
 version: '3.4'
 services:
     # MySQL Database
-    mysql_db_dev:
-      image: mysql:8.0
-      restart: always
-      environment:
-        MYSQL_ALLOW_EMPTY_PASSWORD: true
-      ports:
-        - "3306:3306"
-      volumes:
-        - /db_volumes/mysql_data_dev:/var/lib/mysql
+    # mysql_db_dev:
+    #   image: mysql:8.0
+    #   restart: always
+    #   environment:
+    #     MYSQL_ALLOW_EMPTY_PASSWORD: true
+    #   ports:
+    #     - "3306:3306"
+    #   volumes:
+    #     - /db_volumes/mysql_data_dev:/var/lib/mysql
 
     # MongoDB Database
     mongo_db_dev:
@@ -19,9 +19,7 @@ services:
         - "27017:27017"
       volumes:
         - /db_volumes/mongo_data_dev:/data/db
-      depends_on:
-        - mysql_db_dev
-
+  
     # Redis Database
     redis_db_dev:
       image: redis:latest
@@ -31,9 +29,6 @@ services:
       volumes:
         - /db_volumes/redis_data_dev:/data
       command: redis-server --bind 0.0.0.0
-      depends_on:
-        - mysql_db_dev
-        - mongo_db_dev
 
     # chatCDP https://github.com/munishgandhi/chatCDP
     chatcdp_dev:
@@ -52,8 +47,6 @@ services:
       ports:
         - "5000:5000"
       depends_on:
-        - mysql_db_dev
-        - mongo_db_dev
         - redis_db_dev
 
     # chatCDP services https://github.com/munishgandhi/JAI.GPT.LeaseGPT.MailGPT/tree/main/ChatCDP
@@ -72,9 +65,6 @@ services:
             memory: 1g
       ports:
         - "5010:5000"
-      depends_on:
-        - mysql_db_dev
-        - mongo_db_dev
 
     # https://github.com/munishgandhi/etl-hub/tree/datascience_dev
     pai_datascience_services_dev:
@@ -95,9 +85,6 @@ services:
         - "8888:8888"
         - "8889:8889"
         - "8890:8890"
-      depends_on:
-        - mysql_db_dev
-        - mongo_db_dev
 
     hayleygpt_dev:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/hayleygpt:latest
@@ -115,7 +102,6 @@ services:
       ports:
         - "5005:5000"
       depends_on:
-        - mysql_db_dev
         - mongo_db_dev
 
     # etl_hub_dev:
@@ -136,8 +122,8 @@ services:
 
 volumes:
   pai_datascience_services:
-  mysql_data_dev:
-    external: true
+  # mysql_data_dev:
+  #   external: true
   mongo_data_dev:
     external: true
   redis_data_dev:

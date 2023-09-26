@@ -53,6 +53,28 @@ locals {
     "staging_dev_sa_stackdriver"       = "roles/logging.logWriter"
   }
 
+  # MongoDB allowed IPs for dev-staging instance
+  mongo_allowed_ips_dev_staging_instance = [
+    "173.32.45.37/32",    # Urvish Mongo HP-omen
+    "107.21.115.107/32",  # QA Server IP
+    "3.91.102.27/32",     # LIVE app8
+    "44.201.135.127/32",  # LIVE app-p7
+    "54.235.68.60/32",    # LIVE app-p5
+    "184.73.153.116/32",  # LIVE app6
+    "3.90.64.59/32",      # LIVE app-p6
+    "182.70.113.18/32",   # Ashish IP
+    "84.17.57.57/32",     # Ashish IP2 mongoDB
+    "72.255.21.197/32",   # Waleed IP 
+    "3.235.238.79/32",    # server mongodb prompt-modeler
+    "34.74.55.254/32",    # staging-dev-ml on GCP
+    "142.114.73.72/32",   # Urvish Mongo
+    "103.152.101.5/32",   # Badar IP 
+    "113.188.118.33/32",  # Tin IP
+    "103.179.50.208/32",  # urvish mongo
+    "103.152.101.216/32", # Junaid IP
+    "58.27.193.244/32",   # Junaid IP2
+  ]
+
   # Load balancer
   lb_name                  = "ml-non-prod"
   lb_ssl                   = true
