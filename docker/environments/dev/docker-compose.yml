@@ -22,7 +22,7 @@ services:
       ports:
         - "27017:27017"
       volumes:
-        - /db_volumes/mongo_data_dev:/data/db
+        - /home/ubuntu/code/db_volumes/mongo_data_dev:/data/db
   
     # Redis Database
     redis_db_dev:
