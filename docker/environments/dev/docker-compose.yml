@@ -13,10 +13,10 @@ services:
 
     # MongoDB Database
     mongo_db_dev:
-      image: mongo:5.0
+      image: mongo:latest
       environment:
         MONGO_INITDB_ROOT_USERNAME: root
-        MONGO_INITDB_ROOT_PASSWORD: hylyroot46gs$#1
+        MONGO_INITDB_ROOT_PASSWORD: hyly46root
         MONGO_INITDB_DATABASE: admin
       restart: always
       ports:
