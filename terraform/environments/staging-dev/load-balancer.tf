@@ -31,9 +31,9 @@ resource "google_compute_url_map" "ml-stg-dev" {
 
     route_rules {
       match_rules {
-        prefix_match = "/chatcdp"
+        prefix_match = "/chatcdp_services"
       }
-      service  = module.ml-non-prod-lb.backend_services["chatcdp-dev"].self_link
+      service  = module.ml-non-prod-lb.backend_services["chatcdp-services-dev"].self_link
       priority = 1
       route_action {
         url_rewrite {
@@ -44,9 +44,9 @@ resource "google_compute_url_map" "ml-stg-dev" {
 
     route_rules {
       match_rules {
-        prefix_match = "/chatcdp_services"
+        prefix_match = "/chatcdp"
       }
-      service  = module.ml-non-prod-lb.backend_services["chatcdp-services-dev"].self_link
+      service  = module.ml-non-prod-lb.backend_services["chatcdp-dev"].self_link
       priority = 2
       route_action {
         url_rewrite {
@@ -80,9 +80,9 @@ resource "google_compute_url_map" "ml-stg-dev" {
 
     route_rules {
       match_rules {
-        prefix_match = "/chatcdp"
+        prefix_match = "/chatcdp_services"
       }
-      service  = module.ml-non-prod-lb.backend_services["chatcdp-stg"].self_link
+      service  = module.ml-non-prod-lb.backend_services["chatcdp-services-stg"].self_link
       priority = 1
       route_action {
         url_rewrite {
@@ -93,9 +93,9 @@ resource "google_compute_url_map" "ml-stg-dev" {
 
     route_rules {
       match_rules {
-        prefix_match = "/chatcdp_services"
+        prefix_match = "/chatcdp"
       }
-      service  = module.ml-non-prod-lb.backend_services["chatcdp-services-stg"].self_link
+      service  = module.ml-non-prod-lb.backend_services["chatcdp-stg"].self_link
       priority = 2
       route_action {
         url_rewrite {
