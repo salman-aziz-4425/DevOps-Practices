@@ -14,6 +14,8 @@ services:
     # MongoDB Database
     mongo_db_staging:
       image: mongo:5.0
+      env_file:
+        - /home/ubuntu/code/.env_mongo
       restart: always
       ports:
         - "27027:27017"
