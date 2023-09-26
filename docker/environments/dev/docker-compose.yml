@@ -13,11 +13,9 @@ services:
 
     # MongoDB Database
     mongo_db_dev:
-      image: mongo:latest
-      environment:
-        MONGO_INITDB_ROOT_USERNAME: root
-        MONGO_INITDB_ROOT_PASSWORD: hyly46root
-        MONGO_INITDB_DATABASE: admin
+      image: mongo:5.0.21
+      env_file:
+        - /home/ubuntu/code/.env.mongo
       restart: always
       ports:
         - "27017:27017"
