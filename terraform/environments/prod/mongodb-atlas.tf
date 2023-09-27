@@ -4,8 +4,9 @@ resource "mongodbatlas_project" "hyly_ml" {
 }
 
 resource "mongodbatlas_project_ip_access_list" "acl" {
+  for_each   = toset(local.mongoatlas_allowed_ips_all_clusters_prod)
   project_id = mongodbatlas_project.hyly_ml.id
-  cidr_block = "0.0.0.0/0"
+  ip_address = each.value
 }
 
 resource "mongodbatlas_cluster" "hyly_ml_cluster" {

@@ -117,6 +117,28 @@ locals {
     "://${local.mongo_db_user_1}:${mongodbatlas_database_user.xyz_user.password}@"
   )
 
+  # MongoDB allowed IPs for prod clusters
+  mongoatlas_allowed_ips_all_clusters_prod = [
+    "173.32.45.37",    # Urvish Mongo HP-omen
+    "107.21.115.107",  # QA Server IP
+    "3.91.102.27",     # LIVE app8
+    "44.201.135.127",  # LIVE app-p7
+    "54.235.68.60",    # LIVE app-p5
+    "184.73.153.116",  # LIVE app6
+    "3.90.64.59",      # LIVE app-p6
+    "182.70.113.18",   # Ashish IP
+    "84.17.57.57",     # Ashish IP2 mongoDB
+    "72.255.21.197",   # Waleed IP 
+    "3.235.238.79",    # server mongodb prompt-modeler
+    "34.74.55.254",    # staging-dev-ml on GCP
+    "142.114.73.72",   # Urvish Mongo
+    "103.152.101.5",   # Badar IP 
+    "113.188.118.33",  # Tin IP
+    "103.179.50.208",  # urvish mongo
+    "103.152.101.216", # Junaid IP
+    "58.27.193.244",   # Junaid IP2
+  ]
+
   # Actifact repository
   repo_name = "ml-prod"
 }
