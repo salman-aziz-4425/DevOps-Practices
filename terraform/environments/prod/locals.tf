@@ -47,8 +47,8 @@ locals {
   gke_name                                 = "hyly-ml-${local.environment}"
   gke_region                               = "us-east1"
   gke_zones                                = ["us-east1-b", "us-east1-c", "us-east1-d"]
-  gke_cluster_dns = "CLOUD_DNS"
-  gke_cluster_dns_domain = "cluster.local"
+  gke_cluster_dns                          = "CLOUD_DNS"
+  gke_cluster_dns_domain                   = "cluster.local"
   gke_cluster_dns_scope                    = "CLUSTER_SCOPE"
   gke_cluster_dns_provider                 = "PROVIDER_UNSPECIFIED"
   gke_subnetwork                           = "public-subnet-02"
@@ -100,17 +100,17 @@ locals {
   }
 
   # mongodb atlas
-  atlas_org_id         = "64e478e6c738112717212e2d"
-  atlas_project_name   = "Hyly-ml-${local.environment}"
-  atlas_cluster_region = "EASTERN_US"
-  atlas_cluster_tier   = "M10"
-  atlas_cluster_name   = "hyly-ml-${local.environment}"
-  atlas_provider_name  = "GCP"
-  atlas_cluster_type   = "REPLICASET"
-  mongo_db_user_1      = "hyly_xyz"
-  mongo_db_user_2      = "hyly_rails"
-  mongo_db_user_root   = "hyly_root"
-  mongo_db_name_prod   = "hyly_ui_mailgpt"
+  atlas_org_id          = "64e478e6c738112717212e2d"
+  atlas_project_name    = "Hyly-ml-${local.environment}"
+  atlas_cluster_region  = "EASTERN_US"
+  atlas_cluster_tier    = "M10"
+  atlas_cluster_name    = "hyly-ml-${local.environment}"
+  atlas_provider_name   = "GCP"
+  atlas_cluster_type    = "REPLICASET"
+  atlas_cluster_version = "5.0"
+  mongo_db_user_1       = "hyly_xyz"
+  mongo_db_user_2       = "hyly_rails"
+  mongo_db_user_root    = "hyly_root"
   atlas_uri = replace(
     mongodbatlas_cluster.hyly_ml_cluster.srv_address,
     "://",
