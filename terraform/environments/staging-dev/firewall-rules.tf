@@ -39,10 +39,10 @@ resource "google_compute_firewall" "mongo" {
 
   allow {
     protocol = "tcp"
-    ports    = [
-                "27017", # dev mongo  
-                "27027"  # staging mongo
-               ]
+    ports = [
+      "27017", # dev mongo  
+      "27027"  # staging mongo
+    ]
   }
 }
 

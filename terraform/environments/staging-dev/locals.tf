@@ -64,7 +64,7 @@ locals {
     "3.90.64.59/32",      # LIVE app-p6
     "182.70.113.18/32",   # Ashish IP
     "84.17.57.57/32",     # Ashish IP2 mongoDB
-    "72.255.21.197/32",   # Waleed IP 
+    "72.255.40.97/32",    # Waleed IP 
     "3.235.238.79/32",    # server mongodb prompt-modeler
     "34.74.55.254/32",    # staging-dev-ml on GCP
     "142.114.73.72/32",   # Urvish Mongo
