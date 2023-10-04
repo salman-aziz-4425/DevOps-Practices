@@ -73,6 +73,7 @@ locals {
     "103.179.50.208/32",  # urvish mongo
     "103.152.101.216/32", # Junaid IP
     "58.27.193.244/32",   # Junaid IP2
+    "23.22.221.64/32",    # New Staging Clone Server IP
   ]
 
   # Load balancer

@@ -137,6 +137,7 @@ locals {
     "103.179.50.208",  # urvish mongo
     "103.152.101.216", # Junaid IP
     "58.27.193.244",   # Junaid IP2
+    "23.22.221.64",    # New Staging Clone Server IP
   ]
 
   # Actifact repository

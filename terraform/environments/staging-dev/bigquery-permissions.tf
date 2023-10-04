@@ -16,6 +16,7 @@ resource "google_project_iam_binding" "staging_dev_sa_bigquery_admin" {
     "user:hyq.gds@hy.ly",
     "user:ishtiyaq@hy.ly",
     "user:sanya.hyly@gmail.com",
+    "user:amrutha@hy.ly",
   ]
 }
 
@@ -31,6 +32,7 @@ resource "google_project_iam_binding" "staging_dev_sa_storage_admin" {
     "user:gili@hy.ly",
     "user:ishtiyaq@hy.ly",
     "user:sanya.hyly@gmail.com",
+    "user:amrutha@hy.ly",
   ]
   depends_on = [google_project_iam_binding.staging_dev_sa_bigquery_admin]
 }
