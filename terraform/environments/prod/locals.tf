@@ -138,6 +138,9 @@ locals {
     "103.152.101.216", # Junaid IP
     "58.27.193.244",   # Junaid IP2
     "23.22.221.64",    # New Staging Clone Server IP
+    "223.29.224.251",  # Taha IP
+    "203.99.188.32",   # Gul IP
+    "39.45.28.70",     # Sohaib IP
   ]
 
   # Actifact repository

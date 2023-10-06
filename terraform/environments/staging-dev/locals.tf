@@ -74,6 +74,9 @@ locals {
     "103.152.101.216/32", # Junaid IP
     "58.27.193.244/32",   # Junaid IP2
     "23.22.221.64/32",    # New Staging Clone Server IP
+    "223.29.224.251/32",  # Taha IP
+    "203.99.188.32/32",   # Gul IP
+    "39.45.28.70/32",     # Sohaib IP
   ]
 
   # Load balancer
