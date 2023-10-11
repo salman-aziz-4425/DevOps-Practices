@@ -138,7 +138,7 @@ locals {
     "23.22.221.64",    # New Staging Clone Server IP
     "223.29.224.251",  # Taha IP
     "203.99.188.32",   # Gul IP
-    "39.45.28.70",     # Sohaib IP
+    "39.45.41.182",    # Sohaib IP
   ]
 
   # Actifact repository
