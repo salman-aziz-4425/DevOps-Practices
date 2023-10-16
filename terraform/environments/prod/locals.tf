@@ -126,7 +126,7 @@ locals {
     "54.235.68.60",    # LIVE app-p5
     "184.73.153.116",  # LIVE app6
     "3.90.64.59",      # LIVE app-p6
-    "72.255.40.97",    # Waleed IP 
+    "72.255.21.197",    # Waleed IP 
     "3.235.238.79",    # server mongodb prompt-modeler
     "34.74.55.254",    # staging-dev-ml on GCP
     "142.114.73.72",   # Urvish Mongo
