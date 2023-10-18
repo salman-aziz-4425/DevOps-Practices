@@ -28,8 +28,6 @@ services:
       restart: always
       ports:
         - "6379:6379"
-      volumes:
-        - /db_volumes/redis_data_dev:/data
       command: redis-server --bind 0.0.0.0
 
     # chatCDP https://github.com/munishgandhi/chatCDP
