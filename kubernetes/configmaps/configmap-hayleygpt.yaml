@@ -8,3 +8,4 @@ data:
   DB_NAME_QA: hyly_ai_mailgpt_qa
   PINECONE_ENV: us-east4-gcp
   ENVIRONMENT: prod
+  PYTHONPATH: /app/MLOps/Loggers
