@@ -11,6 +11,10 @@ spec:
         portSpecification: USE_FIXED_PORT
         port: 5000
         requestPath: "/heartbeat"
+    checkInterval: 300
+    healthyThreshold: 1
+    timeoutSec: 60
+    unhealthyThreshold: 3
   targetRef:
     group: ""
     kind: Service
