@@ -9,3 +9,4 @@ data:
   PINECONE_ENV: us-east4-gcp
   ENVIRONMENT: prod
   PYTHONPATH: /app/MLOps/Loggers
+  REDIS_URL_Prod: redis://10.18.171.123:6379
