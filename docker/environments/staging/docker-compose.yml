@@ -42,8 +42,8 @@ services:
           max_attempts: 3
         resources:
           limits:
-            cpus: '0.30'
-            memory: 1g
+            cpus: '0.40'
+            memory: 3g
       ports:
         - "5001:5000"
       depends_on:
@@ -61,8 +61,8 @@ services:
           max_attempts: 3
         resources:
           limits:
-            cpus: '0.30'
-            memory: 1g
+            cpus: '0.40'
+            memory: 3g
       ports:
         - "5011:5000"
 
@@ -75,10 +75,10 @@ services:
           condition: on-failure
           delay: 5s
           max_attempts: 3
-        # resources:
-        #   limits:
-        #     cpus: '0.30'
-        #     memory: 1g
+        resources:
+          limits:
+            cpus: '0.40'
+            memory: 3g
       ports: 
         - "5006:5000"
       depends_on:
@@ -94,8 +94,8 @@ services:
           max_attempts: 3
         resources:
           limits:
-            cpus: '0.30'
-            memory: 1g
+            cpus: '0.40'
+            memory: 3g
       ports: 
         - "82:80"
   
