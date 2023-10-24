@@ -16,7 +16,7 @@ locals {
 
   # compute engine
   name                      = "staging-dev-ml"
-  machine_type              = "n2-standard-4"
+  machine_type              = "n2-standard-8"
   zone                      = "us-east1-b"
   disk_size                 = 80
   allow_stopping_for_update = true
