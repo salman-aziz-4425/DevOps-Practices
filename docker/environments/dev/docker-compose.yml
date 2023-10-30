@@ -46,6 +46,8 @@ services:
             memory: 3g
       ports:
         - "5000:5000"
+      volumes:
+        - /home/ubuntu/code/.signals-keyfile.json:/app/config/signals-keyfile.json
       depends_on:
         - redis_db_dev
 
@@ -65,6 +67,8 @@ services:
             memory: 3g
       ports:
         - "5010:5000"
+      volumes:
+        - /home/ubuntu/code/.signals-keyfile.json:/app/config/signals-keyfile.json
 
     # https://github.com/munishgandhi/etl-hub/tree/datascience_dev
     pai_datascience_services_dev:
@@ -101,6 +105,8 @@ services:
             memory: 3g
       ports:
         - "5005:5000"
+      volumes:
+        - /home/ubuntu/code/.signals-keyfile.json:/app/config/signals-keyfile.json
       depends_on:
         - mongo_db_dev
 
