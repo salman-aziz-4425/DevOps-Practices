@@ -111,11 +111,11 @@ locals {
   mongo_db_user_1       = "hyly_xyz"
   mongo_db_user_2       = "hyly_rails"
   mongo_db_user_root    = "hyly_root"
-  atlas_uri = replace(
-    mongodbatlas_cluster.hyly_ml_cluster.srv_address,
-    "://",
-    "://${local.mongo_db_user_1}:${mongodbatlas_database_user.xyz_user.password}@"
-  )
+  # atlas_uri = replace(
+  #   mongodbatlas_cluster.hyly_ml_cluster.srv_address,
+  #   "://",
+  #   "://${local.mongo_db_user_1}:${mongodbatlas_database_user.xyz_user.password}@"
+  # )
 
   # MongoDB allowed IPs for prod clusters
   mongoatlas_allowed_ips_all_clusters_prod = [
@@ -126,7 +126,7 @@ locals {
     "54.235.68.60",    # LIVE app-p5
     "184.73.153.116",  # LIVE app6
     "3.90.64.59",      # LIVE app-p6
-    "72.255.21.197",    # Waleed IP 
+    "72.255.21.197",   # Waleed IP 
     "3.235.238.79",    # server mongodb prompt-modeler
     "34.74.55.254",    # staging-dev-ml on GCP
     "142.114.73.72",   # Urvish Mongo

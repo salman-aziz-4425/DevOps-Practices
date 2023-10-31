@@ -37,12 +37,12 @@ output "cluster_name" {
   description = "Cluster name"
   value       = module.gke.name
 } */
-output "mongodb_connection_strings" {
-  value = mongodbatlas_cluster.hyly_ml_cluster.connection_strings
-}
-output "mongodb_connection_string_standard" {
-  value = mongodbatlas_cluster.hyly_ml_cluster.connection_strings[0].standard
-}
-output "mongodb_connection_string_standard_srv" {
-  value = mongodbatlas_cluster.hyly_ml_cluster.connection_strings[0].standard_srv
-}
+# output "mongodb_connection_strings" {
+#   value = mongodbatlas_cluster.hyly_ml_cluster.connection_strings
+# }
+# output "mongodb_connection_string_standard" {
+#   value = mongodbatlas_cluster.hyly_ml_cluster.connection_strings[0].standard
+# }
+# output "mongodb_connection_string_standard_srv" {
+#   value = mongodbatlas_cluster.hyly_ml_cluster.connection_strings[0].standard_srv
+# }
