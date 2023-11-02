@@ -31,6 +31,14 @@ spec:
       # imagePullSecrets:
       #   - name:
 
+      volumes:
+        - name: secret-hayleygpt
+          secret:
+            secretName: secret-hayleygpt
+            items:
+              - key: signals-keyfile.json
+                path: signals-keyfile.json
+
       containers:
         - name: hayleygpt
           image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-prod/hayleygpt:latest
@@ -41,6 +49,11 @@ spec:
               name: configmap-hayleygpt
           - secretRef:
               name: secret-hayleygpt
+          volumeMounts:
+            - name: secret-hayleygpt
+              mountPath: "/app/config/signals-keyfile.json"
+              subPath: signals-keyfile.json
+              readOnly: true
 
           ports:
             - containerPort: 5000
