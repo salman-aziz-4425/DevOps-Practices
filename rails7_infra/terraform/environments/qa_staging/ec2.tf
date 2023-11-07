@@ -1,28 +1,22 @@
 resource "aws_instance" "qa_stage_server" {
-  name          = "app-${local.project}-${local.environment}"
   ami           = data.aws_ami.ubuntu.id
-  instance_type = "m7.medium"
+  subnet_id = aws_subnet.qa_stage_vpc_subnet.id
+  instance_type = local.instance_type_qa_stage
 
-  vpc_id = aws_vpc.qa_stage_vpc.id
+  key_name             = data.aws_key_pair.ja-keypair.key_name
+  security_groups      = [aws_security_group.qa_stage_security_group.id]
 
-  key_name             = data.aws_key_pair.ja-keypair
-  iam_instance_profile = local.instance_role
-  security_groups      = aws_security_group.qa_stage_security_group
-
-  root_block_device = {
-    volume_size = 32
+  root_block_device {
+     volume_size = 150
+     volume_type = "gp3" 
   }
-  ebs_block_device = {
-    volume_size = 150
-  }
-
   tags = {
     Name        = "app-${local.project}-${local.environment}"
     Environment = local.environment
   }
+  depends_on = [ aws_security_group.qa_stage_security_group ]
 }
-
 resource "aws_eip" "qa_stage_server_eip" {
-  instance = aws_instance.qa_stage_server
+  instance = aws_instance.qa_stage_server.id
   domain   = "vpc"
 }
