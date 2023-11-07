@@ -18,5 +18,4 @@ resource "aws_instance" "qa_stage_server" {
 }
 resource "aws_eip" "qa_stage_server_eip" {
   instance = aws_instance.qa_stage_server.id
-
 }

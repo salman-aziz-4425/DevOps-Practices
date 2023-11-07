@@ -1,6 +1,6 @@
 # Create S3 bucket to hold the state
 resource "aws_s3_bucket" "qa_stage_s3" {
-  bucket        = "${var.env}-remote-state"
+  bucket        = "${var.env}-hyly-remote-state"
   force_destroy = true
 }
 

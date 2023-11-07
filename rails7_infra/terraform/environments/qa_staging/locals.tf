@@ -3,7 +3,7 @@ locals {
   region                 = "us-east-1"
   profile                = "246071984618_Terraform"
   environment            = "qa-stage"
-  instance_type_qa_stage = "m7.medium"
+  instance_type_qa_stage = "m7i.large"
 
   allowed_ips_for_ssh = [
     "14.237.225.29/32", # Tin IP
@@ -15,8 +15,8 @@ locals {
     "10.0.0.0/24",
     "10.0.1.0/24"
   ]
-  sys_stage_vpc_id = "vpc-a3d9d7c5"
-  sys_stage_subnet_id= "subnet-040b206a1e260b0d2"
+  sys_stage_vpc_id    = "vpc-a3d9d7c5"
+  sys_stage_subnet_id = "subnet-040b206a1e260b0d2"
 
   tags = {
     "Project"     = "hyly"
