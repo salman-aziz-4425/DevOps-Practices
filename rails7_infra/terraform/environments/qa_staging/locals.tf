@@ -1,8 +1,8 @@
 locals {
-  project     = "myhyly"
-  region      = "us-east-1"
-  profile     = "246071984618_Terraform"
-  environment = "qa-stage"
+  project                = "myhyly"
+  region                 = "us-east-1"
+  profile                = "246071984618_Terraform"
+  environment            = "qa-stage"
   instance_type_qa_stage = "m7.medium"
 
   allowed_ips_for_ssh = [
@@ -15,6 +15,8 @@ locals {
     "10.0.0.0/24",
     "10.0.1.0/24"
   ]
+  sys_stage_vpc_id = "vpc-a3d9d7c5"
+  sys_stage_subnet_id= "subnet-040b206a1e260b0d2"
 
   tags = {
     "Project"     = "hyly"

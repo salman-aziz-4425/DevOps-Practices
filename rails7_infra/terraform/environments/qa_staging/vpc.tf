@@ -1,7 +1,8 @@
-module "vpc" {
-  source = "../../modules/vpc/"
-
-  env             = local.environment
-  azs             = local.vpc_azs
-  public_subnets  = local.vpc_public_subnets
+data "aws_vpc" "sys_stage_vpc" {
+  id = local.sys_stage_vpc_id
 }
+
+data "aws_subnet" "sys_stage_subnet" {
+  id = local.sys_stage_subnet_id
+}
+

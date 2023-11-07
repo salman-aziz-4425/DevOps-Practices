@@ -1,10 +1,10 @@
 resource "aws_security_group" "qa_stage_security_group" {
   name        = "${local.project}-${local.environment}-sg"
   description = "Security group for ${local.environment} server"
-  vpc_id      = aws_vpc.qa_stage_vpc.id
+  vpc_id      = data.aws_vpc.sys_stage_vpc.id
 
   ingress {
-    description = "Allow SSH to Jenkins server"
+    description = "Allow SSH to qa_stage server"
     from_port   = "22"
     to_port     = "22"
     protocol    = "tcp"
@@ -20,7 +20,7 @@ resource "aws_security_group" "qa_stage_security_group" {
   }
 
   tags = {
-    Name = "${local.project}-${local.environment}-sg"
+    Name        = "${local.project}-${local.environment}-sg"
     Environment = local.environment
   }
 }

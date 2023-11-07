@@ -1,6 +1,6 @@
 terraform {
   required_version = ">= 1.4.6"
-  
+
   /* backend "s3" {
     bucket         = "qa-stage-remote-state"
     key            = "qa-stage/myhyly-terraform.tfstate"
