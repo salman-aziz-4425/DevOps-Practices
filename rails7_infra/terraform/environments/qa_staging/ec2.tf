@@ -12,7 +12,6 @@ resource "aws_instance" "qa_stage_server" {
   }
   tags = {
     Name        = "app-${local.project}-${local.environment}"
-    Environment = local.environment
   }
   depends_on = [aws_security_group.qa_stage_security_group]
 }
