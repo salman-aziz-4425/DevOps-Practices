@@ -4,7 +4,7 @@ resource "aws_instance" "qa_stage_server" {
   instance_type = local.instance_type_qa_stage
 
   key_name        = data.aws_key_pair.ja-keypair.key_name
-  security_groups = [aws_security_group.qa_stage_security_group.id]
+  vpc_security_group_ids = [aws_security_group.qa_stage_security_group.id]
 
   root_block_device {
     volume_size = 150
