@@ -11,12 +11,10 @@ resource "google_project_iam_binding" "staging_dev_sa_bigquery_admin" {
     "serviceAccount:project-owner@gds-prototype-20190629.iam.gserviceaccount.com",
     "serviceAccount:staging-dev-sa@gds-prototype-20190629.iam.gserviceaccount.com",
     "user:akshay@hy.ly",
-    "user:amrutha.hyly@gmail.com",
     "user:gili@hy.ly",
     "user:hyq.gds@hy.ly",
     "user:ishtiyaq@hy.ly",
     "user:sanya.hyly@gmail.com",
-    "user:amrutha@hy.ly",
     "user:sanya@hy.ly",
 
   ]
@@ -30,11 +28,9 @@ resource "google_project_iam_binding" "staging_dev_sa_storage_admin" {
     "serviceAccount:hyly-pipeline@gds-prototype-20190629.iam.gserviceaccount.com",
     "serviceAccount:staging-dev-sa@gds-prototype-20190629.iam.gserviceaccount.com",
     "user:akshay@hy.ly",
-    "user:amrutha.hyly@gmail.com",
     "user:gili@hy.ly",
     "user:ishtiyaq@hy.ly",
     "user:sanya.hyly@gmail.com",
-    "user:amrutha@hy.ly",
     "user:sanya@hy.ly"
   ]
   depends_on = [google_project_iam_binding.staging_dev_sa_bigquery_admin]
