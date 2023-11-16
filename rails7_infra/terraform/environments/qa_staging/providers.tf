@@ -1,7 +1,7 @@
 terraform {
   required_version = ">= 1.4.6"
 
- backend "s3" {
+  backend "s3" {
     bucket         = "qa-stage-hyly-remote-state"
     key            = "qa-stage-hyly/qa-stage-hyly-terraform.tfstate"
     dynamodb_table = "qa-stage-hyly-state-locking"
@@ -26,3 +26,4 @@ provider "aws" {
     tags = local.tags
   }
 }
+

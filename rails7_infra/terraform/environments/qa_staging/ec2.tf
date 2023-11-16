@@ -1,20 +1,13 @@
-resource "aws_instance" "qa_stage_server" {
-  ami           = data.aws_ami.ubuntu.id
-  subnet_id     = data.aws_subnet.sys_stage_subnet.id
-  instance_type = local.instance_type_qa_stage
-
-  key_name        = data.aws_key_pair.ja-keypair.key_name
-  vpc_security_group_ids = [aws_security_group.qa_stage_security_group.id]
-
-  root_block_device {
-    volume_size = 150
-    volume_type = "gp3"
-  }
-  tags = {
-    Name        = "app-${local.project}-${local.environment}"
-  }
-  depends_on = [aws_security_group.qa_stage_security_group]
-}
-resource "aws_eip" "qa_stage_server_eip" {
-  instance = aws_instance.qa_stage_server.id
+module "ec2" {
+  source                 = "../../modules/ec2/"
+  project                = local.project
+  region                 = local.region
+  profile                = local.profile
+  environment            = local.environment
+  instance_type_qa_stage = local.instance_type_qa_stage
+  allowed_ips_for_ssh    = local.allowed_ips_for_ssh
+  vpc_azs                = local.vpc_azs
+  vpc_public_subnets     = local.vpc_public_subnets
+  sys_stage_vpc_id       = local.sys_stage_vpc_id
+  sys_stage_subnet_id    = local.sys_stage_subnet_id
 }
