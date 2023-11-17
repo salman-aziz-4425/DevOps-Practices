@@ -6,6 +6,10 @@ variable "region" {
   type        = string
   default = "region name"
 }
+variable "ec2_ami_id" {
+  type        = string
+  default = "EC2 AMI ID"
+}
 variable "profile" {
   type        = string
   default = "Profile"
@@ -14,7 +18,7 @@ variable "environment" {
   type        = string
   description = "project environement"
 }
-variable "instance_type_qa_stage" {
+variable "instance_type" {
   type        = string
   description = "Instance type"
 }
@@ -30,11 +34,11 @@ variable "vpc_public_subnets" {
   type        = list
   description = "public subnets"
 }
-variable "sys_stage_vpc_id" {
+variable "vpc_id" {
   type        = string
   description = "VPC"
 }
-variable "sys_stage_subnet_id" {
+variable "subnet_id" {
   type        = string
   description = "subnet"
 }

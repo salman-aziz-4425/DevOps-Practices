@@ -1,7 +1,7 @@
-resource "aws_security_group" "qa_stage_security_group" {
+resource "aws_security_group" "security_group" {
   name        = "${var.project}-${var.environment}-sg"
   description = "Security group for ${var.environment} server"
-  vpc_id      = data.aws_vpc.sys_stage_vpc.id
+  vpc_id      = data.aws_vpc.vpc.id
   ingress {
     description = "Allow SSH to qa_stage server"
     from_port   = "22"

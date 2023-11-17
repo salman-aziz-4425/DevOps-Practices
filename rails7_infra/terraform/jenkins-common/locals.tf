@@ -1,9 +1,10 @@
 locals {
-  project                = "myhyly"
-  region                 = "us-east-1"
-  profile                = "246071984618_Terraform"
-  environment            = "qa-stage"
-  instance_type_qa_stage = "m7i.large"
+  #Jenkins instance locals
+  project               = "myhyly"
+  region                = "us-east-1"
+  profile               = "246071984618_Terraform"
+  environment           = "jenkins"
+  instance_type_jenkins = "m7a.medium"
 
   allowed_ips_for_ssh = [
     "14.237.225.29/32",  # Tin IP
