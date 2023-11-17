@@ -120,6 +120,22 @@ services:
     #   ports:
     #     - "3001:3000"
    
+    mailBot_stg:
+      image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/mailbot:latest
+      env_file:
+        - /home/ubuntu/code/.env.mailBot_stg
+      deploy:
+        restart_policy:
+          condition: on-failure
+          delay: 5s
+          max_attempts: 3
+        resources:
+          limits:
+            cpus: '0.40'
+            memory: 3g
+      ports:
+        - "5016:5000"
+
 volumes:
   # mysql_data_staging:
   #   external: true
