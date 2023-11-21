@@ -19,6 +19,36 @@ locals {
   sys_stage_vpc_id    = "vpc-a3d9d7c5"
   sys_stage_subnet_id = "subnet-040b206a1e260b0d2"
 
+  # ECR locals
+  repositories = {
+    "hylybe_qa" = {
+      image_tag_mutability  = "MUTABLE"
+      scan_on_push          = true
+      expiration_after_days = 30
+      retain_minimum_images = 10
+      environment           = "qa"
+      tags = {
+        Project     = "myhyly"
+        Owner       = "junaid"
+        Purpose     = "hyly-be-qa-images"
+        Description = "For hyly-be deployment"
+      }
+    }
+    "hylybe_stg" = {
+      image_tag_mutability  = "MUTABLE"
+      scan_on_push          = true
+      expiration_after_days = 30
+      retain_minimum_images = 10
+      environment           = "staging"
+      tags = {
+        Project     = "myhyly"
+        Owner       = "junaid"
+        Purpose     = "hyly-be-stg-images"
+        Description = "For hyly-be deployment"
+      }
+    }
+  }
+
   tags = {
     "Project"     = "hyly"
     "Environment" = local.environment

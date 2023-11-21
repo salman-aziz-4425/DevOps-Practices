@@ -32,3 +32,9 @@ variable "expiration_after_days" {
   description = "(Optional) Delete images older than X days."
   default = 0
 }
+
+variable "retain_minimum_images" {
+  type = number
+  description = "(Optional) Retain minimum of X images."
+  default = 0
+}

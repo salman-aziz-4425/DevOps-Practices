@@ -9,6 +9,20 @@ resource "aws_security_group" "security_group" {
     protocol    = "tcp"
     cidr_blocks = var.allowed_ips_for_ssh
   }
+  ingress {
+    description = "Allow all traffic through port 443 for https"
+    from_port = "443"
+    to_port = "443"
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    description = "Allow all traffic through port 80 for http"
+    from_port = "80"
+    to_port = "80"
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
   egress {
     description = "Allow all outbound traffic"
     from_port   = "0"
