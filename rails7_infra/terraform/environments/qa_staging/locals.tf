@@ -10,6 +10,11 @@ locals {
     "122.129.66.106/32", # Junaid IP
     "58.27.193.244/32"   # Junaid IP
   ]
+  app_ec2_server_iam_policies = {
+    1 = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+    # Add additional policies for worker nodes here
+    # 2 = "<policy_arn>"
+  }
 
   vpc_azs = ["us-east-2a", "us-east-2b"]
   vpc_public_subnets = [

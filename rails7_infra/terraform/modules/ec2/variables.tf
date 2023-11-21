@@ -36,10 +36,15 @@ variable "vpc_public_subnets" {
 }
 variable "vpc_id" {
   type        = string
-  description = "VPC"
+  description = "The ID of VPC"
 }
 variable "subnet_id" {
   type        = string
-  description = "subnet"
+  description = "The ID of subnet"
+}
+variable "ec2_server_iam_policies" {
+  description = "List of IAM Policies to attach to EC2 server"
+  type        = map(any)
+  default = {}
 }
 
