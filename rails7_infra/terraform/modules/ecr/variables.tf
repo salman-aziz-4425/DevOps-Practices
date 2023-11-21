@@ -25,8 +25,11 @@ variable "additional_tags" {
   description = "(Optional) A map of tags to assign to the resource."
   default = {}
 }
-
-
+variable "attach_policy_to_ecr" {
+  type = bool
+  description = "Attach ECR policy to ECR repo."
+  default = false
+}
 variable "expiration_after_days" {
   type = number
   description = "(Optional) Delete images older than X days."

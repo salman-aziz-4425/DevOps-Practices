@@ -18,3 +18,8 @@ resource "aws_iam_role_policy_attachment" "ec2_server" {
   policy_arn = each.value
   role       = aws_iam_role.ec2_server.name
 }
+
+resource "aws_iam_instance_profile" "ec2_profile" {
+  name = "${var.environment}-${var.project}"
+  role = aws_iam_role.ec2_server.name
+}

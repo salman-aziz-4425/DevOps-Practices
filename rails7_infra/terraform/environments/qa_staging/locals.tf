@@ -32,6 +32,7 @@ locals {
       expiration_after_days = 30
       retain_minimum_images = 10
       environment           = "qa"
+      attach_policy_to_ecr  = true
       tags = {
         Project     = "myhyly"
         Owner       = "junaid"
@@ -45,6 +46,7 @@ locals {
       expiration_after_days = 30
       retain_minimum_images = 10
       environment           = "staging"
+      attach_policy_to_ecr  = true
       tags = {
         Project     = "myhyly"
         Owner       = "junaid"

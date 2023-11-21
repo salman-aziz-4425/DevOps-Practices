@@ -9,5 +9,5 @@ module "ecr" {
   expiration_after_days = each.value.expiration_after_days
   retain_minimum_images = each.value.retain_minimum_images
   additional_tags       = each.value.tags
-
+  attach_policy_to_ecr  = each.value.attach_policy_to_ecr
 }

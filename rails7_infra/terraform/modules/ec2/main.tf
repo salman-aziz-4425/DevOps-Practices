@@ -2,7 +2,7 @@ resource "aws_instance" "ec2_server" {
   ami           = var.ec2_ami_id
   subnet_id     = data.aws_subnet.subnet.id
   instance_type = var.instance_type
-  iam_instance_profile = aws_iam_role.ec2_server.name
+  iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
 
   key_name        = data.aws_key_pair.ja-keypair.key_name
   vpc_security_group_ids = [aws_security_group.security_group.id]
