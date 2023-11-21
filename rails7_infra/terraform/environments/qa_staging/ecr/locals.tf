@@ -1,6 +1,6 @@
 locals {
   repositories = {
-    "qa" = {
+    "hylybe-qa" = {
       image_tag_mutability  = "MUTABLE"
       scan_on_push          = true
       expiration_after_days = 7
@@ -13,7 +13,7 @@ locals {
       }
     }
 
-    "stg" = {
+    "hylybe-stg" = {
       image_tag_mutability  = "MUTABLE"
       scan_on_push          = true
       expiration_after_days = 3
