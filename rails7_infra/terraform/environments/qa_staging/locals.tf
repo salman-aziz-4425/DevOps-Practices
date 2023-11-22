@@ -6,6 +6,7 @@ locals {
   instance_type_qa_stage = "m7i.large"
 
   allowed_ips_for_ssh = [
+    "44.217.217.253/32", # AWS Jenkins server IP 
     "14.237.225.29/32",  # Tin IP
     "122.129.66.106/32", # Junaid IP
     "58.27.193.244/32"   # Junaid IP
