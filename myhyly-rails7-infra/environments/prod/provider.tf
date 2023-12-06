@@ -1,3 +1,7 @@
+provider "aws" {
+  region = local.aws_region
+}
+
 terraform {
   required_version = ">=1.0.0"
 
