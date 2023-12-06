@@ -1,5 +1,5 @@
 resource "aws_ecr_repository" "ecr_repository" {
-  name                 = "${var.name}"
+  name                 = var.name
   image_tag_mutability = var.image_tag_mutability
 
   image_scanning_configuration {
@@ -9,7 +9,7 @@ resource "aws_ecr_repository" "ecr_repository" {
   tags = merge(
     var.additional_tags,
     {
-      ManagedBy = "Terraform"
+      ManagedBy   = "Terraform"
       Environment = "${var.environment}"
     }
   )

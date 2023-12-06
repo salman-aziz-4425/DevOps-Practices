@@ -23,6 +23,8 @@ variable "azs" {
 }
 
 variable "vpc-cidr-prefix" {
+  type        = string
+  description = "VPC-CIDR-Prefix"
   nullable = false
 }
 
@@ -31,7 +33,6 @@ variable "igw_id" {
   description = "Internet Gateway ID"
   nullable    = false
 }
-
 
 variable "cluster_name" {
   description = "Name of the cluster."
@@ -72,8 +73,8 @@ variable "worker_nodes_node_groups" {
 }
 variable "kubectl_roles" {
   description = "IAM roles to connect to EKS cluster"
-  type    = list(string)
-  default = []
+  type        = list(string)
+  default     = []
 }
 variable "enable_metric_server" {
   description = "Enable metric server"

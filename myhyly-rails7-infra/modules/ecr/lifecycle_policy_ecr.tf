@@ -1,7 +1,7 @@
 resource "aws_ecr_lifecycle_policy" "ecr_policy" {
-  count = var.attach_policy_to_ecr ? 1 : 0
+  count      = var.attach_policy_to_ecr ? 1 : 0
   repository = aws_ecr_repository.ecr_repository.name
-  policy = <<EOF
+  policy     = <<EOF
 {
     "rules": [
         {

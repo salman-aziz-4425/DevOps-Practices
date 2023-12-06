@@ -10,8 +10,8 @@ resource "aws_eks_node_group" "this" {
   capacity_type  = each.value.capacity_type
   instance_types = each.value.instance_types
   launch_template {
-       name    = aws_launch_template.launch_template[each.key].name
-       version = aws_launch_template.launch_template[each.key].default_version
+    name    = aws_launch_template.launch_template[each.key].name
+    version = aws_launch_template.launch_template[each.key].default_version
   }
   scaling_config {
     desired_size = each.value.scaling_config.desired_size
