@@ -9,3 +9,7 @@ terraform.plan
 *tfstate*
 secret*.yaml
 *creds*
+
+*/.terraform
+*/terraform.tfstate.d/*
+*/.terraform.lock.hcl
