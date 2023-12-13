@@ -46,6 +46,25 @@ locals {
     "arn:aws:iam::246071984618:user/tn@hy.ly"
   ]
   app_enable_metric_server = true
+
+############ECR Locals
+  repositories = {
+    "hylybe_prod" = {
+      image_tag_mutability  = "MUTABLE"
+      scan_on_push          = true
+      expiration_after_days = 60
+      retain_minimum_images = 10
+      environment           = "prod"
+      attach_policy_to_ecr  = true
+      tags = {
+        Project     = "myhyly"
+        Owner       = "junaid"
+        Purpose     = "hyly-be-prod-images"
+        Description = "For hyly-be deployment"
+      }
+    }
+
+  }
 }
 
 
