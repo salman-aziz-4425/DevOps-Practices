@@ -14,7 +14,7 @@ spec:
   - matches:
     - path:
         type: PathPrefix
-        value: /mailbot
+        value: /mailBot
     filters:
     - type: URLRewrite
       urlRewrite:
