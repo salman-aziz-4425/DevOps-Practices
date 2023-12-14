@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mailbot
+  namespace: hyly-prod
+  labels:
+    app: mailbot
+spec:
+  replicas: 1
+  minReadySeconds: 10
+  progressDeadlineSeconds: 60
+  revisionHistoryLimit: 5
+
+  strategy:
+    rollingUpdate:
+      maxSurge: 3
+      maxUnavailable: 0
+
+  selector:
+    matchLabels:
+      app: mailbot
+
+  template:
+    metadata:
+      name: mailbot
+      labels:
+        app: mailbot
+    spec:
+      restartPolicy: Always
+
+      # imagePullSecrets:
+      #   - name:
+
+      containers:
+        - name: mailbot
+          image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-prod/mailbot:latest
+          imagePullPolicy: Always
+
+          envFrom:
+          - secretRef:
+              name: secret-mailbot
+
+          ports:
+            - containerPort: 5000
+
+          resources:
+            requests:
+              memory: "500Mi"
+              cpu: "250m"
+            limits:
+              memory: "1024Mi"
+              cpu: "250m"
+
+          livenessProbe:
+            httpGet:
+              path: /heartbeat
+              port: 5000
+            initialDelaySeconds: 3
+            periodSeconds: 3
+
+          readinessProbe:
+            httpGet:
+              path: /heartbeat
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+
+          startupProbe:
+            httpGet:
+              path: /heartbeat
+              port: 5000
+            failureThreshold: 30
+            periodSeconds: 10
