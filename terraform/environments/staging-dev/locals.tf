@@ -61,7 +61,7 @@ locals {
     "54.235.68.60/32",    # LIVE app-p5
     "184.73.153.116/32",  # LIVE app6
     "3.90.64.59/32",      # LIVE app-p6
-    "72.255.21.197/32",    # Waleed IP 
+    "72.255.21.197/32",   # Waleed IP 
     "3.235.238.79/32",    # server mongodb prompt-modeler
     "34.74.55.254/32",    # staging-dev-ml on GCP
     "142.114.73.72/32",   # Urvish Mongo
@@ -74,7 +74,7 @@ locals {
     "223.29.224.251/32",  # Taha IP
     "203.99.188.32/32",   # Gul IP
     "39.45.41.182/32",    # Sohaib IP
-    
+
   ]
 
   # Load balancer
@@ -305,6 +305,61 @@ locals {
         oauth2_client_secret = null
       }
     },
+    hylyvoice-dev = {
+      description             = null
+      port                    = 8501
+      protocol                = "HTTP"
+      port_name               = "hylyvoice-dev"
+      timeout_sec             = 120
+      enable_cdn              = false
+      custom_request_headers  = null
+      custom_response_headers = null
+      security_policy         = null
+      compression_mode        = null
+
+      connection_draining_timeout_sec = null
+      session_affinity                = null
+      affinity_cookie_ttl_sec         = null
+
+      health_check = {
+        check_interval_sec  = 300
+        timeout_sec         = 60
+        healthy_threshold   = null
+        unhealthy_threshold = null
+        request_path        = "/heartbeat"
+        port                = 8501
+        host                = null
+        logging             = null
+      }
+
+      log_config = {
+        enable      = false
+        sample_rate = 1.0
+      }
+
+      groups = [
+        {
+          # Each node pool instance group should be added to the backend.
+          group                        = google_compute_instance_group.staging_dev.self_link
+          balancing_mode               = null
+          capacity_scaler              = null
+          description                  = null
+          max_connections              = null
+          max_connections_per_instance = null
+          max_connections_per_endpoint = null
+          max_rate                     = null
+          max_rate_per_instance        = null
+          max_rate_per_endpoint        = null
+          max_utilization              = null
+        },
+      ]
+
+      iap_config = {
+        enable               = false
+        oauth2_client_id     = null
+        oauth2_client_secret = null
+      }
+    },
     chatcdp-stg = {
       description             = null
       port                    = 5001
@@ -493,6 +548,61 @@ locals {
         unhealthy_threshold = null
         request_path        = "/heartbeat"
         port                = 5016
+        host                = null
+        logging             = null
+      }
+
+      log_config = {
+        enable      = false
+        sample_rate = 1.0
+      }
+
+      groups = [
+        {
+          # Each node pool instance group should be added to the backend.
+          group                        = google_compute_instance_group.staging_dev.self_link
+          balancing_mode               = null
+          capacity_scaler              = null
+          description                  = null
+          max_connections              = null
+          max_connections_per_instance = null
+          max_connections_per_endpoint = null
+          max_rate                     = null
+          max_rate_per_instance        = null
+          max_rate_per_endpoint        = null
+          max_utilization              = null
+        },
+      ]
+
+      iap_config = {
+        enable               = false
+        oauth2_client_id     = null
+        oauth2_client_secret = null
+      }
+    }
+    hylyvoice-stg = {
+      description             = null
+      port                    = 8502
+      protocol                = "HTTP"
+      port_name               = "hylyvoice-stg"
+      timeout_sec             = 120
+      enable_cdn              = false
+      custom_request_headers  = null
+      custom_response_headers = null
+      security_policy         = null
+      compression_mode        = null
+
+      connection_draining_timeout_sec = null
+      session_affinity                = null
+      affinity_cookie_ttl_sec         = null
+
+      health_check = {
+        check_interval_sec  = 300
+        timeout_sec         = 60
+        healthy_threshold   = null
+        unhealthy_threshold = null
+        request_path        = "/heartbeat"
+        port                = 8502
         host                = null
         logging             = null
       }

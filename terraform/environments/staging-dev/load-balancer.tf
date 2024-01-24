@@ -80,6 +80,19 @@ resource "google_compute_url_map" "ml-stg-dev" {
         }
       }
     }
+
+    route_rules {
+      match_rules {
+        prefix_match = "/hylyvoice"
+      }
+      service  = module.ml-non-prod-lb.backend_services["hylyvoice-dev"].self_link
+      priority = 5
+      route_action {
+        url_rewrite {
+          path_prefix_rewrite = "/"
+        }
+      }
+    }
   }
 
   host_rule {
@@ -143,6 +156,19 @@ resource "google_compute_url_map" "ml-stg-dev" {
       }
     }
 
+    route_rules {
+      match_rules {
+        prefix_match = "/hylyvoice"
+      }
+      service  = module.ml-non-prod-lb.backend_services["hylyvoice-stg"].self_link
+      priority = 5
+      route_action {
+        url_rewrite {
+          path_prefix_rewrite = "/"
+        }
+      }
+    }
+
   }
 }
 
@@ -192,6 +218,16 @@ resource "google_compute_instance_group" "staging_dev" {
   named_port {
     name = "mailbot-stg"
     port = "5016"
+  }
+
+  named_port {
+    name = "hylyvoice-dev"
+    port = "8501"
+  }
+
+  named_port {
+    name = "hylyvoice-stg"
+    port = "8502"
   }
 
   lifecycle {
