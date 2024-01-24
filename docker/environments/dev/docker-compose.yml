@@ -143,6 +143,8 @@ services:
         - "5015:5000"
     hylyvoice_dev:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/hylyvoice:latest
+      env_file:
+        - /home/ubuntu/code/.env.hylyvoice_dev
       deploy:
         restart_policy:
           condition: on-failure
