@@ -152,6 +152,7 @@ services:
           max_attempts: 3
       ports:
         - "8501:8501"
+        - "5030:5000"
       volumes:
         - /home/ubuntu/code/vosk-model-en-us-0.42-gigaspeech:/app/models/vosk-model-en-us-0.42-gigaspeech
 
