@@ -10,7 +10,7 @@ on:
       - terraform/vpc-common/**
 
 jobs:
-  commom-component-plan-changes:
+  plan-changes:
     runs-on:  [self-hosted, terraform-devops]
     steps:
       - name: Checkout repository

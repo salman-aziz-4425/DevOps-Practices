@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  plan-changes:
+  apply-changes:
     runs-on:  [self-hosted, terraform-devops]
     steps:
       - name: Checkout repository
