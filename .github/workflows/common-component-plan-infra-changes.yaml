@@ -1,0 +1,37 @@
+name: "Terraform Plan - Common component ML infra"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - '**'
+    paths:
+      - terraform/jenkins-common/**
+      - terraform/vpc-common/**
+
+jobs:
+  commom-component-plan-changes:
+    runs-on:  [self-hosted, terraform-devops]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: initialize terraform on jenkins
+        working-directory: terraform/jenkins-common
+        run: |
+          terraform init
+
+      - name: plan changes on jenkins
+        working-directory: terraform/jenkins-common
+        run: |
+          terraform plan
+      
+      - name: initialize terraform on vpc
+        working-directory: terraform/vpc-common
+        run: |
+          terraform init
+  
+      - name: plan changes on vpc
+        working-directory: terraform/vpc-common
+        run: |
+          terraform plan

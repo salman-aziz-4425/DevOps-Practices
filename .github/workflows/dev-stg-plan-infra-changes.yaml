@@ -1,0 +1,26 @@
+name: "Terraform Plan - dev staging ML infra"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - '**'
+    paths:
+      - terraform/environments/staging-dev/**
+
+jobs:
+  plan-changes:
+    runs-on:  [self-hosted, terraform-devops]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: initialize terraform
+        working-directory: terraform/environments/staging-dev
+        run: |
+          terraform init
+
+      - name: plan changes
+        working-directory: terraform/environments/staging-dev
+        run: |
+          terraform plan
