@@ -1,0 +1,41 @@
+name: "Terraform Apply - common components ML infra"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  commom-component-plan-changes:
+    runs-on:  [self-hosted, terraform-devops]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: initialize terraform on jenkins
+        working-directory: terraform/jenkins-common
+        run: |
+          terraform init
+
+      - name: plan changes on jenkins
+        working-directory: terraform/jenkins-common
+        run: |
+          terraform plan -no-colors
+      
+      - name: apply changes on jenkins
+        working-directory: terraform/jenkins-common
+        run: |
+          terraform apply -auto-approve -input=false
+      
+      - name: initialize terraform on vpc
+        working-directory: terraform/vpc-common
+        run: |
+          terraform init
+  
+      - name: plan changes on vpc
+        working-directory: terraform/vpc-common
+        run: |
+          terraform plan -no-colors
+          
+      - name: apply changes on vpc
+        working-directory: terraform/vpc-common
+        run: |
+          terraform apply -auto-approve -input=false

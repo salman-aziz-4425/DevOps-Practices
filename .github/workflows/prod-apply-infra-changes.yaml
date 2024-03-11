@@ -1,0 +1,26 @@
+name: "Terraform Apply - prod ML infra"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  plan-changes:
+    runs-on:  [self-hosted, terraform-devops]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: initialize terraform
+        working-directory: terraform/environments/prod
+        run: |
+          terraform init
+
+      - name: plan changes
+        working-directory: terraform/environments/prod
+        run: |
+          terraform plan -no-color
+      
+      - name: apply changes
+        working-directory: terraform/environments/prod
+        run: |
+          terraform apply -auto-approve -input=false
