@@ -1,4 +1,4 @@
-name: "Terraform Plan - dev + staging ML infra"
+name: "Terraform Plan - prod ML infra"
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
     branches:
       - '**'
     paths:
-      - terraform/environments/staging-dev/**
+      - terraform/environments/prod/**
 
 jobs:
   plan-changes:
@@ -16,11 +16,11 @@ jobs:
         uses: actions/checkout@v3
 
       - name: initialize terraform
-        working-directory: terraform/environments/staging-dev
+        working-directory: terraform/environments/prod
         run: |
           terraform init
 
       - name: plan changes
-        working-directory: terraform/environments/staging-dev
+        working-directory: terraform/environments/prod
         run: |
           terraform plan
