@@ -6,7 +6,7 @@ metadata:
   labels:
     app: hayleygpt
 spec:
-  replicas: 1
+  replicas: 2
   minReadySeconds: 10
   progressDeadlineSeconds: 60
   revisionHistoryLimit: 5
@@ -67,11 +67,11 @@ spec:
 
           resources:
             requests:
-              memory: "500Mi"
-              cpu: "250m"
-            limits:
-              memory: "1024Mi"
-              cpu: "250m"
+              memory: "6000Mi"
+              cpu: "800m"
+            # limits:
+            #   memory: "1024Mi"
+            #   cpu: "250m"
 
           livenessProbe:
             httpGet:
