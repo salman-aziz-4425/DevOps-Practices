@@ -54,6 +54,13 @@ spec:
               mountPath: "/app/config/signals-keyfile.json"
               subPath: signals-keyfile.json
               readOnly: true
+          lifecycle:
+           postStart:
+            exec:
+             command:
+               - "/bin/sh"
+               - "-c"
+               - "echo '3.86.63.232 db-prod1.hy.ly' >> /etc/hosts; echo '44.210.143.44 db-prod2.hy.ly' >> /etc/hosts; echo '3.95.168.139 db-prod3.hy.ly' >> /etc/hosts"
 
           ports:
             - containerPort: 5000
