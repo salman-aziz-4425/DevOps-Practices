@@ -6,7 +6,7 @@ metadata:
   labels:
     app: hayleygpt
 spec:
-  replicas: 2
+  replicas: 3
   minReadySeconds: 10
   progressDeadlineSeconds: 60
   revisionHistoryLimit: 5
