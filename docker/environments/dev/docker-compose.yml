@@ -55,9 +55,7 @@ services:
       ports:
         - "5005:5000"
       volumes:
-        - /home/ubuntu/code/.signals-keyfile.json:/app/config/signals-keyfile.json
-      depends_on:
-        - mongo_db_dev
+        - /home/ubuntu/code/.signals-keyfile.json:/app/config/signals-keyfile.json`
 
     mailBot_dev:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/mailbot:latest
@@ -90,6 +88,16 @@ services:
         - "5030:5000"
       volumes:
         - /home/ubuntu/code/vosk-model-en-us-0.42-gigaspeech:/app/models/vosk-model-en-us-0.42-gigaspeech
+    hylyimageclassification_dev:
+      image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/hylyimageclassification:latest
+      deploy:
+        restart_policy:
+          condition: on-failure
+          delay: 5s
+          max_attempts: 3
+      ports:
+        - "5040:5000"
+
     hylyimageclassification_dev:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/hylyimageclassification:latest
       deploy:
