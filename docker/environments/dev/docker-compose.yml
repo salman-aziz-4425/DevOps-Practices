@@ -55,7 +55,7 @@ services:
       ports:
         - "5005:5000"
       volumes:
-        - /home/ubuntu/code/.signals-keyfile.json:/app/config/signals-keyfile.json`
+        - /home/ubuntu/code/.signals-keyfile.json:/app/config/signals-keyfile.json
 
     mailBot_dev:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/mailbot:latest
