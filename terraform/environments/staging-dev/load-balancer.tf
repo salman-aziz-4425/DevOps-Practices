@@ -93,6 +93,18 @@ resource "google_compute_url_map" "ml-stg-dev" {
         }
       }
     }
+    route_rules {
+      match_rules {
+        prefix_match = "/hylyimageclassification"
+      }
+      service  = module.ml-non-prod-lb.backend_services["hylyimageclassification-dev"].self_link
+      priority = 6
+      route_action {
+        url_rewrite {
+          path_prefix_rewrite = "/"
+        }
+      }
+    }
   }
 
   host_rule {
@@ -183,6 +195,11 @@ resource "google_compute_instance_group" "staging_dev" {
   named_port {
     name = "chatcdp-dev"
     port = "5000"
+  }
+
+  named_port {
+    name = "hylyimageclassification-dev"
+    port = "5040"
   }
 
   named_port {
