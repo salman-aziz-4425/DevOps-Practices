@@ -107,9 +107,9 @@ resource "google_compute_url_map" "ml-stg-dev" {
     }
     route_rules {
       match_rules {
-        prefix_match = "/one_minute_chatbot"
+        prefix_match = "/oneminutechatbot"
       }
-      service  = module.ml-non-prod-lb.backend_services["one_minute_chatbot"].self_link
+      service  = module.ml-non-prod-lb.backend_services["oneminutechatbot-dev"].self_link
       priority = 7
       route_action {
         url_rewrite {
@@ -228,7 +228,7 @@ resource "google_compute_instance_group" "staging_dev" {
   }
 
   named_port {
-    name = "one_minute_chatbot"
+    name = "oneminutechatbot-dev"
     port = "8000"
   }
   named_port {
@@ -237,7 +237,7 @@ resource "google_compute_instance_group" "staging_dev" {
   }
 
   named_port {
-    name = "hayleygpt-dev"
+    name = ""
     port = "5005"
   }
 

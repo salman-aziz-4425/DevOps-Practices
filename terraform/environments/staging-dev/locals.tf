@@ -417,11 +417,11 @@ locals {
       }
     },
     
-    one_minute_chatbot = {
+    oneminutechatbot-dev = {
       description             = null
       port                    = 8000
       protocol                = "HTTP"
-      port_name               = "one_minute_chatbot"
+      port_name               = "oneminutechatbot-dev"
       timeout_sec             = 120
       enable_cdn              = false
       custom_request_headers  = null
