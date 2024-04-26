@@ -105,7 +105,7 @@ resource "google_compute_url_map" "ml-stg-dev" {
         }
       }
     }
-     route_rules {
+    route_rules {
       match_rules {
         prefix_match = "/one-minute-chatbot"
       }
@@ -118,10 +118,6 @@ resource "google_compute_url_map" "ml-stg-dev" {
       }
     }
   }
-  }
-
-
-  
 
   host_rule {
     hosts        = ["stg-ml.hyly.us"]
@@ -218,10 +214,6 @@ resource "google_compute_instance_group" "staging_dev" {
     port = "5040"
   }
 
-  named_port {
-    name = "one-minute-chatbot"
-    port = "5040"
-  }
   named_port {
     name = "chatcdp-services-dev"
     port = "5010"
