@@ -99,6 +99,16 @@ services:
       ports:
         - "5040:5000"
 
+    one-minute-chatbot:
+      image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/one-minute-chatbot:latest
+      deploy:
+        restart_policy:
+          condition: on-failure
+          delay: 5s
+          max_attempts: 3
+      ports:
+        - "8000:8000"
+
 volumes:
   pai_datascience_services:
   # mysql_data_dev:
