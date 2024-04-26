@@ -101,6 +101,8 @@ services:
 
     one-minute-chatbot:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/one-minute-chatbot:latest
+      env_file:
+        - /home/ubuntu/code/.env
       deploy:
         restart_policy:
           condition: on-failure
