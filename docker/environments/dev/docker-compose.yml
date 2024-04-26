@@ -12,13 +12,13 @@ services:
           max_attempts: 3
         resources:
           limits:
-            cpus: '0.40'
-            memory: 3g
+            cpus: '0.60'
+            memory: 6g
       ports:
         - "5010:5000"
       volumes:
         - /home/ubuntu/code/.signals-keyfile.json:/app/config/signals-keyfile.json
-
+        - /home/ubuntu/code/.signals-keyfile.json:/app/config/signals-keyfile-qa.json
     # https://github.com/munishgandhi/etl-hub/tree/datascience_dev
     pai_datascience_services_dev:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/pai-datascience-services:latest
