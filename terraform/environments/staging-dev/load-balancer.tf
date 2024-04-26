@@ -193,6 +193,19 @@ resource "google_compute_url_map" "ml-stg-dev" {
       }
     }
 
+    route_rules {
+      match_rules {
+        prefix_match = "/hylyimageclassification"
+      }
+      service  = module.ml-non-prod-lb.backend_services["hylyimageclassification-stg"].self_link
+      priority = 6
+      route_action {
+        url_rewrite {
+          path_prefix_rewrite = "/"
+        }
+      }
+    }
+
   }
 }
 
@@ -261,6 +274,11 @@ resource "google_compute_instance_group" "staging_dev" {
   named_port {
     name = "hylyvoice-stg"
     port = "8502"
+  }
+
+  named_port {
+    name = "hylyimageclassification-stg"
+    port = "5041"
   }
 
   lifecycle {

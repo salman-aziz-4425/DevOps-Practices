@@ -136,6 +136,16 @@ services:
       ports:
         - "5016:5000"
 
+    hylyimageclassification_stg:
+      image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/hylyimageclassification:latest
+      deploy:
+        restart_policy:
+          condition: on-failure
+          delay: 5s
+          max_attempts: 3
+      ports:
+        - "5041:5000"
+
 volumes:
   # mysql_data_staging:
   #   external: true
