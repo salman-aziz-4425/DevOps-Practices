@@ -237,7 +237,7 @@ resource "google_compute_instance_group" "staging_dev" {
   }
 
   named_port {
-    name = ""
+    name = "hayleygpt-dev"
     port = "5005"
   }
 
