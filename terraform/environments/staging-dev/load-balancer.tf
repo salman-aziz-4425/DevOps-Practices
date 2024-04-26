@@ -215,6 +215,10 @@ resource "google_compute_instance_group" "staging_dev" {
   }
 
   named_port {
+    name = "one-minute-chatbot"
+    port = "8000"
+  }
+  named_port {
     name = "chatcdp-services-dev"
     port = "5010"
   }
