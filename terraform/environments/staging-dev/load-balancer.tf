@@ -107,10 +107,10 @@ resource "google_compute_url_map" "ml-stg-dev" {
     }
     route_rules {
       match_rules {
-        prefix_match = "/one-minute-chatbot"
+        prefix_match = "/one_minute_chatbot"
       }
-      service  = module.ml-non-prod-lb.backend_services["one-minute-chatbot"].self_link
-      priority = 6
+      service  = module.ml-non-prod-lb.backend_services["one_minute_chatbot"].self_link
+      priority = 7
       route_action {
         url_rewrite {
           path_prefix_rewrite = "/"
@@ -228,7 +228,7 @@ resource "google_compute_instance_group" "staging_dev" {
   }
 
   named_port {
-    name = "one-minute-chatbot"
+    name = "one_minute_chatbot"
     port = "8000"
   }
   named_port {
