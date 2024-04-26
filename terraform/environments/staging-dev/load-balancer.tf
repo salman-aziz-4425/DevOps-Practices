@@ -110,7 +110,7 @@ resource "google_compute_url_map" "ml-stg-dev" {
         prefix_match = "/one_minute_chatbot"
       }
       service  = module.ml-non-prod-lb.backend_services["one_minute_chatbot"].self_link
-      priority = 6
+      priority = 7
       route_action {
         url_rewrite {
           path_prefix_rewrite = "/"
