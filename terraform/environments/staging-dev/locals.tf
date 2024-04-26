@@ -753,7 +753,7 @@ locals {
       description             = null
       port                    = 5041
       protocol                = "HTTP"
-      port_name               = "hylyvoice-stg"
+      port_name               = "hylyimageclassification-stg"
       timeout_sec             = 120
       enable_cdn              = false
       custom_request_headers  = null
