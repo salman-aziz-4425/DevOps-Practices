@@ -99,7 +99,7 @@ services:
       ports:
         - "5040:5000"
 
-    one-minute-chatbot:
+    one_minute_chatbot:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/one-minute-chatbot:latest
       env_file:
         - /home/ubuntu/code/.env
