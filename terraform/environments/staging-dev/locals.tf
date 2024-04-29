@@ -419,7 +419,7 @@ locals {
     
     oneminutechatbot-dev = {
       description             = null
-      port                    = 8001
+      port                    = 8000
       protocol                = "HTTP"
       port_name               = "oneminutechatbot-dev"
       timeout_sec             = 120
@@ -439,7 +439,7 @@ locals {
         healthy_threshold   = null
         unhealthy_threshold = null
         request_path        = "/heartbeat"
-        port                = 8001
+        port                = 8000
         host                = null
         logging             = null
       }
