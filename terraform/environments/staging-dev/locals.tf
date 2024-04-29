@@ -419,7 +419,7 @@ locals {
     
     oneminutechatbot-dev = {
       description             = null
-      port                    = 8000
+      port                    = 8001
       protocol                = "HTTP"
       port_name               = "oneminutechatbot-dev"
       timeout_sec             = 120
@@ -439,7 +439,7 @@ locals {
         healthy_threshold   = null
         unhealthy_threshold = null
         request_path        = "/heartbeat"
-        port                = 8000
+        port                = 8001
         host                = null
         logging             = null
       }
@@ -747,9 +747,8 @@ locals {
         oauth2_client_id     = null
         oauth2_client_secret = null
       }
-    }
-
-    hylyimageclassification-stg = {
+    },
+     hylyimageclassification-stg = {
       description             = null
       port                    = 5041
       protocol                = "HTTP"

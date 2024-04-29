@@ -229,7 +229,7 @@ resource "google_compute_instance_group" "staging_dev" {
 
   named_port {
     name = "oneminutechatbot-dev"
-    port = "8000"
+    port = "8001"
   }
   named_port {
     name = "chatcdp-services-dev"

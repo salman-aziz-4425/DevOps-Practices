@@ -101,7 +101,7 @@ services:
 
     
     oneminutechatbot_dev:
-      image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/oneminutechatbot:latest
+      image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/oneminutechatbot:latest 
       env_file:
         - /home/ubuntu/code/.env.oneminutechatbot_dev
       deploy:
@@ -114,7 +114,7 @@ services:
             cpus: '0.40'
             memory: 3g
       ports:
-        - "8000:8000"
+        - "8001:8000"
 
 
 volumes:
