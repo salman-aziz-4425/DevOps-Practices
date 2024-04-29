@@ -56,6 +56,7 @@ services:
         - "5005:5000"
       volumes:
         - /home/ubuntu/code/.signals-keyfile.json:/app/config/signals-keyfile.json
+        - /home/ubuntu/code/hayley_subject_detector/hayley_subject_detector:/app/models/hayley_subject_detector
 
     mailBot_dev:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/mailbot:latest
@@ -72,6 +73,9 @@ services:
             memory: 3g
       ports:
         - "5015:5000"
+      volumes:
+        - /home/ubuntu/code/hayley_subject_detector/hayley_subject_detector:/app/models/hayley_subject_detector
+
 
 
     hylyvoice_dev:
@@ -88,6 +92,7 @@ services:
         - "5030:5000"
       volumes:
         - /home/ubuntu/code/vosk-model-en-us-0.42-gigaspeech:/app/models/vosk-model-en-us-0.42-gigaspeech
+        - /home/ubuntu/code/hayley_subject_detector/hayley_subject_detector:/app/models/hayley_subject_detector
 
     hylyimageclassification_dev:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/hylyimageclassification:latest

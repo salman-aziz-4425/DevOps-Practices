@@ -48,6 +48,7 @@ services:
         - "5001:5000"
       volumes:
         - /home/ubuntu/code/.signals-keyfile.json:/app/config/signals-keyfile.json
+        - /home/ubuntu/code/hayley_subject_detector/hayley_subject_detector:/app/models/hayley_subject_detector
       depends_on:
         - redis_db_staging
 
@@ -69,6 +70,7 @@ services:
         - "5011:5000"
       volumes:
         - /home/ubuntu/code/.signals-keyfile.json:/app/config/signals-keyfile.json
+        - /home/ubuntu/code/hayley_subject_detector/hayley_subject_detector:/app/models/hayley_subject_detector
 
     hayleygpt_staging: 
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/hayleygpt:latest
@@ -87,6 +89,7 @@ services:
         - "5006:5000"
       volumes:
         - /home/ubuntu/code/.signals-keyfile.json:/app/config/signals-keyfile.json
+        - /home/ubuntu/code/hayley_subject_detector/hayley_subject_detector:/app/models/hayley_subject_detector
       depends_on:
         - mongo_db_staging
 
@@ -135,6 +138,8 @@ services:
             memory: 3g
       ports:
         - "5016:5000"
+      volumes:
+        - /home/ubuntu/code/hayley_subject_detector/hayley_subject_detector:/app/models/hayley_subject_detector
 
     hylyimageclassification_stg:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/hylyimageclassification:latest
