@@ -107,7 +107,7 @@ resource "google_compute_url_map" "ml-stg-dev" {
     }
     route_rules {
       match_rules {
-        prefix_match = "/oneminutechatbot"
+        prefix_match = "/oneminute"
       }
       service  = module.ml-non-prod-lb.backend_services["oneminutechatbot-dev"].self_link
       priority = 7
