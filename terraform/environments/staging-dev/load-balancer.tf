@@ -113,7 +113,7 @@ resource "google_compute_url_map" "ml-stg-dev" {
       priority = 7
       route_action {
         url_rewrite {
-          path_prefix_rewrite = ""
+          path_prefix_rewrite = "/"
         }
       }
     }
