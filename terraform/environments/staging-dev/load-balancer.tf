@@ -95,9 +95,9 @@ resource "google_compute_url_map" "ml-stg-dev" {
     }
     route_rules {
       match_rules {
-        prefix_match = "/hylyimageclassification"
+        prefix_match = "/oneminute"
       }
-      service  = module.ml-non-prod-lb.backend_services["hylyimageclassification-dev"].self_link
+      service  = module.ml-non-prod-lb.backend_services["oneminutechatbot-dev"].self_link
       priority = 6
       route_action {
         url_rewrite {
@@ -107,9 +107,9 @@ resource "google_compute_url_map" "ml-stg-dev" {
     }
     route_rules {
       match_rules {
-        prefix_match = "/oneminute"
+        prefix_match = "/hylyimageclassification"
       }
-      service  = module.ml-non-prod-lb.backend_services["oneminutechatbot-dev"].self_link
+      service  = module.ml-non-prod-lb.backend_services["hylyimageclassification-dev"].self_link
       priority = 7
       route_action {
         url_rewrite {
@@ -117,6 +117,7 @@ resource "google_compute_url_map" "ml-stg-dev" {
         }
       }
     }
+
   }
 
   host_rule {
