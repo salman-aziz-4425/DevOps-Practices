@@ -18,7 +18,7 @@ locals {
   name                      = "staging-dev-ml"
   machine_type              = "n2-standard-8"
   zone                      = "us-east1-b"
-  disk_size                 = 80
+  disk_size                 = 150
   allow_stopping_for_update = true
 
   allowed_ips_for_ssh = [
@@ -38,6 +38,7 @@ locals {
                 ubuntu:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDN8y6qnBVLg+wYpxuypybqg6HV241/PCCZP3RwaoZw3iLSRrlunNVAxSZSEZkNm0rSQJiiuePn5w86vTlSHm61WDPytoEIh+ECBCV0hhlhnYfc19uQR3TrT/EX29iCdzcLsyozim7Yf6zNUN7l/ewf5L5LqTfQktZxGtsPjpFSrm0M3F6/AnyaI2UUBgzJCqSOwEqtBcf51sNyo/C9p8+d5/fV6RvErssR9ar+rXQRb5/XnBaSd8+yJHqw0XBKGAK6DShMLBEQk9Sv3CI3gly1UMPeURRLFew2U83v9WYEYerX+V/NF7YiVgIz0Nax+spPsusZ/A34zFGAWXmy/c9cRlHLL39HLq8vOHafHrwXEgqPhrYYghjMVGDcvREbDBMhvIUNhOe00bT1tdYpi2evS1iHgSOWeGxSyQQWEPIVpC1HgSFODuxZ/a5HquEhx53tkXMzazud+l1KOzc0dOLy23nn2r8ULQ+bjljfb0qXhEa8QO/R9uFWkbENNjmBNKkwVmvBhoFNZmy2mm1FqvwZbPX8tqEuZIQQaAkmzOtTwL3hWTqQjrUSLzmVNPq5u747vEfSSY785iSkZ1QnkYyeav2WbxhM2Lsh6ysp3EjV5T1JG0qdQ96rbqYAete7XVpckeUNgGljeSlioU0vDJfyDBM8EFKGNgtDGD6dfG0xhw== taha.hyly@gmail.com
                 ubuntu:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDKvCWsdpkVJWMkSqzswDqQP1WL6HYJCurMtMKlzxjEMe8G4DF33T2GN55/9bvpU0pjjDkdMKFiSe9Ckx0wM7eXReOQojbzOhBs8thNGzxz0YE4iQ+/FiVEOQ5ugs5xH07ldrfDoqk0z2cERXqA1doU1I7NUz9vKH+FKxKEynx0klYugg98ftifqKNDjNGjP1m0TCevy3k9iumuokDnlVQ6h/n9qfmLY5CW1HFHw083Uygv0ugh1NIILv0W1JOMIc5Ep0zFs8nhfsu8+qEB5mNl83FB+IPn+xc+khApSIKRr7G5MAfZAw4lj2FJoYFRH3uNXyhdJtUN8hr4JIGgTV0BPEjqa/AXVz+PVzkRu/JAVAsD/nnGepNckNSFHlG+s45JroGOjz68IDK+R59PTdfrdZyqbMnV38j3THpoyZ5uNo9/xok0THttxi7kKkDbFSQNDqMKgFZ/DodjIV7bkonl0NaQ6z7vWwHrwBRz28ENGrQR85ueclmq2Dd/OUmKYmRrP9Zzwq7nYEnZTe1ICkHfy04ZGySY4rTdaEhqr/cGUUraQtStmOXqArlv5gZehE2MTwYEpDDiPGmC6gtx7AymQ4gTyFxSWunoUAbHD86Cbl0OSWprMsp87h/igFGaeWSdSo3TkPmDxz461vX6BmolxjKlgFFMhpmUi9GKFO6yIw== sohaib.hyly@gmail.com
                 ubuntu:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDCLRM7AYa5oCjijYjFfI7ETyE8gW8adN+8VMOfPzrhwmNK0G7DdszYvwqwauyhF/f0bAzm5PUprDxrioFZwGn8t1EGxATz1DMjxAKzsY5TQFX6bBEF4un+YpnoGf5NWaD6o1+ldvkpNk2lD/cUUG3wsqnDNO0HjLm98rthyy8WJTTZGisp26eQnAFODKJkmtcHkaRt2tgE3Ibh4JuW6ZD6NdPKJwa/m5Hq0JsyNpnJljH9vsoPDXEzwiaogNreZY95E/cj8TpyT/Spn1ZDY0G8Fa/XGMa8Mk7o7nbWpEJWIXzpyLgUcODcFOO4bufQD9uxmCQB7vUKfeR4WYzEG7qiPbqKEvDPD76YoVZtF179Ruv479kvWlatxSbub02UvlXb7eUO86r4CVEqpOWiobjvwZyyuPG5JCVmE6AQmp9ahikpmb8vQFmPiPin5RlIL7723hr28RiAl+ARpjPVn/lCM8cyaIq7yiZwy21KpdSRVoFDsnCtt+zpphQp/sVuTSHja9TEmfF7hBxJEoz8QRlHTH5fInkWqqTiSvc0IYqEJ0wOelf30GFnB16UHDWVvL0j3C9EU6NSfRha1+klZYwckIkTInygFhAAHd51gsJ/RzNOkbgLP+tL2iXIUfsgS1xFwhwhDpWZw1Ff7MTCM97bMahEGElI8zcaepTKm3Qa3Q== waqas@Waqass-MacBook-Pro.local
+                ubuntu:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC4BXU0yd0K7KtWRleVBDs0pRnjNCz72xTPZh3rAqQdoWPATezzc7nCRJypot8GUiHkt71K7LMCLxdLvL62uoMPSnDZIV0mv2fbhkwhOVeqwJq9r6T7ZYKGRqot0MA0d2qYhYjSIlm4NlfADJy2+8nym4k0KuF+6DB2doIUzXbeJ0fxX1NvpCZYNYnuaSySKBa+iqgQkMzTZc11giti9ONiTZ2iCZRXwGlgp1Vft38eZKXhgQqKpBucPVk3jmXayEiRgrdeX/rweox9ea5bBfkOwwhs2Ym6m0IYfyph2Re7oeANJ2ywwJkACMARdlS0YoH8u3EsjhQej047gA72YqbAidlCMneut3ZyDrNx2tqYwZJZTEuJgbuiFXLUl+bWRzZq3+pEkH3U/69ht4PaeFdu24xt01kWDWuKKpA25eRy6IQ62D1m3s9spz7GvJH+5YRca3j74LMMaljeLpcwaVMeRWYRSU9itwGvRSe5vPJCWMKvbPBg89dZ3KGuVIv6Sxs= talha@hy.ly
   EOT
 
   iam_members = {
@@ -75,7 +76,8 @@ locals {
     "223.29.224.251/32",  # Taha IP
     "203.99.188.32/32",   # Gul IP
     "39.45.41.182/32",    # Sohaib IP
-    "43.251.252.245/32"   # Waqas IP
+    "43.251.252.245/32",   # Waqas IP
+    "39.45.47.97/32"      # Talha Khan IP
 
   ]
 
