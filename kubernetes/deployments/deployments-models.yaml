@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: init-container-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: init-container-app
+  template:
+    metadata:
+      labels:
+        app: init-container-app
+    spec:
+      volumes:
+        - name: hyly-subject-detector-pvc-vol
+          persistentVolumeClaim:
+            claimName: hyly-subject-detector-pvc
+        initContainers:
+          - name: init-container
+            image: google/cloud-sdk
+            command: ["gsutil", "-m", "cp", "-r", "gs://hyly-subject-detector-model/hayley_subject_detector", "/model/hyly-subject-detector/"]
+            volumeMounts:
+              - mountPath: /model/hyly-subject-detector/
+                name: hyly-subject-detector-pvc-vol
