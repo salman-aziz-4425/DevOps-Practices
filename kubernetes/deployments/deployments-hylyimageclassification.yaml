@@ -28,13 +28,29 @@ spec:
     spec:
       restartPolicy: Always
 
+      volumes:
+        - name: hyly-subject-detector-pvc-vol
+          persistentVolumeClaim:
+            claimName: hyly-subject-detector-pvc
+         
+      # initContainers:
+      #   - name: copy-model
+      #     image: google/cloud-sdk
+      #     command: ["gsutil", "-m", "cp", "-r", "gs://hyly-subject-detector-model/hayley_subject_detector", "/model/hyly-subject-detector/"]
+      #     volumeMounts:
+      #       - mountPath: /model/hyly-subject-detector/
+      #         name: hyly-subject-detector-pvc-vol
+
       containers:
         - name: hylyimageclassification
           image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-prod/hylyimageclassification:latest
           imagePullPolicy: Always
-          
           ports:
             - containerPort: 5000
+
+          volumeMounts:
+            - mountPath: /model/hyly-subject-detector/
+              name: hyly-subject-detector-pvc-vol
 
           resources:
             requests:

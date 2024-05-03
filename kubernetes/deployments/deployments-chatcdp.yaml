@@ -27,6 +27,10 @@ spec:
         app: chatcdp
     spec:
       restartPolicy: Always
+      volumes:
+        - name: hyly-subject-detector-pvc-vol
+          persistentVolumeClaim:
+            claimName: hyly-subject-detector-pvc
 
       # imagePullSecrets:
       #   - name:
@@ -44,6 +48,10 @@ spec:
 
           ports:
             - containerPort: 5000
+
+          volumeMounts:
+            - mountPath: /model/hyly-subject-detector/
+              name: hyly-subject-detector-pvc-vol
 
           resources:
             requests:

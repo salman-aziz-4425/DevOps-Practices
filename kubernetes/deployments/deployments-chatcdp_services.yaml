@@ -27,6 +27,11 @@ spec:
         app: chatcdp-services
     spec:
       restartPolicy: Always
+      volumes:
+        - name: hyly-subject-detector-pvc-vol
+          persistentVolumeClaim:
+            claimName: hyly-subject-detector-pvc
+
       containers:
         - name: chatcdp-services
           image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-prod/chatcdp-services:latest
@@ -37,6 +42,10 @@ spec:
 
           ports:
             - containerPort: 5000
+            
+          volumeMounts:
+            - mountPath: /model/hyly-subject-detector/
+              name: hyly-subject-detector-pvc-vol
 
           resources:
             requests:

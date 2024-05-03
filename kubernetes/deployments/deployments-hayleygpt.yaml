@@ -27,7 +27,6 @@ spec:
         app: hayleygpt
     spec:
       restartPolicy: Always
-
       # imagePullSecrets:
       #   - name:
 
@@ -38,6 +37,10 @@ spec:
             items:
               - key: signals-keyfile.json
                 path: signals-keyfile.json
+        - name: hyly-subject-detector-pvc-vol
+          persistentVolumeClaim:
+            claimName: hyly-subject-detector-pvc
+          
 
       containers:
         - name: hayleygpt
@@ -49,11 +52,16 @@ spec:
               name: configmap-hayleygpt
           - secretRef:
               name: secret-hayleygpt
+
           volumeMounts:
             - name: secret-hayleygpt
               mountPath: "/app/config/signals-keyfile.json"
               subPath: signals-keyfile.json
               readOnly: true
+              
+            - mountPath: /model/hyly-subject-detector/
+              name: hyly-subject-detector-pvc-vol
+
           lifecycle:
            postStart:
             exec:
