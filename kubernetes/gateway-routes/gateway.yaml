@@ -15,7 +15,7 @@ spec:
     tls:
       mode: Terminate
       options:
-        networking.gke.io/pre-shared-certs: hy-dot-ly
+        networking.gke.io/pre-shared-certs: hy-dot-ly-2024
   addresses:
   - type: NamedAddress
     value: prod-ingress-load-balancer-address
