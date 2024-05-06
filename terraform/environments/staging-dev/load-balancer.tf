@@ -207,6 +207,19 @@ resource "google_compute_url_map" "ml-stg-dev" {
       }
     }
 
+    route_rules {
+      match_rules {
+        prefix_match = "/oneminutechatbot"
+      }
+      service  = module.ml-non-prod-lb.backend_services["oneminutechatbot-stg"].self_link
+      priority = 7
+      route_action {
+        url_rewrite {
+          path_prefix_rewrite = "/"
+        }
+      }
+    }
+
   }
 }
 
@@ -280,6 +293,11 @@ resource "google_compute_instance_group" "staging_dev" {
   named_port {
     name = "hylyimageclassification-stg"
     port = "5041"
+  }
+
+  named_port {
+    name = "oneminutechatbot-stg"
+    port = "8001"
   }
 
   lifecycle {
