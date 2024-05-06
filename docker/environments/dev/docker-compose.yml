@@ -1,6 +1,6 @@
 version: '3.4'
 services:
-    # chatCDP services https://github.com/munishgandhi/JAI.GPT.LeaseGPT.MailGPT/tree/main/ChatCDP
+    # chatCDP services https://github.com/munishgandhi/PAI.APP.ChatCDP
     chatcdp_services_dev:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/chatcdp-services:latest
       env_file:
@@ -12,34 +12,36 @@ services:
           max_attempts: 3
         resources:
           limits:
-            cpus: '0.60'
-            memory: 6g
+            cpus: '0.50'
+            memory: 5g
       ports:
         - "5010:5000"
       volumes:
         - /home/ubuntu/code/.signals-keyfile.json:/app/config/signals-keyfile.json
         - /home/ubuntu/code/.signals-keyfile.json:/app/config/signals-keyfile-qa.json
         - /home/ubuntu/code/hayley_subject_detector/hayley_subject_detector:/app/models/hayley_subject_detector
-    # https://github.com/munishgandhi/etl-hub/tree/datascience_dev
-    pai_datascience_services_dev:
-      image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/pai-datascience-services:latest
-      deploy:
-        restart_policy:
-          condition: on-failure
-          delay: 5s
-          max_attempts: 3
-        resources:
-          limits:
-            cpus: '0.40'
-            memory: 3g
-      volumes:
-        - pai_datascience_services:/services
-      ports:
-        - "81:80"
-        - "8888:8888"
-        - "8889:8889"
-        - "8890:8890"
 
+    # pai datascience https://github.com/munishgandhi/etl-hub/tree/datascience_dev
+    # pai_datascience_services_dev:
+    #   image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/pai-datascience-services:latest
+    #   deploy:
+    #     restart_policy:
+    #       condition: on-failure
+    #       delay: 5s
+    #       max_attempts: 3
+    #     resources:
+    #       limits:
+    #         cpus: '0.40'
+    #         memory: 3g
+    #   volumes:
+    #     - pai_datascience_services:/services
+    #   ports:
+    #     - "81:80"
+    #     - "8888:8888"
+    #     - "8889:8889"
+    #     - "8890:8890"
+
+    # Hayleygpt https://github.com/munishgandhi/JAI.APP.HayleyChatBot
     hayleygpt_dev:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/hayleygpt:latest
       env_file:
@@ -59,6 +61,7 @@ services:
         - /home/ubuntu/code/.signals-keyfile.json:/app/config/signals-keyfile.json
         - /home/ubuntu/code/hayley_subject_detector/hayley_subject_detector:/app/models/hayley_subject_detector
 
+    # mailBot https://github.com/munishgandhi/JAI.APP.HayleyMailBot
     mailBot_dev:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/mailbot:latest
       env_file:
@@ -76,9 +79,8 @@ services:
         - "5015:5000"
       volumes:
         - /home/ubuntu/code/hayley_subject_detector/hayley_subject_detector:/app/models/hayley_subject_detector
-
-
-
+    
+    # hayleyVoice https://github.com/munishgandhi/JAI.APP.HayleyVoice
     hylyvoice_dev:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/hylyvoice:latest
       env_file:
@@ -88,6 +90,10 @@ services:
           condition: on-failure
           delay: 5s
           max_attempts: 3
+        resources:
+          limits:
+            cpus: '0.40'
+            memory: 3g
       ports:
         - "8501:8501"
         - "5030:5000"
@@ -95,6 +101,7 @@ services:
         - /home/ubuntu/code/vosk-model-en-us-0.42-gigaspeech:/app/models/vosk-model-en-us-0.42-gigaspeech
         - /home/ubuntu/code/hayley_subject_detector/hayley_subject_detector:/app/models/hayley_subject_detector
 
+    # hayleyImageClassification https://github.com/munishgandhi/Hayley.JAI.Image.Classification.git
     hylyimageclassification_dev:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/hylyimageclassification:latest
       deploy:
@@ -102,10 +109,14 @@ services:
           condition: on-failure
           delay: 5s
           max_attempts: 3
+      resources:
+          limits:
+            cpus: '0.50'
+            memory: 5g
       ports:
         - "5040:5000"
 
-    
+    # Oneminutechatbot https://github.com/munishgandhi/one-minute-chatbot
     oneminutechatbot_dev:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-dev/oneminutechatbot:latest 
       env_file:
@@ -118,16 +129,8 @@ services:
       ports:
         - "8000:8000"
 
-
 volumes:
   pai_datascience_services:
-  # mysql_data_dev:
-  #   external: true
-  mongo_data_dev:
-    external: true
-  redis_data_dev:
-    external: true
-
 
 networks:
   default:

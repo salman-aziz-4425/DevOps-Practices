@@ -1,58 +1,6 @@
 version: '3.4'
 services:
-    # MySQL Database
-    # mysql_db_staging: 
-    #   image: mysql:8.0
-    #   restart: always
-    #   environment:
-    #     MYSQL_ALLOW_EMPTY_PASSWORD: true
-    #   ports:
-    #     - "3316:3306"
-    #   volumes:
-    #     - /db_volumes/mysql_data_staging:/var/lib/mysql
-    
-    # MongoDB Database
-    mongo_db_staging:
-      image: mongo:5.0.21
-      env_file:
-        - /home/ubuntu/code/.env.mongo
-      restart: always
-      ports:
-        - "27027:27017"
-      volumes:
-        - /home/ubuntu/code/db_volumes/mongo_data_staging:/data/db
-  
-    # Redis Database
-    redis_db_staging:
-      image: redis:latest
-      restart: always
-      ports:
-        - "6389:6379"
-      command: redis-server --bind 0.0.0.0
-    
-    # chatCDP https://github.com/munishgandhi/chatCDP 
-    chatcdp_staging: 
-      image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/chatcdp:latest
-      env_file:
-        - /home/ubuntu/code/.env.chatcdp_stg
-      deploy:
-        restart_policy:
-          condition: on-failure
-          delay: 5s
-          max_attempts: 3
-        resources:
-          limits:
-            cpus: '0.40'
-            memory: 3g
-      ports:
-        - "5001:5000"
-      volumes:
-        - /home/ubuntu/code/.signals-keyfile.json:/app/config/signals-keyfile.json
-        - /home/ubuntu/code/hayley_subject_detector/hayley_subject_detector:/app/models/hayley_subject_detector
-      depends_on:
-        - redis_db_staging
-
-    # chatCDP services https://github.com/munishgandhi/JAI.GPT.LeaseGPT.MailGPT/tree/main/ChatCDP
+    # chatCDP services https://github.com/munishgandhi/PAI.APP.ChatCDP
     chatcdp_services_staging: 
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/chatcdp-services:latest
       env_file:
@@ -64,14 +12,15 @@ services:
           max_attempts: 3
         resources:
           limits:
-            cpus: '0.40'
-            memory: 3g
+            cpus: '0.50'
+            memory: 5g
       ports:
         - "5011:5000"
       volumes:
         - /home/ubuntu/code/.signals-keyfile.json:/app/config/signals-keyfile.json
         - /home/ubuntu/code/hayley_subject_detector/hayley_subject_detector:/app/models/hayley_subject_detector
 
+    # Hayleygpt https://github.com/munishgandhi/JAI.APP.HayleyChatBot
     hayleygpt_staging: 
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/hayleygpt:latest
       env_file:
@@ -90,10 +39,9 @@ services:
       volumes:
         - /home/ubuntu/code/.signals-keyfile.json:/app/config/signals-keyfile.json
         - /home/ubuntu/code/hayley_subject_detector/hayley_subject_detector:/app/models/hayley_subject_detector
-      depends_on:
-        - mongo_db_staging
+  
 
-    #https://github.com/munishgandhi/etl-hub/tree/datascience_stg
+    # PAI datascience https://github.com/munishgandhi/etl-hub/tree/datascience_stg
     pai_datascience_services_staging: 
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/pai-datascience-services:latest
       deploy:
@@ -108,21 +56,7 @@ services:
       ports: 
         - "82:80"
   
-    # etl_hub_staging:
-    #   image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/etl-hub:latest
-    #   deploy:
-    #     restart_policy:
-    #       condition: on-failure
-    #       delay: 5s
-    #       max_attempts: 3
-
-    #     resources:
-    #       limits:
-    #         cpus: '0.25'
-    #         memory: 350M
-    #   ports:
-    #     - "3001:3000"
-   
+    # mailBot https://github.com/munishgandhi/JAI.APP.HayleyMailBot
     mailBot_stg:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/mailbot:latest
       env_file:
@@ -141,6 +75,7 @@ services:
       volumes:
         - /home/ubuntu/code/hayley_subject_detector/hayley_subject_detector:/app/models/hayley_subject_detector
 
+    # hayleyImageClassification https://github.com/munishgandhi/Hayley.JAI.Image.Classification.git
     hylyimageclassification_stg:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/hylyimageclassification:latest
       deploy:
@@ -148,16 +83,12 @@ services:
           condition: on-failure
           delay: 5s
           max_attempts: 3
+      resources:
+          limits:
+            cpus: '0.50'
+            memory: 5g
       ports:
         - "5041:5000"
-
-volumes:
-  # mysql_data_staging:
-  #   external: true
-  mongo_data_staging:
-    external: true
-  redis_data_staging:
-    external: true
     
 networks:
   default:
