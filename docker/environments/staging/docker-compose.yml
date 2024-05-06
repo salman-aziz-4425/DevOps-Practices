@@ -83,13 +83,30 @@ services:
           condition: on-failure
           delay: 5s
           max_attempts: 3
-      resources:
+        resources:
           limits:
             cpus: '0.50'
             memory: 5g
       ports:
         - "5041:5000"
-    
+        
+    # Oneminutechatbot https://github.com/munishgandhi/one-minute-chatbot
+    oneminutechatbot_stg:
+      image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-stg/oneminutechatbot:latest 
+      env_file:
+        - /home/ubuntu/code/.env.oneminutechatbot_stg
+      deploy:
+        restart_policy:
+          condition: on-failure
+          delay: 5s
+          max_attempts: 3
+        resources:
+          limits:
+            cpus: '0.40'
+            memory: 3g
+      ports:
+        - "8001:8000"
+
 networks:
   default:
     name: microservices_staging
