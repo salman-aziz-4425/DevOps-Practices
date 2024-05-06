@@ -85,7 +85,7 @@ locals {
   lb_name                  = "ml-non-prod"
   lb_ssl                   = true
   lb_use_ssl_certificates  = true
-  lb_ssl_certificates      = ["projects/gds-prototype-20190629/global/sslCertificates/hyly-dot-us"]
+  lb_ssl_certificates      = ["https://www.googleapis.com/compute/v1/projects/gds-prototype-20190629/global/sslCertificates/hyly-dot-us-2024"]
   lb_create_url_map        = false
   lb_load_balancing_scheme = "EXTERNAL_MANAGED"
   lb_backends = {
