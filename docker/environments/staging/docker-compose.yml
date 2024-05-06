@@ -83,7 +83,7 @@ services:
           condition: on-failure
           delay: 5s
           max_attempts: 3
-      resources:
+        resources:
           limits:
             cpus: '0.50'
             memory: 5g
