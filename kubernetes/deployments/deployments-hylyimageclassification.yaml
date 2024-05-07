@@ -43,13 +43,13 @@ spec:
             - mountPath: /model/hyly-subject-detector/
               name: hyly-subject-detector-pvc-vol
 
-          resources:
-            requests:
-              memory: "500Mi"
-              cpu: "250m"
-            limits:
-              memory: "1024Mi"
-              cpu: "250m"
+          # resources:
+          #   requests:
+          #     memory: "500Mi"
+          #     cpu: "250m"
+          #   limits:
+          #     memory: "1024Mi"
+          #     cpu: "250m"
 
           livenessProbe:
             httpGet:
