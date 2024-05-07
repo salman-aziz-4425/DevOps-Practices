@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oneminutechatbot
+  namespace: hyly-prod
+  labels:
+    app: oneminutechatbot
+spec:
+  replicas: 1
+  minReadySeconds: 10
+  progressDeadlineSeconds: 60
+  revisionHistoryLimit: 5
+
+  strategy:
+    rollingUpdate:
+      maxSurge: 3
+      maxUnavailable: 0
+
+  selector:
+    matchLabels:
+      app: oneminutechatbot
+
+  template:
+    metadata:
+      name: oneminutechatbot
+      labels:
+        app: oneminutechatbot
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: oneminutechatbot
+          image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-prod/oneminutechatbot:latest
+          imagePullPolicy: Always
+          envFrom:
+          envFrom:
+          - configMapRef:
+              name: configmap-oneminutechatbot
+          - secretRef:
+              name: secret-oneminutechatbot
+
+          ports:
+            - containerPort: 8000
+          # resources:
+          #   requests:
+          #     memory: "500Mi"
+          #     cpu: "250m"
+          #   limits:
+          #     memory: "1024Mi"
+          #     cpu: "250m"
+
+          # livenessProbe:
+          #   httpGet:
+          #     path: /heartbeat
+          #     port: 8000
+          #   initialDelaySeconds: 60
+          #   periodSeconds: 60
+          #   timeoutSeconds: 120
+
+          # readinessProbe:
+          #   httpGet:
+          #     path: /heartbeat
+          #     port: 8000
+          #   initialDelaySeconds: 60
+          #   periodSeconds: 60
+          #   timeoutSeconds: 60
+
+          # startupProbe:
+          #   httpGet:
+          #     path: /heartbeat
+          #     port: 8000
+          #   failureThreshold: 30
+          #   periodSeconds: 10

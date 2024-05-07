@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap-oneminutechatbot
+  namespace: hyly-prod
+data:
+  DATABASE_NAME: one_minute_chatbot_prod
+  COLLECTION_KG_NAME: knowledge_graphs
+  COLLECTION_CHAT_NAME: conversations
