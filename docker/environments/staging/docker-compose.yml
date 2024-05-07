@@ -91,7 +91,7 @@ services:
         - "5041:5000"
         
     # Oneminutechatbot https://github.com/munishgandhi/one-minute-chatbot
-    oneminutechatbot_staging::
+    oneminutechatbot_stg:
       image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-staging/oneminutechatbot:latest 
       env_file:
         - /home/ubuntu/code/.env.oneminutechatbot_stg
