@@ -109,7 +109,7 @@ services:
           condition: on-failure
           delay: 5s
           max_attempts: 3
-      resources:
+        resources:
           limits:
             cpus: '0.50'
             memory: 5g
@@ -132,9 +132,6 @@ services:
             memory: 3g
       ports:
         - "8000:8000"
-
-volumes:
-  pai_datascience_services:
 
 networks:
   default:
