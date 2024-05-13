@@ -10,14 +10,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # - name: Set up Google Cloud SDK
-      #   uses: google-github-actions/setup-gcloud@v0.2.0
-      #   with:
-      #     service_account_key: ${{ secrets.GCP_SA_KEY }}
-      #     project_id: ${{ vars.GCP_PROJECT_ID }}
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0.2.0
+        with:
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          project_id: ${{ vars.GCP_PROJECT_ID }}
 
       - name: Configure kubectl
         run: |
+          gcloud components install gke-gcloud-auth-plugin
           gcloud container clusters get-credentials hyly-ml-prod --zone=us-east1
           kubectl config set-context --current --namespace=hyly-prod
 
