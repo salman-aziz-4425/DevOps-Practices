@@ -18,8 +18,6 @@ jobs:
 
       - name: Configure kubectl
         run: |
-          gcloud config set account ACCOUNT
-          gcloud container clusters get-credentials hyly-ml-prod --zone=us-east1
           kubectl config set-context --current --namespace=hyly-prod
 
       # - name: Apply secrets
