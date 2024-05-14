@@ -1,4 +1,4 @@
-name: Deploy Policy and Gateways for GKE
+name: Kubectl Deploy - Policies, Routes, Gateways
 
 on:
   workflow_dispatch:
@@ -21,20 +21,27 @@ jobs:
           gcloud components install gke-gcloud-auth-plugin
           gcloud container clusters get-credentials hyly-ml-prod --zone=us-east1
           kubectl config set-context --current --namespace=hyly-prod
-
-      # - name: Apply secrets
-      #   run: |
-      #     kubectl apply -f kubernetes/secrets/sealed-mailbot.yaml
-      
-      - name: Apply policy
+ 
+      - name: Apply Policies
         run: |
           kubectl apply -f kubernetes/gateway-routes/policy-oneminutechatbot.yaml
+          kubectl apply -f kubernetes/gateway-routes/policy-hylyimageclassification.yaml
+          kubectl apply -f kubernetes/gateway-routes/policy-hayleygpt.yaml
+          kubectl apply -f kubernetes/gateway-routes/policy-mailbot.yaml
+          kubectl apply -f kubernetes/gateway-routes/policy-chatcdp-services.yaml
       
-      - name: Apply gateway route
+      - name: Apply Routes
         run: |
           kubectl apply -f kubernetes/gateway-routes/route-oneminutechatbot.yaml
-    
+          kubectl apply -f kubernetes/gateway-routes/route-hylyimageclassification.yaml
+          kubectl apply -f kubernetes/gateway-routes/route-hayletgpt.yaml
+          kubectl apply -f kubernetes/gateway-routes/route-mailbot.yaml
+          kubectl apply -f kubernetes/gateway-routes/route-chatcdp-services.yaml
 
+      - name: Apply Gateway
+        run: |
+          kubectl apply -f kubernetes/gateway-routes/gateway.yaml
+    
       - name: Clean up
         run: |
           kubectl config unset users.gke_gds-prototype-20190629_us-east1_hyly-ml-prod
