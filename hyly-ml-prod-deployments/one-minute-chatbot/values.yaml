@@ -1,0 +1,25 @@
+name: oneminutechatbot
+namespace: default
+image:
+  repository: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-prod/oneminutechatbot:latest
+configMap: configmap-oneminutechatbot
+port: 8000
+secretsMap: secret-oneminutechatbot
+enableVolumes: false
+enableResources: false
+
+configMaps:
+  - name: configmap-oneminutechatbot
+    data:
+      DATABASE_NAME: one_minute_chatbot_prod
+      COLLECTION_KG_NAME: knowledge_graphs
+      COLLECTION_CHAT_NAME: conversations
+
+  - name: configmap-hayleygpt
+    data:
+      DB_NAME: hyly_ai_mailgpt
+      DB_NAME_QA: hyly_ai_mailgpt_qa
+      PINECONE_ENV: us-east4-gcp
+      ENVIRONMENT: prod
+      PYTHONPATH: /app/MLOps/Loggers
+      REDIS_URL_Prod: redis://10.18.171.123:6379

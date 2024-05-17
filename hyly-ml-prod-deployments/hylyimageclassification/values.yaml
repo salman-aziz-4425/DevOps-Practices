@@ -1,0 +1,16 @@
+name: hylyimageclassification
+image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-prod/hylyimageclassification:latest
+envFrom:
+  - secretRef:
+      name: secret-mailbot
+port : 5000
+volumeMounts:
+  - mountPath: /model/hyly-subject-detector/
+    name: hyly-subject-detector-pvc-vol
+resources:
+  requests:
+    memory: "500Mi"
+      cpu: "250m"
+  limits:
+    memory: "1024Mi"
+      cpu: "250m"

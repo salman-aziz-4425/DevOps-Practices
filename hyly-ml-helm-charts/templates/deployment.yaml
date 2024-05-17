@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}
+  labels:
+    app: {{ .Values.namespace }}
+spec:
+  replicas: 1
+  minReadySeconds: 10
+  progressDeadlineSeconds: 60
+  revisionHistoryLimit: 5
+  strategy:
+    rollingUpdate:
+      maxSurge: 3
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      restartPolicy: Always
+{{- if .Values.enableVolumes }}
+      volumes:
+        - name: {{.Values.volumeName}}
+          persistentVolumeClaim:
+            claimName: {{.Values.volumePVC}}
+{{- end }}
+      containers:
+        - name: {{ .Values.name }}
+          image: {{ .Values.image.repository }}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+{{- if .Values.enableVolumes }}
+          volumeMounts:
+            - mountPath: {{.Values.modePath}}
+              name: {{.Values.volumeName}}
+{{- end }}
+{{- if .Values.enableResources }}
+          resources:
+            requests:
+              memory: "500Mi"
+              cpu: "250m"
+            limits:
+              memory: "1024Mi"
+              cpu: "250m"
+{{- end }}
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.configMap }}
+            - secretRef:
+                name: {{ .Values.secretsMap }}

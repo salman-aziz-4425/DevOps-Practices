@@ -1,0 +1,17 @@
+name: mailbot
+image: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-prod/mailbot:latest
+port : 5000
+
+
+volumePVC: hyly-subject-detector-pvc-vol
+modePath: /model/hyly-subject-detector/
+
+enableVolumes: true
+enableResources: true
+resources:
+  requests:
+    memory: "500Mi"
+      cpu: "250m"
+  limits:
+    memory: "1024Mi"
+      cpu: "250m"

@@ -1,0 +1,6 @@
+name: hayleygpt
+image:
+      repository: us-east1-docker.pkg.dev/gds-prototype-20190629/ml-prod/hayleygpt:latest
+      tag: latest
+configMap: configmap-hayleygpt
+port: 5000
