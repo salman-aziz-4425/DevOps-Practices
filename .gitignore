@@ -4,6 +4,7 @@
 terraform.tfstate
 terraform.tfstate*
 terraform.plan
+*/kubernetes/secrets
 *graph*
 .DS_Store
 *tfstate*
