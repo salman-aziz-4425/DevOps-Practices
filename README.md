@@ -1,4 +1,4 @@
-# DevOps Project
+# DevOps Practices
 
 ## Overview
 This repository contains the deployment automation scripts and configurations for a DevOps project leveraging Docker, Kubernetes, Terraform, and Helm Charts. The goal of this project is to streamline the deployment process and ensure consistency and reliability across environments.
