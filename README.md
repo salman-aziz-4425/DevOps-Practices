@@ -1,5 +1,3 @@
-![image](https://github.com/salman-aziz-4425/DevOps-Project-Devsinc/assets/85288719/d005525d-740a-4cb1-b311-3ccb1f956e2f)
-
 # DevOps Project
 
 ## Overview
